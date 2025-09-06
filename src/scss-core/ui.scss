@@ -1,0 +1,97 @@
+@use './variables.scss' as *;
+
+.weavo-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-base);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+
+  &:focus {
+    outline: none;
+    box-shadow: var(--btn-primary-focus-shadow);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: var(--input-disabled-opacity);
+  }
+}
+
+.weavo-btn-primary {
+  @extend .weavo-btn;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
+
+  &:hover {
+    background-color: var(--btn-primary-hover-bg);
+  }
+}
+
+.weavo-btn-secondary {
+  @extend .weavo-btn;
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-color);
+
+  &:hover {
+    background-color: var(--btn-secondary-hover-bg);
+  }
+}
+
+.weavo-btn-default {
+  @extend .weavo-btn;
+  background-color: var(--btn-default-bg);
+  color: var(--btn-default-color);
+  border: 1px solid var(--btn-default-border);
+
+  &:hover {
+    background-color: var(--btn-default-hover-bg);
+  }
+}
+
+.weavo-input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  font-size: var(--font-base);
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder);
+  }
+
+  &:disabled {
+    background-color: var(--input-disabled-bg);
+    cursor: not-allowed;
+    opacity: var(--input-disabled-opacity);
+  }
+}
+
+.weavo-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+  }
+}

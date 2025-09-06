@@ -1,0 +1,75 @@
+:root {
+  /* Core Colors */
+  --primary: #1e90ff;
+  --primary-hover: #1c86ee;
+  --primary-focus: rgba(30,144,255,0.3);
+
+  --secondary: #f5f5f5;
+  --secondary-hover: #e0e0e0;
+
+  --bg: #ffffff;
+  --bg-hover: #f9f9f9;
+  --text: #333333;
+  --accent: #ff4081;
+
+  /* Layout Backgrounds */
+  --sidebar-bg: #f0f0f0;
+  --header-bg: #f8f9fa;
+  --footer-bg: #f1f3f5;
+  --main-bg: #ffffff;
+  --section-bg: transparent;
+  --navbar-bg: #ffffff;
+
+  /* Cards */
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  /* Buttons */
+  --btn-primary-bg: var(--primary);
+  --btn-primary-color: #ffffff;
+  --btn-primary-hover-bg: var(--primary-hover);
+  --btn-primary-focus-shadow: var(--primary-focus);
+
+  --btn-secondary-bg: var(--secondary);
+  --btn-secondary-color: var(--text);
+  --btn-secondary-hover-bg: var(--secondary-hover);
+
+  --btn-default-bg: transparent;
+  --btn-default-color: var(--text);
+  --btn-default-border: var(--text);
+  --btn-default-hover-bg: var(--bg-hover);
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
+  --input-focus-border: var(--primary);
+  --input-focus-shadow: rgba(30,144,255,0.2);
+  --input-placeholder: rgba(51,51,51,0.5);
+  --input-disabled-bg: #f5f5f5;
+  --input-disabled-opacity: 0.6;
+
+  /* Modals, Tooltip, Accordion, Progress, Tabs, Spinner */
+  --modal-bg: #ffffff;
+  --modal-overlay-bg: rgba(0,0,0,0.5);
+  --accordion-bg: #ffffff;
+  --tooltip-bg: #333333;
+  --progress-bg: #e0e0e0;
+  --progress-fill-bg: var(--primary);
+  --tab-bg: #ffffff;
+  --spinner-bg: transparent;
+
+  /* Spacing & Sizing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --font-base: 16px;
+  --font-large: 20px;
+}

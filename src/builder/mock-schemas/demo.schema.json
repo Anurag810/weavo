@@ -1,24 +1,60 @@
 {
-    "type": "page",
-    "props": {"title": "Demo"},
-    "children": [
-        { "type": "Header",
-            "props": {"text": "Welcome to Weavo"} 
+  "type": "Page",
+  "props": {
+    "title": "Demo",
+    "padding": "var(--spacing-lg)",
+    "background": "var(--main-bg)"
+  },
+  "children": [
+    {
+      "type": "Header",
+      "props": {
+        "children": "Welcome to Weavo",
+        "height": "80px",
+        "background": "var(--header-bg)"
+      }
+    },
+    {
+      "type": "Navbar",
+      "props": {
+        "items": [
+          {"label": "Home", "href": "/"},
+          {"label": "About", "href": "/about"},
+          {"label": "Contact", "href": "/contact"}
+        ],
+        "align": "start"
+      }
+    },
+    {
+      "type": "Section",
+      "props": {
+        "gap": "var(--spacing-md)",
+        "padding": "var(--spacing-md)",
+        "background": "var(--section-bg)"
+      },
+      "children": [
+        {
+          "type": "Button",
+          "props": {
+            "label": "Primary",
+            "variant": "primary"
+          }
         },
         {
-            "type": "Container",
-            "props": {"gap": "16px"},
-            "children": [
-                { "type": "Button",
-                    "props": {
-                        "label": "Primary",
-                        "variant": "primary"
-                    }
-                },
-                { "type": "Input",
-                    "props": {"placeholder": "Enter name"} 
-                }
-            ]
+          "type": "Input",
+          "props": {
+            "placeholder": "Enter name"
+          }
         }
-    ]
+      ]
+    },
+    {
+      "type": "Footer",
+      "props": {
+        "children": "© 2025 Weavo. All rights reserved.",
+        "height": "60px",
+        "background": "var(--footer-bg)"
+      }
+    }
+  ]
 }

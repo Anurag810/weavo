@@ -240,3 +240,137 @@ Start with `v0.1`:
 - [ ] Keep README + roadmap updated
 
 Let me know when you want me to scaffold any part of it.
+
+# Achevied Till now
+
+# Weavo UI Library
+
+## Overview
+This library includes **17 reusable components** split between Layouts and UI. Some components are fully functional, while others require styling and interaction enhancements.
+
+---
+
+## Layout Components (7)
+
+| Component | Status | Notes |
+|-----------|--------|------|
+| **Page** | ✅ Works | Uses HOC with `weavo-page` |
+| **Header** | ✅ Works | HOC applied |
+| **Footer** | ✅ Works | HOC applied |
+| **Sidebar** | ✅ Works | HOC applied |
+| **Main** | ✅ Works | HOC applied |
+| **Section** | ✅ Works | HOC applied |
+| **Navbar** | ⚠️ Needs review | Works if items passed; styling may need enhancement |
+
+---
+
+## UI Components (10)
+
+| Component | Status | Notes |
+|-----------|--------|------|
+| **Button** | ✅ Works | Variants properly mapped |
+| **Input** | ✅ Works | Basic input works |
+| **Card** | ✅ Works | Background and padding in CSS needed |
+| **Badge** | ⚠️ Not working | SCSS missing, colors need definition |
+| **Modal** | ⚠️ Partially working | Overlay close works; needs styling & accessibility improvements |
+| **Accordion** | ⚠️ Needs work | Toggle functionality not implemented fully |
+| **Tooltip** | ⚠️ Needs SCSS | Placement, visibility, and styling missing |
+| **ProgressBar** | ⚠️ Needs SCSS | Fill animation & background styling missing |
+| **TabPanel** | ⚠️ Needs SCSS | Tab switch works, visual styling missing |
+| **Spinner** | ⚠️ Needs SCSS | Visual spinner missing, currently just a div |
+
+---
+
+## Tasks & Priorities
+1. **Styling & SCSS**
+   - Badge, Tooltip, ProgressBar, TabPanel, Spinner, Modal, Accordion
+2. **Interactions**
+   - Accordion toggle
+   - Modal accessibility (keyboard, focus trap)
+3. **Consistency**
+   - Make Navbar visually consistent with Header/Footer
+   - Ensure spacing, border-radius, and color variables applied across all components
+4. **Enhancements (Optional)**
+   - Add Dropdown, Avatar, Toast, Stepper, Table components
+   - Add animation for ProgressBar and Spinner
+
+---
+
+## Variables
+All components use **CSS variables** defined in `variables.scss` to maintain consistent colors, spacing, and typography.
+
+```scss
+:root {
+  /* Core Colors */
+  --primary: #1e90ff;
+  --primary-hover: #1c86ee;
+  --primary-focus: rgba(30,144,255,0.3);
+  --secondary: #f5f5f5;
+  --secondary-hover: #e0e0e0;
+  --bg: #ffffff;
+  --bg-hover: #f9f9f9;
+  --text: #333333;
+  --accent: #ff4081;
+
+  /* Layout Backgrounds */
+  --sidebar-bg: #f0f0f0;
+  --header-bg: #f8f9fa;
+  --footer-bg: #f1f3f5;
+  --main-bg: #ffffff;
+  --section-bg: transparent;
+  --navbar-bg: #ffffff;
+
+  /* Cards */
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  /* Buttons */
+  --btn-primary-bg: var(--primary);
+  --btn-primary-color: #ffffff;
+  --btn-primary-hover-bg: var(--primary-hover);
+  --btn-primary-focus-shadow: var(--primary-focus);
+
+  --btn-secondary-bg: var(--secondary);
+  --btn-secondary-color: var(--text);
+  --btn-secondary-hover-bg: var(--secondary-hover);
+
+  --btn-default-bg: transparent;
+  --btn-default-color: var(--text);
+  --btn-default-border: var(--text);
+  --btn-default-hover-bg: var(--bg-hover);
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
+  --input-focus-border: var(--primary);
+  --input-focus-shadow: rgba(30,144,255,0.2);
+  --input-placeholder: rgba(51,51,51,0.5);
+  --input-disabled-bg: #f5f5f5;
+  --input-disabled-opacity: 0.6;
+
+  /* Modals, Tooltip, Accordion, Progress, Tabs, Spinner */
+  --modal-bg: #ffffff;
+  --modal-overlay-bg: rgba(0,0,0,0.5);
+  --accordion-bg: #ffffff;
+  --tooltip-bg: #333333;
+  --progress-bg: #e0e0e0;
+  --progress-fill-bg: var(--primary);
+  --tab-bg: #ffffff;
+  --spinner-bg: transparent;
+
+  /* Spacing & Sizing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --font-base: 16px;
+  --font-large: 20px;
+}
+
