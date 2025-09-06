@@ -51,19 +51,32 @@ A full-stack, dynamic UI framework with the following goals:
 ```
 
 ----
-ui-framework/
-├── packages/
-│   ├── scss-core/          # SCSS theme engine
-│   ├── react-components/   # Component library
-│   ├── theme-system/       # JSON theme management
-│   └── schema-renderer/    # React renderer from schema
-├── apps/
-│   ├── builder-ui/         # Drag & drop builder (future)
-│   ├── docs-site/          # Documentation + live preview
-│   └── backend-api/        # FastAPI or Express backend
-├── examples/               # Example usage apps
-├── .github/                # CI/CD workflows
-└── README.md
+
+```
+    weavo/                     # root = main app (monolithic)
+    ├── src/
+    │   ├── scss-core/         # tokens, mixins, utilities (SCSS files)
+    │   ├── components/        # React components (Button, Input, Card...)
+    │   ├── theme-system/      # ThemeProvider, useTheme, theme storage logic
+    │   ├── schema-renderer/   # JSON → React renderer + schema definitions
+    │   ├── builder/           # PLACEHOLDER: drag & drop builder (UI → JSON)
+    │   │   ├── README.md
+    │   │   └── mock-schemas/  # sample schemas produced by the builder
+    │   └── targets/           # placeholders for export-target logic
+    │       ├── web/
+    │       ├── ios/
+    │       └── android/
+    ├── backend/               # simple API (save/load schema + theme)
+    ├── public/                # static assets
+    ├── docs/                  # docs / design decisions / schema spec
+    ├── examples/              # demo pages / sample apps using weavo
+    ├── package.json
+    ├── tsconfig.json
+    ├── vite.config.ts
+    ├── README.md
+    └── LICENSE
+```
+
 ----
 # 🗂️ Task Breakdown for Dynamic SCSS + React + JSON UI Framework
 
