@@ -3,7 +3,11 @@ import { ComponentMap } from "../components";
 
 
 export function renderNode(node) {
-    if (!node || !node.type) return null;
+    if (!node) return null;
+
+    if (typeof node == "string") {
+        return <>{node}</>
+    }
 
     const { type, props = {}, styles = {}, children } = node;
     const Component = ComponentMap[type] || type;

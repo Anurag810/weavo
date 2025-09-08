@@ -82,16 +82,81 @@
 }
 
 .weavo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
   background-color: var(--card-bg);
   border-radius: var(--radius-md);
   box-shadow: var(--card-shadow);
-  padding: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+  padding: var(--card-padding);
   transition: box-shadow 0.2s ease-in-out;
 
   &:hover {
     box-shadow: var(--card-hover-shadow);
   }
+
+  &-header {
+    font-weight: 600;
+    font-size: var(--card-header-font);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  &-body {
+    flex: 1;
+    padding: var(--spacing-sm) 0;
+    color: var(--text);
+  }
+
+  &-footer {
+    padding-top: var(--card-footer-gap);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--card-footer-gap);
+  }
 }
+
+.weavo-badge {
+  display: inline-flex;   /* 👈 important */
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0.25em 0.75em; /* tighter badge sizing */
+  border-radius: var(--radius-lg);
+  font-size: var(--font-xs);
+  font-weight: 500;
+  line-height: 1;
+  user-select: none;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  white-space: nowrap;
+  width: 120px;
+  flex: 0 0 auto; 
+
+  .weavo-icon {
+    font-size: var(--font-sm);
+  }
+
+  /* Variants */
+  &-primary {
+    background: var(--color-primary);
+    color: #fff;
+    &:hover { background: var(--color-primary-hover); }
+  }
+  &-success {
+    background: var(--color-success);
+    color: #fff;
+  }
+  &-warning {
+    background: var(--color-warning);
+    color: #000;
+  }
+  &-danger {
+    background: var(--color-danger);
+    color: #fff;
+  }
+  &-info {
+    background: var(--color-info);
+    color: #fff;
+  }
+}
+

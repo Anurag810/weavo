@@ -16,6 +16,9 @@ import * as UI from './ui';
 export const ComponentMap = {
   ...Layouts,
   ...UI,
+  "Card.Header": UI.Card.Header,
+  "Card.Body": UI.Card.Body,
+  "Card.Footer": UI.Card.Footer,
 //   Dropdown: UI.Dropdown,
 //   Avatar: UI.Avatar,
 //   Toast: UI.Toast,

@@ -1,27 +1,32 @@
 import React from "react";
+import withWeavoStyles from "../withWeavoLayout";
 
-// Button
-export const Button = ({ label, variant = 'primary', ...props }) => {
+// ================= UI Components =================
+export const Accordion = withWeavoStyles("div", "weavo-accordion", true);
+export const ProgressBar = withWeavoStyles("div", "weavo-progress-bar", true);
+export const TabPanel = withWeavoStyles("div", "weavo-tabs", true);
+
+export const Card = withWeavoStyles("div", "weavo-card", true);
+Card.Header = withWeavoStyles("div", "weavo-card-header", true);
+Card.Body = withWeavoStyles("div", "weavo-card-body", true);
+Card.Footer = withWeavoStyles("div", "weavo-card-footer", true);
+
+// export const Badge = withWeavoStyles("span", "weavo-badge", true);
+
+export const Badge = ({ label, variant = "primary", children, ...props }) => {
+  const className = `weavo-badge weavo-badge-${variant}`;
+  return <span className={className} {...props}>{children}</span>;
+};
+
+export const Button = ({ label, variant = "primary", ...props }) => {
   const className = `weavo-btn weavo-btn-${variant}`;
   return <button className={className} {...props}>{label}</button>;
 };
 
-// Input
-export const Input = ({ placeholder, type = 'text', ...props }) => {
+export const Input = ({ placeholder, type = "text", ...props }) => {
   return <input className="weavo-input" type={type} placeholder={placeholder} {...props} />;
 };
 
-// Card
-export const Card = ({ children, ...props }) => {
-  return <div className="weavo-card" {...props}>{children}</div>;
-};
-
-// Badge
-export const Badge = ({ label, color = 'accent', ...props }) => {
-  return <span className={`weavo-badge weavo-badge-${color}`} {...props}>{label}</span>;
-};
-
-// Modal
 export const Modal = ({ isOpen, title, children, onClose, ...props }) => {
   if (!isOpen) return null;
   return (
@@ -35,21 +40,6 @@ export const Modal = ({ isOpen, title, children, onClose, ...props }) => {
   );
 };
 
-// Accordion
-export const Accordion = ({ items = [] }) => {
-  return (
-    <div className="weavo-accordion">
-      {items.map((item, i) => (
-        <div key={i} className="weavo-accordion-item">
-          <button className="weavo-accordion-header">{item.title}</button>
-          <div className="weavo-accordion-body">{item.content}</div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// Tooltip
 export const Tooltip = ({ content, children }) => {
   return (
     <div className="weavo-tooltip-wrapper">
@@ -59,34 +49,18 @@ export const Tooltip = ({ content, children }) => {
   );
 };
 
-// ProgressBar
-export const ProgressBar = ({ value = 0, max = 100 }) => {
-  const percentage = (value / max) * 100;
-  return (
-    <div className="weavo-progress-bar">
-      <div className="weavo-progress-fill" style={{ width: `${percentage}%` }}></div>
-    </div>
-  );
-};
-
-// TabPanel
-export const TabPanel = ({ tabs = [] }) => {
-  const [active, setActive] = React.useState(0);
-  return (
-    <div className="weavo-tabs">
-      <div className="weavo-tab-headers">
-        {tabs.map((tab, i) => (
-          <button key={i} onClick={() => setActive(i)} className={i === active ? 'active' : ''}>
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      <div className="weavo-tab-content">{tabs[active]?.content}</div>
-    </div>
-  );
-};
-
-// Spinner
-export const Spinner = ({ size = '40px', color = 'var(--primary)' }) => {
+export const Spinner = ({ size = "40px", color = "var(--primary)" }) => {
   return <div className="weavo-spinner" style={{ width: size, height: size, borderColor: color }}></div>;
 };
+
+import * as LucideIcons from "lucide-react";
+
+export const Icon = ({ name, size = 16, iconColor = "currentColor", ...props }) => {
+  const LucideIcon = LucideIcons[name];
+  if (!LucideIcon) {
+    console.warn(`Icon "${name}" not found in lucide-react`);
+    return null;
+  }
+  return <LucideIcon size={size} color={iconColor} {...props} />;
+};
+

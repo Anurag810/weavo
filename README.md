@@ -250,7 +250,7 @@ This library includes **17 reusable components** split between Layouts and UI. S
 
 ---
 
-## Layout Components (7)
+## Layout Components (8)
 
 | Component | Status | Notes |
 |-----------|--------|------|
@@ -260,7 +260,9 @@ This library includes **17 reusable components** split between Layouts and UI. S
 | **Sidebar** | ✅ Works | HOC applied |
 | **Main** | ✅ Works | HOC applied |
 | **Section** | ✅ Works | HOC applied |
-| **Navbar** | ⚠️ Needs review | Works if items passed; styling may need enhancement |
+| **Navbar** | ✅ Needs review | Works if items passed; styling may need enhancement |
+| **Navbar** | ✅ Needs review | Works if items passed; styling may need enhancement |
+| **Container** | ✅ Needs review | Works if items passed; styling may need enhancement |
 
 ---
 
@@ -271,8 +273,9 @@ This library includes **17 reusable components** split between Layouts and UI. S
 | **Button** | ✅ Works | Variants properly mapped |
 | **Input** | ✅ Works | Basic input works |
 | **Card** | ✅ Works | Background and padding in CSS needed |
-| **Badge** | ⚠️ Not working | SCSS missing, colors need definition |
+| **Badge** | ✅ Works | needing sizing |
 | **Modal** | ⚠️ Partially working | Overlay close works; needs styling & accessibility improvements |
+| **Icons** | ⚠️ In progress | Visual spinner missing, currently just a div |
 | **Accordion** | ⚠️ Needs work | Toggle functionality not implemented fully |
 | **Tooltip** | ⚠️ Needs SCSS | Placement, visibility, and styling missing |
 | **ProgressBar** | ⚠️ Needs SCSS | Fill animation & background styling missing |

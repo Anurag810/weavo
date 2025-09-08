@@ -6,55 +6,205 @@
     "background": "var(--main-bg)"
   },
   "children": [
-    {
-      "type": "Header",
-      "props": {
-        "children": "Welcome to Weavo",
-        "height": "80px",
-        "background": "var(--header-bg)"
-      }
-    },
-    {
-      "type": "Navbar",
-      "props": {
-        "items": [
-          {"label": "Home", "href": "/"},
-          {"label": "About", "href": "/about"},
-          {"label": "Contact", "href": "/contact"}
-        ],
-        "align": "start"
-      }
-    },
-    {
-      "type": "Section",
-      "props": {
-        "gap": "var(--spacing-md)",
-        "padding": "var(--spacing-md)",
-        "background": "var(--section-bg)"
-      },
-      "children": [
-        {
-          "type": "Button",
-          "props": {
-            "label": "Primary",
-            "variant": "primary"
-          }
-        },
-        {
-          "type": "Input",
-          "props": {
-            "placeholder": "Enter name"
-          }
+    {"type": "Sidebar",
+        "props": {
         }
-      ]
     },
     {
-      "type": "Footer",
-      "props": {
-        "children": "© 2025 Weavo. All rights reserved.",
-        "height": "60px",
-        "background": "var(--footer-bg)"
-      }
+        "type": "Main",
+        "props": {},
+        "children": [
+            {
+                "type": "Navbar",
+                "props": {
+                    "items": [
+                        {"label": "Home", "href": "/"},
+                        {"label": "About", "href": "/about"},
+                        {"label": "Contact", "href": "/contact"}
+                    ],
+                    "align": "start"
+                }
+            },
+            {
+                "type": "Header",
+                "props": {
+                    "children": "Welcome to Weavo",
+                    "height": "80px",
+                    "background": "var(--header-bg)"
+                }
+            },
+            {
+                "type": "Section",
+                "props": {
+                    "gap": "var(--spacing-md)",
+                    "padding": "var(--spacing-md)",
+                    "background": "var(--section-bg)",
+                    "direction": "row"
+
+                },
+                "children": [
+                    {
+                        "type": "Button",
+                        "props": {
+                            "label": "Primary",
+                            "variant": "primary"
+                        }
+                    },
+                    {
+                        "type": "Button",
+                        "props": {
+                            "label": "Secondary",
+                            "variant": "secondary"
+                        }
+                    },
+                    {
+                        "type": "Button",
+                        "props": {
+                            "label": "Default",
+                            "variant": "Default"
+                        }
+                    },
+                    {
+                        "type": "Input",
+                        "props": {
+                            "placeholder": "Enter name"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": {
+                    "gap": "var(--spacing-md)",
+                    "padding": "var(--spacing-md)",
+                    "background": "var(--section-bg)"
+                },
+                "children": [
+                    {
+                        "type": "Container",
+                        "props": {"direction": "row"},
+                        "children": [
+                            {
+                                "type": "Card",
+                                "props": {},
+                                "children": [
+                                    {
+                                        "type": "Card.Header",
+                                        "props": {},
+                                        "children": "Card Header"
+                                    },
+                                    {
+                                        "type": "Card.Body",
+                                        "props": {},
+                                        "children": "This is the main content of the card."
+                                    },
+                                    {
+                                        "type": "Card.Footer",
+                                        "props": {},
+                                        "children": [
+                                            {
+                                                "type": "Button",
+                                                "props": {
+                                                    "label": "Primary",
+                                                    "variant": "primary"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Card",
+                                "children": "this is card 2"
+                            },
+                            {
+                                "type": "Card",
+                                "children": "this is card 3"
+                            },
+                            {
+                                "type": "Card",
+                                "children": "this is card 4"
+                            }
+                        ]
+
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": {
+                    "gap": "var(--spacing-md)",
+                    "padding": "var(--spacing-md)",
+                    "background": "var(--section-bg)",
+                    "direction": "row"
+                },
+                "children": [
+                    {
+                        "type": "Badge",
+                        "props": {"variant": "primary"},
+                        "children": [
+                            { 
+                                "type": "Icon",
+                                "props": { "name": "Bell", "size": 20, "color": "red" } 
+                            },
+                            "Primary"
+                        ]
+                    },
+                    {
+                        "type": "Badge",
+                        "props": {"variant": "success"},
+                        "children": [
+                            { 
+                                "type": "Icon",
+                                "props": { "name": "User", "size": 20, "color": "blue" } 
+                            },
+                            "Success"
+                        ]
+                    },
+                    {
+                        "type": "Badge",
+                        "props": {"variant": "warning"},
+                        "children": [
+                            { 
+                                "type": "Icon",
+                                "props": { "name": "Search", "size": 20, "color": "green" } 
+                            },
+                            "Warning"
+                        ]
+                    },
+                    {
+                        "type": "Badge",
+                        "props": {"variant": "info"},
+                        "children": [
+                            { 
+                                "type": "Icon",
+                                "props": { "name": "Heart", "size": 20, "color": "pink" } 
+                            },
+                            "Info"
+                        ]
+                    },
+                    {
+                        "type": "Badge",
+                        "props": {"variant": "danger"},
+                        "children": [
+                            { 
+                                "type": "Icon",
+                                "props": { "name": "Settings", "size": 20, "color": "white" } 
+                            },
+                            "Info"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "Footer",
+                "props": {
+                    "children": "© 2025 Weavo. All rights reserved.",
+                    "height": "60px",
+                    "background": "var(--footer-bg)"
+                }
+            }
+        ]
     }
   ]
 }

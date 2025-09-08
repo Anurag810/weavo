@@ -1,14 +1,21 @@
 @use './variables.scss' as *;
 
+@mixin flex-base {
+  display: flex;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  gap: var(--spacing-md);
+}
+
 // ==================== Page ====================
 .weavo-page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  @include flex-base;
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
 }
 
 // ==================== Header ====================
@@ -62,8 +69,9 @@
   gap: var(--spacing-md);
 }
 
-// ==================== Section ====================
-.weavo-section {
+// ==================== Section/container ====================
+.weavo-section,
+.weavo-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -91,8 +99,36 @@
     transition: background 0.2s ease, color 0.2s ease;
 
     &:hover {
-      background: var(--primary-hover);
+      background: var(--color-primary-hover);
       color: #fff;
     }
   }
 }
+
+// layouts.scss
+.flex {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.flex-column {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+  }
+
+.flex-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+@media (max-width: 768px) {
+    .flex-row {
+        flex-direction: column; 
+        align-items: center;
+    }
+}
+
