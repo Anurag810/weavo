@@ -275,7 +275,7 @@ This library includes **17 reusable components** split between Layouts and UI. S
 | **Card** | ✅ Works | Background and padding in CSS needed |
 | **Badge** | ✅ Works | needing sizing |
 | **Modal** | ⚠️ Partially working | Overlay close works; needs styling & accessibility improvements |
-| **Icons** | ⚠️ In progress | Visual spinner missing, currently just a div |
+| **Icons** | ✅ Works | Visual spinner missing, currently just a div |
 | **Accordion** | ⚠️ Needs work | Toggle functionality not implemented fully |
 | **Tooltip** | ⚠️ Needs SCSS | Placement, visibility, and styling missing |
 | **ProgressBar** | ⚠️ Needs SCSS | Fill animation & background styling missing |

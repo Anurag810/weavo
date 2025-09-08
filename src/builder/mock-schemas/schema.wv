@@ -1,0 +1,36 @@
+Page title="Demo" padding="var(--spacing-lg)" background="var(--main-bg)"
+    Sidebar
+
+    Main
+        Navbar align="start"
+            Item "Home" href="/"
+            Item "About" href="/about"
+            Item "Contact" href="/contact"
+
+        Header height="80px" background="var(--header-bg)"
+            "Welcome to Weavo"
+
+        Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)" direction="row"
+            Button "Primary" variant="primary"
+            Button "Secondary" variant="secondary"
+            Button "Default" variant="Default"
+            Input placeholder="Enter name"
+
+        Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)"
+            Container direction="row"
+                Card
+                    Card.Header
+                        "Card Header"
+                    Card.Body
+                        "This is the main content of the card."
+                    Card.Footer
+                        "Footer information"
+                Card
+                    "this is card 2"
+                Card
+                    "this is card 3"
+                Card
+                    "this is card 4"
+
+        Footer height="60px" background="var(--footer-bg)"
+            "© 2025 Weavo. All rights reserved."
