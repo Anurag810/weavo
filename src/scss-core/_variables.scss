@@ -31,6 +31,32 @@
   /* Borders */
   --border-light: #e0e0e0;
 
+  /*=================== Spiner ==============================*/
+  --spinner-color: var(--color-primary);
+  --spinner-speed: 1s;
+
+  --spinner-size-sm: 16px;
+  --spinner-size-md: 32px;
+  --spinner-size-lg: 64px;
+  --spinner-size-xl: 96px;
+
+  /* ================== Progress Bar ================== */
+  --progress-height-sm: 8px;
+  --progress-height-md: 12px;
+  --progress-height-lg: 16px;
+
+  --progress-speed-fast: 0.5s;
+  --progress-speed-slow: 1.5s;
+
+  --progress-primary: var(--color-primary);
+  --progress-success: var(--color-success);
+  --progress-warning: var(--color-warning);
+  --progress-danger: var(--color-danger);
+  --progress-info: var(--color-info);
+
+  --progress-bg: #e0e0e0;
+
+
   /* ================== Layout Backgrounds ================== */
   --sidebar-bg: #f0f0f0;
   --header-bg: #f8f9fa;
@@ -113,4 +139,31 @@
   --font-base: 16px;
   --font-lg: 20px;
   --font-xl: 24px;
+
+  /* Modal sizing */
+  --modal-width-sm: 320px;
+  --modal-width-md: 520px;
+  --modal-width-lg: 760px;
+
+  /* Padding */
+  --modal-padding-sm: var(--spacing-sm);
+  --modal-padding-md: var(--spacing-md);
+  --modal-padding-lg: var(--spacing-lg);
+
+  /* Visuals */
+  --modal-radius: var(--radius-md);
+  --modal-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --modal-overlay-bg: rgba(0, 0, 0, 0.5);
+  --modal-backdrop-blur: 0px;
+
+  /* Animation speeds */
+  --modal-animation-fast: 0.18s;
+  --modal-animation-normal: 0.30s;
+  --modal-animation-slow: 0.45s;
+
+  /* Controls */
+  --modal-close-size: var(--font-lg);
+  --modal-focus-shadow: 0 0 0 4px rgba(30, 144, 255, 0.12);
+
 }
+

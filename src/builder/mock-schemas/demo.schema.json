@@ -132,6 +132,70 @@
             },
             {
                 "type": "Section",
+                "props": {"direction": "row"},
+                "children": [
+                    {
+                        "type": "Spinner",
+                        "props": {
+                            "className": "weavo-spinner sm primary fast"
+                        }
+                    },
+                    {
+                        "type": "Spinner",
+                        "props": {
+                            "className": "weavo-spinner md success"
+                        }
+                    },
+                    {
+                        "type": "Spinner",
+                        "props": {
+                            "className": "weavo-spinner lg warning slow"
+                        }
+                    },
+                    {
+                        "type": "Spinner",
+                        "props": {
+                            "className": "weavo-spinner xl danger"
+                        }
+                    },
+                    {
+                        "type": "Spinner",
+                        "props": {
+                            "className": "weavo-spinner md info fast"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": {
+                    "gap": "var(--spacing-md)",
+                    "padding": "var(--spacing-md)",
+                    "background": "var(--section-bg)"
+                },
+                "children": [
+                    {
+                    "type": "ProgressBar",
+                    "props": {
+                        "value": 60,
+                        "size": "md",
+                        "variant": "primary",
+                        "speed": "fast"
+                    }
+                    },
+                    {
+                    "type": "ProgressBar",
+                    "props": {
+                        "value": 40,
+                        "size": "md",
+                        "variant": "success",
+                        "speed": "slow"
+                    }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
                 "props": {
                     "gap": "var(--spacing-md)",
                     "padding": "var(--spacing-md)",
@@ -139,6 +203,23 @@
                     "direction": "row"
                 },
                 "children": [
+                    {
+                        "type": "Tooltip",
+                        "props": {"content": "this is weavo way"},
+                        "children": [
+                            {
+                                "type": "Badge",
+                                "props": {"variant": "primary"},
+                                "children": [
+                                    { 
+                                        "type": "Icon",
+                                        "props": { "name": "Bell", "size": 20, "color": "red" } 
+                                    },
+                                    "Weavo Button"
+                                ]
+                            }
+                        ]
+                    },
                     {
                         "type": "Badge",
                         "props": {"variant": "primary"},
@@ -197,6 +278,89 @@
                 ]
             },
             {
+                "type": "Section",
+                "props": {
+                    "gap": "var(--spacing-md)",
+                    "padding": "var(--spacing-md)",
+                    "background": "var(--section-bg)"
+                },
+                "children": [
+                    {
+                    "type": "Tabs",
+                    "props": {},
+                    "children": [
+                        {
+                        "type": "Tabs.TabList",
+                        "props": {},
+                        "children": [
+                            { "type": "Tabs.Tab", "children": "weavo Schema" },
+                            { "type": "Tabs.Tab", "children": "weavo Backend" },
+                            { "type": "Tabs.Tab", "children": "weavo Themes" },
+                            { "type": "Tabs.Tab", "children": "weavo Components" },
+                            { "type": "Tabs.Tab", "children": "weavo Builds" }
+                        ]
+                        },
+                        {
+                        "type": "Tabs.TabPanel",
+                        "children": "Define once, render everywhere. JSON-based schema for UI layout & components. Supports nested components (Card.Body, Tabs.TabPanel). Renderer converts schema → React tree dynamically. Future: conditional rendering & validation rules."
+                        },
+                        {
+                        "type": "Tabs.TabPanel",
+                        "children": "Logic meets data. REST/GraphQL API integration layer. Schema-driven data binding (auto-fetch on mount). Extensible connectors (e.g., Frappe, Node, Django). Handles CRUD, auth, and state sync."
+                        },
+                        {
+                        "type": "Tabs.TabPanel",
+                        "children": "Design without breaking consistency. Centralized design tokens (colors, radius, spacing, typography). Supports light/dark themes via CSS variables. Utility classes for layout + theming (e.g., weavo-card, weavo-badge). Future: Theme switcher with persistence."
+                        },
+                        {
+                        "type": "Tabs.TabPanel",
+                        "children": "Composable building blocks. Core UI: Button, Input, Badge, Card, Tooltip, Tabs, etc. Layout: Page, Header, Footer, Sidebar, Navbar. Each component supports schema config (props, children). Built-in accessibility (keyboard + aria-ready)."
+                        },
+                        {
+                        "type": "Tabs.TabPanel",
+                        "children": "Ship fast, maintain easily. Schema → JSON → Renderer → UI build. Reusable schema templates for pages/forms. Optimized for bundlers (Vite/Webpack). Future: Export schema as package (NPM style)."
+                        }
+                    ]
+                    },
+                    {
+                    "type": "Accordion",
+                    "props": { "allowMultiple": true, "defaultIndex": [0] },
+                    "children": [
+                        {
+                        "type": "Accordion.Item",
+                        "children": [
+                            { "type": "Accordion.Header", "children": "What is Weavo Schema?" },
+                            {
+                            "type": "Accordion.Panel",
+                            "children": "Weavo Schema is a JSON-first UI definition language. You describe your UI in schema, renderer converts it to React dynamically."
+                            }
+                        ]
+                        },
+                        {
+                        "type": "Accordion.Item",
+                        "children": [
+                            { "type": "Accordion.Header", "children": "How does Weavo Backend work?" },
+                            {
+                            "type": "Accordion.Panel",
+                            "children": "Weavo Backend integrates data sources (REST/GraphQL/Frappe/Node). Schema-driven binding ensures data auto-fetch and sync."
+                            }
+                        ]
+                        },
+                        {
+                        "type": "Accordion.Item",
+                        "children": [
+                            { "type": "Accordion.Header", "children": "Can I theme with Weavo?" },
+                            {
+                            "type": "Accordion.Panel",
+                            "children": "Yes. All components support CSS variables & design tokens. Dark/light theme switcher is coming soon."
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+            },
+            {
                 "type": "Footer",
                 "props": {
                     "children": "© 2025 Weavo. All rights reserved.",
@@ -205,6 +369,40 @@
                 }
             }
         ]
+    },
+    {
+        "type": "Modal",
+        "props": {
+            "defaultOpen": true,
+            "size": "md",
+            "speed": "normal"
+        },
+        "children": [
+            {
+                "type": "Modal.Header",
+                "children": "Weavo Modal"
+            },
+            {
+                "type": "Modal.Body",
+                "children": "This modal is powered by the Weavo design system. Press ESC to close."
+            },
+            {
+            "type": "Modal.Footer",
+            "children": [
+                {
+                    "type": "Button",
+                    "props": { "variant": "primary" },
+                "children": "Confirm"
+                },
+                {
+                    "type": "Button",
+                    "props": { "variant": "secondary" },
+                    "children": "Cancel"
+                }
+            ]
+            }
+        ]
     }
+
   ]
 }

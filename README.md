@@ -1,4 +1,4 @@
-# 🌈 UI Framework Idea — Dynamic SCSS + React + JSON Schema + Backend
+# 🌈 UI Framework — Dynamic SCSS + React + JSON Schema + Backend
 
 ## 🧠 Vision
 
@@ -6,7 +6,7 @@ A full-stack, dynamic UI framework with the following goals:
 
 - 🎨 SCSS-based theming system that **doesn't hardcode variables**, but **accepts input** (CSS variables, tokens) for full theme control.
 - ⚛️ A **React component library** that connects to the SCSS system and supports runtime theming.
-- 📦 Ability to **serialize DOM structure + classNames into JSON** (or custom format) → enabling cross-platform UI (e.g. mobile).
+- 📦 Ability to **serialize DOM structure + classNames into JSON** → enabling cross-platform UI (e.g. mobile).
 - 🧱 JSON-based UI schemas can be **rendered back** into React, and later exported to iOS/Android.
 - 🧩 Future drag-and-drop UI builder for no-code/low-code experience.
 - 🔄 Backend support via **FastAPI (Python)** or **Express (Node.js)** with SQL/MongoDB for storage.
@@ -18,10 +18,8 @@ A full-stack, dynamic UI framework with the following goals:
 ### 🔹 1. SCSS Library (Dynamic Theming)
 - Accepts external theme tokens (via CSS variables or config)
 - SCSS structure supports full override of tokens
-- Can provide default + user-defined themes
+- Default + user-defined themes
 - Classes like `.btn`, `.card`, `.input` adapt based on theme
-
----
 
 ### 🔹 2. React Component Library
 - Built with React + SCSS
@@ -31,23 +29,22 @@ A full-stack, dynamic UI framework with the following goals:
   - Hooks (e.g., `useTheme()`)
 - Can render based on UI schema
 
----
-
 ### 🔹 3. JSON UI Schema Format
-- Each component's DOM, props, and styles are serializable
-- Example:
+
+Example:
 ```json
-{
-  "type": "Button",
-  "props": {
-    "label": "Submit",
-    "variant": "primary"
-  },
-  "styles": {
-    "padding": "16px",
-    "color": "var(--primary)"
-  }
-}
+    {
+        "type": "Button",
+        "props": {
+            "label": "Submit",
+            "variant": "primary"
+        },
+        "styles": {
+            "padding": "16px",
+            "color": "var(--primary)"
+        }
+    }
+
 ```
 
 ----
@@ -100,27 +97,35 @@ This task list breaks the entire project into smaller, achievable milestones acr
 # ✅ v0.1 — Core Foundation (Theme Engine + UI Library)
 
 ### 🎨 SCSS Theming System (`scss-core/`)
-- [ ] **Setup SCSS Project**  
+- [x] **Setup SCSS Project**  
   Create base folder for SCSS variables, mixins, and utilities.
-- [ ] **Design CSS Variable System**  
+- [x] **Design CSS Variable System**  
   Structure for injecting custom tokens via `:root {}` or themes.
 - [ ] **Create Utility Classes**  
   Spacing, font sizes, border-radius, etc.
-- [ ] **Theme Tokens Placeholder**  
+- [x] **Theme Tokens Placeholder**  
   Define default tokens (`--primary`, `--bg`, etc.) with override support.
 
 ### ⚛️ React Component Library (`react-components/`)
-- [ ] **Project Init (Vite + React + TS + SCSS)**  
+- [x] **Project Init (Vite + React + TS + SCSS)**  
   Fast dev env for building components.
 - [ ] **Setup ThemeProvider (optional)**  
   Inject CSS variables dynamically via React context.
-- [ ] **Create Base Components**
-  - [ ] `<Button />`
-  - [ ] `<Input />`
-  - [ ] `<Card />`
-- [ ] **Support Props for Theming**  
+- [x] **Create Base Components**
+    - [x] Button
+    - [x] Input
+    - [x] Card
+    - [x] Badge
+    - [x] Modal
+    - [x] Accordion
+    - [x] Tooltip
+    - [x] ProgressBar
+    - [x] Tabs / TabPanel
+    - [x] Spinner
+
+- [x] **Support Props for Theming**  
   Each component should accept `variant`, `size`, etc.
-- [ ] **Link to SCSS Core Styles**  
+- [x] **Link to SCSS Core Styles**  
   Use shared styles from `scss-core`.
 
 ---
@@ -128,14 +133,14 @@ This task list breaks the entire project into smaller, achievable milestones acr
 # ✅ v0.2 — JSON Schema & Renderer Engine
 
 ### 📦 Schema System (`schema-renderer/`)
-- [ ] **Define JSON Schema Format**  
+- [x] **Define JSON Schema Format**  
   Structure for `type`, `props`, `styles`, `children`
-- [ ] **Create Schema Parser**  
+- [x] **Create Schema Parser**  
   Translates JSON to actual React components.
-- [ ] **Basic Renderer Engine**  
+- [x] **Basic Renderer Engine**  
   Recursively render schema → UI
-- [ ] **Handle Props + Style Mapping**  
-  Apply props and inline styles correctly
+- [x] **Handle Props + Style Mapping**  
+  Apply props and inline styles correctly (partial completed)
 
 ---
 
@@ -235,9 +240,9 @@ Total Tasks: **~43 (modular & scalable)**
 # 🧩 Next Step Suggestion
 
 Start with `v0.1`:
-- [ ] Create repo with `packages/` and `apps/`
-- [ ] Init SCSS theme system + 1-2 UI components
-- [ ] Keep README + roadmap updated
+- [x] Create repo with `packages/` and `apps/`
+- [x] Init SCSS theme system + 1-2 UI components
+- [x] Keep README + roadmap updated
 
 Let me know when you want me to scaffold any part of it.
 
@@ -250,41 +255,46 @@ This library includes **17 reusable components** split between Layouts and UI. S
 
 ---
 
-## Layout Components (8)
+# 📌 Weavo Components Progress (Revised)
 
-| Component | Status | Notes |
-|-----------|--------|------|
-| **Page** | ✅ Works | Uses HOC with `weavo-page` |
-| **Header** | ✅ Works | HOC applied |
-| **Footer** | ✅ Works | HOC applied |
-| **Sidebar** | ✅ Works | HOC applied |
-| **Main** | ✅ Works | HOC applied |
-| **Section** | ✅ Works | HOC applied |
-| **Navbar** | ✅ Needs review | Works if items passed; styling may need enhancement |
-| **Navbar** | ✅ Needs review | Works if items passed; styling may need enhancement |
-| **Container** | ✅ Needs review | Works if items passed; styling may need enhancement |
-
----
-
-## UI Components (10)
-
-| Component | Status | Notes |
-|-----------|--------|------|
-| **Button** | ✅ Works | Variants properly mapped |
-| **Input** | ✅ Works | Basic input works |
-| **Card** | ✅ Works | Background and padding in CSS needed |
-| **Badge** | ✅ Works | needing sizing |
-| **Modal** | ⚠️ Partially working | Overlay close works; needs styling & accessibility improvements |
-| **Icons** | ✅ Works | Visual spinner missing, currently just a div |
-| **Accordion** | ⚠️ Needs work | Toggle functionality not implemented fully |
-| **Tooltip** | ⚠️ Needs SCSS | Placement, visibility, and styling missing |
-| **ProgressBar** | ⚠️ Needs SCSS | Fill animation & background styling missing |
-| **TabPanel** | ⚠️ Needs SCSS | Tab switch works, visual styling missing |
-| **Spinner** | ⚠️ Needs SCSS | Visual spinner missing, currently just a div |
+## 🏗 Layout Components (8/8)
+| Component   | Status   | Notes |
+|-------------|----------|-------|
+| **Page**    | ✅ Done  | Needs styling |
+| **Header**  | ✅ Done  | Needs styling |
+| **Footer**  | ✅ Done  | Needs styling |
+| **Sidebar** | ✅ Done  | Needs styling |
+| **Main**    | ✅ Done  | Needs styling |
+| **Section** | ✅ Done  | Needs styling |
+| **Navbar**  | ✅ Done  | Needs styling |
+| **Container** | ✅ Done | Needs styling |
 
 ---
 
-## Tasks & Priorities
+## 🎨 UI Components (11/11)
+| Component       | Status         | Notes |
+|-----------------|----------------|-------|
+| **Button**      | ✅ Done        | Needs styling |
+| **Input**       | ✅ Done        | Needs styling |
+| **Card**        | ✅ Done        | Needs styling |
+| **Badge**       | ✅ Done        | Needs styling |
+| **Modal**       | ✅ Done        | Needs styling |
+| **Icons**       | ✅ Done        | Needs styling |
+| **Accordion**   | ✅ Done        | Needs styling |
+| **Tooltip**     | ✅ Done        | Needs styling |
+| **ProgressBar** | ✅ Done        | Needs styling |
+| **Tabs / TabPanel** | ✅ Done    | Needs styling |
+| **Spinner**     | ✅ Done        | Needs styling |
+
+---
+
+### ✅ Summary
+- **1p/19 implemented**  
+- **All 19 need styling polish**    
+
+---
+
+## Tasks for future
 1. **Styling & SCSS**
    - Badge, Tooltip, ProgressBar, TabPanel, Spinner, Modal, Accordion
 2. **Interactions**
@@ -301,79 +311,4 @@ This library includes **17 reusable components** split between Layouts and UI. S
 
 ## Variables
 All components use **CSS variables** defined in `variables.scss` to maintain consistent colors, spacing, and typography.
-
-```scss
-:root {
-  /* Core Colors */
-  --primary: #1e90ff;
-  --primary-hover: #1c86ee;
-  --primary-focus: rgba(30,144,255,0.3);
-  --secondary: #f5f5f5;
-  --secondary-hover: #e0e0e0;
-  --bg: #ffffff;
-  --bg-hover: #f9f9f9;
-  --text: #333333;
-  --accent: #ff4081;
-
-  /* Layout Backgrounds */
-  --sidebar-bg: #f0f0f0;
-  --header-bg: #f8f9fa;
-  --footer-bg: #f1f3f5;
-  --main-bg: #ffffff;
-  --section-bg: transparent;
-  --navbar-bg: #ffffff;
-
-  /* Cards */
-  --card-bg: #ffffff;
-  --card-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.08);
-
-  /* Buttons */
-  --btn-primary-bg: var(--primary);
-  --btn-primary-color: #ffffff;
-  --btn-primary-hover-bg: var(--primary-hover);
-  --btn-primary-focus-shadow: var(--primary-focus);
-
-  --btn-secondary-bg: var(--secondary);
-  --btn-secondary-color: var(--text);
-  --btn-secondary-hover-bg: var(--secondary-hover);
-
-  --btn-default-bg: transparent;
-  --btn-default-color: var(--text);
-  --btn-default-border: var(--text);
-  --btn-default-hover-bg: var(--bg-hover);
-
-  /* Inputs */
-  --input-bg: #ffffff;
-  --input-border: #cccccc;
-  --input-focus-border: var(--primary);
-  --input-focus-shadow: rgba(30,144,255,0.2);
-  --input-placeholder: rgba(51,51,51,0.5);
-  --input-disabled-bg: #f5f5f5;
-  --input-disabled-opacity: 0.6;
-
-  /* Modals, Tooltip, Accordion, Progress, Tabs, Spinner */
-  --modal-bg: #ffffff;
-  --modal-overlay-bg: rgba(0,0,0,0.5);
-  --accordion-bg: #ffffff;
-  --tooltip-bg: #333333;
-  --progress-bg: #e0e0e0;
-  --progress-fill-bg: var(--primary);
-  --tab-bg: #ffffff;
-  --spinner-bg: transparent;
-
-  /* Spacing & Sizing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-
-  --font-base: 16px;
-  --font-large: 20px;
-}
 
