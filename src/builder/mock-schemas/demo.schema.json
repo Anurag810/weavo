@@ -1,408 +1,73 @@
 {
-  "type": "Page",
+  "type": "Section",
   "props": {
-    "title": "Demo",
-    "padding": "var(--spacing-lg)",
+    "direction": "column",
+    "height": "100vh",
     "background": "var(--main-bg)"
   },
+  
   "children": [
-    {"type": "Sidebar",
-        "props": {
+    {
+      "type": "Header",
+      "props": {
+        "children": "Weavo AI",
+        "height": "60px",
+        "background": "var(--header-bg)"
+      }
+    },
+    {
+      "type": "Section",
+      "props": {
+        "flex": 1,
+        "padding": "var(--spacing-md)",
+        "gap": "var(--spacing-sm)",
+        "background": "var(--section-bg)"
+      },
+      "children": [
+        {
+          "type": "Container",
+          "props": {
+            "direction": "row",
+            "justify": "flex-start"
+          },
+          "children": [
+            {
+              "type": "Card",
+              "props": {},
+              "children": "Hey 👋 How can I help you?"
+            }
+          ]
         }
+      ]
     },
     {
-        "type": "Main",
-        "props": {},
-        "children": [
-            {
-                "type": "Navbar",
-                "props": {
-                    "items": [
-                        {"label": "Home", "href": "/"},
-                        {"label": "About", "href": "/about"},
-                        {"label": "Contact", "href": "/contact"}
-                    ],
-                    "align": "start"
-                }
-            },
-            {
-                "type": "Header",
-                "props": {
-                    "children": "Welcome to Weavo",
-                    "height": "80px",
-                    "background": "var(--header-bg)"
-                }
-            },
-            {
-                "type": "Section",
-                "props": {
-                    "gap": "var(--spacing-md)",
-                    "padding": "var(--spacing-md)",
-                    "background": "var(--section-bg)",
-                    "direction": "row"
-
-                },
-                "children": [
-                    {
-                        "type": "Button",
-                        "props": {
-                            "label": "Primary",
-                            "variant": "primary"
-                        }
-                    },
-                    {
-                        "type": "Button",
-                        "props": {
-                            "label": "Secondary",
-                            "variant": "secondary"
-                        }
-                    },
-                    {
-                        "type": "Button",
-                        "props": {
-                            "label": "Default",
-                            "variant": "Default"
-                        }
-                    },
-                    {
-                        "type": "Input",
-                        "props": {
-                            "placeholder": "Enter name"
-                        }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": {
-                    "gap": "var(--spacing-md)",
-                    "padding": "var(--spacing-md)",
-                    "background": "var(--section-bg)"
-                },
-                "children": [
-                    {
-                        "type": "Container",
-                        "props": {"direction": "row"},
-                        "children": [
-                            {
-                                "type": "Card",
-                                "props": {},
-                                "children": [
-                                    {
-                                        "type": "Card.Header",
-                                        "props": {},
-                                        "children": "Card Header"
-                                    },
-                                    {
-                                        "type": "Card.Body",
-                                        "props": {},
-                                        "children": "This is the main content of the card."
-                                    },
-                                    {
-                                        "type": "Card.Footer",
-                                        "props": {},
-                                        "children": [
-                                            {
-                                                "type": "Button",
-                                                "props": {
-                                                    "label": "Primary",
-                                                    "variant": "primary"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "Card",
-                                "children": "this is card 2"
-                            },
-                            {
-                                "type": "Card",
-                                "children": "this is card 3"
-                            },
-                            {
-                                "type": "Card",
-                                "children": "this is card 4"
-                            }
-                        ]
-
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": {"direction": "row"},
-                "children": [
-                    {
-                        "type": "Spinner",
-                        "props": {
-                            "className": "weavo-spinner sm primary fast"
-                        }
-                    },
-                    {
-                        "type": "Spinner",
-                        "props": {
-                            "className": "weavo-spinner md success"
-                        }
-                    },
-                    {
-                        "type": "Spinner",
-                        "props": {
-                            "className": "weavo-spinner lg warning slow"
-                        }
-                    },
-                    {
-                        "type": "Spinner",
-                        "props": {
-                            "className": "weavo-spinner xl danger"
-                        }
-                    },
-                    {
-                        "type": "Spinner",
-                        "props": {
-                            "className": "weavo-spinner md info fast"
-                        }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": {
-                    "gap": "var(--spacing-md)",
-                    "padding": "var(--spacing-md)",
-                    "background": "var(--section-bg)"
-                },
-                "children": [
-                    {
-                    "type": "ProgressBar",
-                    "props": {
-                        "value": 60,
-                        "size": "md",
-                        "variant": "primary",
-                        "speed": "fast"
-                    }
-                    },
-                    {
-                    "type": "ProgressBar",
-                    "props": {
-                        "value": 40,
-                        "size": "md",
-                        "variant": "success",
-                        "speed": "slow"
-                    }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": {
-                    "gap": "var(--spacing-md)",
-                    "padding": "var(--spacing-md)",
-                    "background": "var(--section-bg)",
-                    "direction": "row"
-                },
-                "children": [
-                    {
-                        "type": "Tooltip",
-                        "props": {"content": "this is weavo way"},
-                        "children": [
-                            {
-                                "type": "Badge",
-                                "props": {"variant": "primary"},
-                                "children": [
-                                    { 
-                                        "type": "Icon",
-                                        "props": { "name": "Bell", "size": 20, "color": "red" } 
-                                    },
-                                    "Weavo Button"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "Badge",
-                        "props": {"variant": "primary"},
-                        "children": [
-                            { 
-                                "type": "Icon",
-                                "props": { "name": "Bell", "size": 20, "color": "red" } 
-                            },
-                            "Primary"
-                        ]
-                    },
-                    {
-                        "type": "Badge",
-                        "props": {"variant": "success"},
-                        "children": [
-                            { 
-                                "type": "Icon",
-                                "props": { "name": "User", "size": 20, "color": "blue" } 
-                            },
-                            "Success"
-                        ]
-                    },
-                    {
-                        "type": "Badge",
-                        "props": {"variant": "warning"},
-                        "children": [
-                            { 
-                                "type": "Icon",
-                                "props": { "name": "Search", "size": 20, "color": "green" } 
-                            },
-                            "Warning"
-                        ]
-                    },
-                    {
-                        "type": "Badge",
-                        "props": {"variant": "info"},
-                        "children": [
-                            { 
-                                "type": "Icon",
-                                "props": { "name": "Heart", "size": 20, "color": "pink" } 
-                            },
-                            "Info"
-                        ]
-                    },
-                    {
-                        "type": "Badge",
-                        "props": {"variant": "danger"},
-                        "children": [
-                            { 
-                                "type": "Icon",
-                                "props": { "name": "Settings", "size": 20, "color": "white" } 
-                            },
-                            "Info"
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": {
-                    "gap": "var(--spacing-md)",
-                    "padding": "var(--spacing-md)",
-                    "background": "var(--section-bg)"
-                },
-                "children": [
-                    {
-                    "type": "Tabs",
-                    "props": {},
-                    "children": [
-                        {
-                        "type": "Tabs.TabList",
-                        "props": {},
-                        "children": [
-                            { "type": "Tabs.Tab", "children": "weavo Schema" },
-                            { "type": "Tabs.Tab", "children": "weavo Backend" },
-                            { "type": "Tabs.Tab", "children": "weavo Themes" },
-                            { "type": "Tabs.Tab", "children": "weavo Components" },
-                            { "type": "Tabs.Tab", "children": "weavo Builds" }
-                        ]
-                        },
-                        {
-                        "type": "Tabs.TabPanel",
-                        "children": "Define once, render everywhere. JSON-based schema for UI layout & components. Supports nested components (Card.Body, Tabs.TabPanel). Renderer converts schema → React tree dynamically. Future: conditional rendering & validation rules."
-                        },
-                        {
-                        "type": "Tabs.TabPanel",
-                        "children": "Logic meets data. REST/GraphQL API integration layer. Schema-driven data binding (auto-fetch on mount). Extensible connectors (e.g., Frappe, Node, Django). Handles CRUD, auth, and state sync."
-                        },
-                        {
-                        "type": "Tabs.TabPanel",
-                        "children": "Design without breaking consistency. Centralized design tokens (colors, radius, spacing, typography). Supports light/dark themes via CSS variables. Utility classes for layout + theming (e.g., weavo-card, weavo-badge). Future: Theme switcher with persistence."
-                        },
-                        {
-                        "type": "Tabs.TabPanel",
-                        "children": "Composable building blocks. Core UI: Button, Input, Badge, Card, Tooltip, Tabs, etc. Layout: Page, Header, Footer, Sidebar, Navbar. Each component supports schema config (props, children). Built-in accessibility (keyboard + aria-ready)."
-                        },
-                        {
-                        "type": "Tabs.TabPanel",
-                        "children": "Ship fast, maintain easily. Schema → JSON → Renderer → UI build. Reusable schema templates for pages/forms. Optimized for bundlers (Vite/Webpack). Future: Export schema as package (NPM style)."
-                        }
-                    ]
-                    },
-                    {
-                    "type": "Accordion",
-                    "props": { "allowMultiple": true, "defaultIndex": [0] },
-                    "children": [
-                        {
-                        "type": "Accordion.Item",
-                        "children": [
-                            { "type": "Accordion.Header", "children": "What is Weavo Schema?" },
-                            {
-                            "type": "Accordion.Panel",
-                            "children": "Weavo Schema is a JSON-first UI definition language. You describe your UI in schema, renderer converts it to React dynamically."
-                            }
-                        ]
-                        },
-                        {
-                        "type": "Accordion.Item",
-                        "children": [
-                            { "type": "Accordion.Header", "children": "How does Weavo Backend work?" },
-                            {
-                            "type": "Accordion.Panel",
-                            "children": "Weavo Backend integrates data sources (REST/GraphQL/Frappe/Node). Schema-driven binding ensures data auto-fetch and sync."
-                            }
-                        ]
-                        },
-                        {
-                        "type": "Accordion.Item",
-                        "children": [
-                            { "type": "Accordion.Header", "children": "Can I theme with Weavo?" },
-                            {
-                            "type": "Accordion.Panel",
-                            "children": "Yes. All components support CSS variables & design tokens. Dark/light theme switcher is coming soon."
-                            }
-                        ]
-                        }
-                    ]
-                    }
-                ]
-            },
-            {
-                "type": "Footer",
-                "props": {
-                    "children": "© 2025 Weavo. All rights reserved.",
-                    "height": "60px",
-                    "background": "var(--footer-bg)"
-                }
-            }
-        ]
-    },
-    {
-        "type": "Modal",
-        "props": {
-            "defaultOpen": true,
-            "size": "md",
-            "speed": "normal"
+      "type": "Section",
+      "props": {
+        "direction": "row",
+        "gap": "var(--spacing-sm)",
+        "padding": "var(--spacing-md)",
+        "background": "var(--section-bg)"
+      },
+      "children": [
+        {
+          "type": "Input",
+          "props": {
+            "placeholder": "Type your message...",
+            "model": "chat.input"
+          }
         },
-        "children": [
-            {
-                "type": "Modal.Header",
-                "children": "Weavo Modal"
-            },
-            {
-                "type": "Modal.Body",
-                "children": "This modal is powered by the Weavo design system. Press ESC to close."
-            },
-            {
-            "type": "Modal.Footer",
-            "children": [
-                {
-                    "type": "Button",
-                    "props": { "variant": "primary" },
-                "children": "Confirm"
-                },
-                {
-                    "type": "Button",
-                    "props": { "variant": "secondary" },
-                    "children": "Cancel"
-                }
-            ]
-            }
-        ]
+        {
+          "type": "Button",
+          "props": {
+            "label": "Send",
+            "variant": "primary",
+            "listeners":{
+              "onClick": "onClick"
+            } 
+          }
+        }
+      ]
     }
-
   ]
+  
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import { ComponentMap } from "../components";
+import a from "../js/event-handlers";
+import handleListners from "../js/event-handlers";
 
 
 export function renderNode(node, key = "weavo") {
@@ -11,40 +13,43 @@ export function renderNode(node, key = "weavo") {
     }
 
     const { type, props = {}, styles = {}, children } = node;
+    const listeners = props.listeners || {}
+
+    
     const Component = ComponentMap[type] || type;
+
+    let renderedChildren = null;
 
     // Handle array children
     if (Array.isArray(children)) {
-        return (
-            <Component {...props} style={styles} key={key}>
-                {children.map((child, i) => renderNode(child, `${key}-${i}`))}
-            </Component>
+        renderedChildren = children.map((child, i) =>
+            renderNode(child, `${key}-${i}`)
         );
     }
-
     // Handle string children
-    if (typeof children === "string") {
-        return (
-            <Component {...props} style={styles} key={key}>
-                {children}
-            </Component>
-        );
+    else if (typeof children === "string") {
+        renderedChildren = children;
+    }
+    // Handle object child
+    else if (children && typeof children === "object") {
+        renderedChildren = renderNode(children, `${key}-0`);
     }
 
-    // Handle nested object child
-    if (children && typeof children === "object") {
-        // Handle children as object (NOT TESTED YET)
-        // This supports cases where schema provides a single child object
-        // instead of an array. Could be useful in future features like:
-        // For now, this is safe but not actively used.
-        return (
-            <Component {...props} style={styles} key={key}>
-                {renderNode(children, `${key}-0`)}
-            </Component>
-        );
-    }
+    return (
+        <Component {...props} onClick={(event) => {
+                handleListners(listeners, event);
+            }} style={styles} key={key}>
+            {renderedChildren}
+        </Component>
+    );
 
-    // Component without children
-    return <Component {...props} style={styles} key={key} />;
 }
+
+// let handle_listeners = (listener, event) => {
+//     console.log("Handling listeners", listener);
+//     a.onClick(event);
+//     if (typeof listener === "string") {
+//         eval(listener);
+//     }
+// }
 
