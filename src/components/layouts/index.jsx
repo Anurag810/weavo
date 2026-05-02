@@ -1,7 +1,7 @@
 import withWeavoStyles from "../withWeavoLayout";
 
 // Layout components
-export const Page = withWeavoStyles("div", "weavo-page", true);
+export const Page = withWeavoStyles("div", "weavo-page", false, true);
 export const Header = withWeavoStyles("header", "weavo-header", true);
 export const Footer = withWeavoStyles("footer", "weavo-footer", true);
 export const Sidebar = withWeavoStyles("aside", "weavo-sidebar");

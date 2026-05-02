@@ -312,3 +312,5 @@ This library includes **17 reusable components** split between Layouts and UI. S
 ## Variables
 All components use **CSS variables** defined in `variables.scss` to maintain consistent colors, spacing, and typography.
 
+ssh -i ~/.ssh/aws-nothingbutcode.pem ubuntu@13.48.147.139
+

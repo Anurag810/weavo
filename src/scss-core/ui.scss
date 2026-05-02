@@ -129,8 +129,7 @@
   user-select: none;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
   white-space: nowrap;
-  min-width: 50px;
-  max-width: 160px;
+  width: auto;
   flex: 0 0 auto; 
 
   .weavo-icon {
@@ -460,6 +459,53 @@
   from { opacity: 0; transform: translateY(-8px) scale(0.995); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+.weavo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--list-gap, 0.5rem);
+
+  &.horizontal {
+    flex-direction: row;
+  }
+
+  &.bordered .weavo-list-item {
+    border-bottom: 1px solid var(--list-border, #e5e7eb);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &.striped .weavo-list-item:nth-child(odd) {
+    background: var(--list-striped, #f9fafb);
+  }
+
+  &-item {
+    padding: var(--list-item-padding, 0.5rem 1rem);
+    border-radius: var(--list-item-radius, 0.375rem);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &.active {
+      background: var(--list-active-bg, #2563eb);
+      color: var(--list-active-color, #fff);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &:hover:not(.disabled) {
+      background: var(--list-hover-bg, #f3f4f6);
+    }
+  }
+}
+
 
 
 

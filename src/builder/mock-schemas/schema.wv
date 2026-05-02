@@ -1,36 +1,96 @@
-Page title="Demo" padding="var(--spacing-lg)" background="var(--main-bg)"
+Page title="Weavo Joke Demo" columns="2" padding="var(--spacing-lg)" background="var(--main-bg)"
     Sidebar
+        List
+            ListItem "😂 Dad Jokes"
+            ListItem "💻 Tech Jokes"
+            ListItem "☕ Office Jokes"
+            ListItem "🥲 Bad Puns"
 
     Main
         Navbar align="start"
             Item "Home" href="/"
-            Item "About" href="/about"
-            Item "Contact" href="/contact"
+            Item "Funny Docs" href="/about"
+            Item "404 Humor" href="/contact"
 
         Header height="80px" background="var(--header-bg)"
-            "Welcome to Weavo"
+            "Welcome to Weavo Jokes"
 
         Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)" direction="row"
-            Button "Primary" variant="primary"
-            Button "Secondary" variant="secondary"
-            Button "Default" variant="Default"
-            Input placeholder="Enter name"
+            Button "Why so serious?" variant="primary"
+            Button "Click for pun" variant="secondary"
+            Button "Dad Joke Incoming" variant="default"
+            Input placeholder="Enter your worst joke"
 
         Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)"
             Container direction="row"
                 Card
-                    Card.Header
-                        "Card Header"
-                    Card.Body
-                        "This is the main content of the card."
+                    Card.Header "Tech Joke"
+                    Card.Body "Why do programmers prefer dark mode? Because light attracts bugs."
                     Card.Footer
-                        "Footer information"
-                Card
-                    "this is card 2"
-                Card
-                    "this is card 3"
-                Card
-                    "this is card 4"
+                        Button "😂 Laugh" variant="primary"
+                Card "I would tell you a UDP joke… but you might not get it."
+                Card "Why don’t skeletons fight each other? They don’t have the guts."
+                Card "Why was the math book sad? Too many problems."
+
+        Section direction="row"
+            Section direction="column"
+                "Loading punchline…"
+                Spinner className="weavo-spinner sm primary fast"
+            Section direction="column"
+                "Fetching dad joke…"
+                Spinner className="weavo-spinner md success"
+            Section direction="column"
+                "Still buffering the humor…"
+                Spinner className="weavo-spinner lg warning slow"
+            Section direction="column"
+                "Critical joke loading!"
+                Spinner className="weavo-spinner xl danger"
+            Section direction="column"
+                "Downloading sarcasm…"
+                Spinner className="weavo-spinner md info fast"
+
+        Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)"
+            Section direction="column"
+                "Patience level: 70% (waiting for a better joke)"
+                ProgressBar value="70" size="md" variant="primary" speed="fast"
+            Section direction="column"
+                "Confidence in this pun: 40%"
+                ProgressBar value="40" size="md" variant="success" speed="slow"
+
+        Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)" direction="row"
+            Tooltip content="Worst joke ahead…"
+                Badge variant="primary"
+                    Icon name="Bell" size="20" color="red"
+                    "Why don’t Java developers wear glasses? Because they can C#!"
+            Badge "Dad Level ✅" variant="success"
+            Badge "Pun Alert ⚠️" variant="warning"
+            Badge "Tech Humor 💻" variant="info"
+            Badge "Cringe Incoming 🚨" variant="danger"
+
+        Section gap="var(--spacing-md)" padding="var(--spacing-md)" background="var(--section-bg)"
+            Tabs
+                Tabs.TabList
+                    Tabs.Tab "Dad Jokes"
+                    Tabs.Tab "Tech Jokes"
+                    Tabs.Tab "Office Jokes"
+                Tabs.TabPanel "I only know 25 letters of the alphabet. I don’t know y."
+                Tabs.TabPanel "There are 10 types of people: those who understand binary and those who don’t."
+                Tabs.TabPanel "Why don’t we tell secrets at work? Because the walls have ears… and meetings."
+
+            Accordion allowMultiple="true" defaultIndex="[0]"
+                Accordion.Item
+                    Accordion.Header "Knock Knock"
+                    Accordion.Panel "Who’s there? Weavo. Weavo who? Weavo got jokes for days!"
+                Accordion.Item
+                    Accordion.Header "Why Weavo?"
+                    Accordion.Panel "Because React schemas were getting too serious."
 
         Footer height="60px" background="var(--footer-bg)"
-            "© 2025 Weavo. All rights reserved."
+            "© 2025 Weavo — Laughs compiled successfully 🎉"
+
+    Modal defaultOpen="true" size="md" speed="normal"
+        Modal.Header "Weavo Modal of Humor"
+        Modal.Body "This modal is like your boss: it only closes when you hit ESC."
+        Modal.Footer
+            Button "😂 More" variant="primary"
+            Button "🙈 Stop" variant="secondary"

@@ -1,70 +1,327 @@
 {
   "type": "Section",
   "props": {
-    "direction": "column",
-    "height": "100vh",
+    "columns": "2",
+    "title": "Weavo Joke Demo",
+    "padding": "var(--spacing-lg)",
     "background": "var(--main-bg)"
   },
   
   "children": [
     {
-      "type": "Header",
-      "props": {
-        "children": "Weavo AI",
-        "height": "60px",
-        "background": "var(--header-bg)"
-      }
-    },
-    {
-      "type": "Section",
-      "props": {
-        "flex": 1,
-        "padding": "var(--spacing-md)",
-        "gap": "var(--spacing-sm)",
-        "background": "var(--section-bg)"
-      },
+      "type": "Sidebar",
+      "props": {},
       "children": [
         {
-          "type": "Container",
-          "props": {
-            "direction": "row",
-            "justify": "flex-start"
-          },
-          "children": [
-            {
-              "type": "Card",
-              "props": {},
-              "children": "Hey 👋 How can I help you?"
-            }
-          ]
+            "type": "List",
+            "props": {},
+            "children": [
+                { "type": "ListItem", "props": {}, "children": "😂 Dad Jokes" },
+                { "type": "ListItem", "children": "💻 Tech Jokes" },
+                { "type": "ListItem", "props": {}, "children": "☕ Office Jokes" },
+                { "type": "ListItem", "children": "🥲 Bad Puns" }
+            ]
         }
       ]
     },
     {
-      "type": "Section",
-      "props": {
-        "direction": "row",
-        "gap": "var(--spacing-sm)",
-        "padding": "var(--spacing-md)",
-        "background": "var(--section-bg)"
-      },
+      "type": "Main",
+      "props": {},
       "children": [
         {
-          "type": "Input",
+          "type": "Navbar",
           "props": {
-            "placeholder": "Type your message...",
-            "model": "chat.input"
+            "items": [
+              { "label": "Home", "href": "/" },
+              { "label": "Funny Docs", "href": "/docs" },
+              { "label": "404 Humor", "href": "/oops" }
+            ],
+            "align": "start"
           }
         },
         {
-          "type": "Button",
+          "type": "Header",
           "props": {
-            "label": "Send",
-            "variant": "primary",
-            "listeners":{
-              "onClick": "onClick"
-            } 
+            "children": "Welcome to Weavo Jokes",
+            "height": "80px",
+            "background": "var(--header-bg)"
           }
+        },
+        {
+          "type": "Section",
+          "props": {
+            "gap": "var(--spacing-md)",
+            "padding": "var(--spacing-md)",
+            "background": "var(--section-bg)",
+            "direction": "row"
+          },
+          "children": [
+            {
+              "type": "Button",
+              "props": { "label": "Why so serious?", "variant": "primary" }
+            },
+            {
+              "type": "Button",
+              "props": { "label": "Click for pun", "variant": "secondary" }
+            },
+            {
+              "type": "Button",
+              "props": { "label": "Dad Joke Incoming", "variant": "default" }
+            },
+            {
+              "type": "Input",
+              "props": { "placeholder": "Enter your worst joke" }
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": {
+            "gap": "var(--spacing-md)",
+            "padding": "var(--spacing-md)",
+            "background": "var(--section-bg)"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "props": { "direction": "row" },
+              "children": [
+                {
+                  "type": "Card",
+                  "props": {},
+                  "children": [
+                    { "type": "Card.Header", "children": "Tech Joke" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Why do programmers prefer dark mode? Because light attracts bugs."
+                    },
+                    {
+                      "type": "Card.Footer",
+                      "children": [
+                        {
+                          "type": "Button",
+                          "props": { "label": "😂 Laugh", "variant": "primary" }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                { "type": "Card", "children": "I would tell you a UDP joke… but you might not get it." },
+                { "type": "Card", "children": "Why don’t skeletons fight each other? They don’t have the guts." },
+                { "type": "Card", "children": "Why was the math book sad? Too many problems." }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "direction": "row" },
+          "children": [
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Loading punchline…",
+                    {
+                        "type": "Spinner",
+                        "props": { "className": "weavo-spinner sm primary fast" }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Fetching dad joke…",
+                    {
+                        "type": "Spinner",
+                        "props": { "className": "weavo-spinner md success" }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Still buffering the humor…",
+                    {
+                        "type": "Spinner",
+                        "props": { "className": "weavo-spinner lg warning slow" }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Critical joke loading!",
+                    {
+                        "type": "Spinner",
+                        "props": { "className": "weavo-spinner xl danger" }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Downloading sarcasm…",
+                    {
+                        "type": "Spinner",
+                        "props": { "className": "weavo-spinner md info fast" }
+                    }
+                ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": {
+            "gap": "var(--spacing-md)",
+            "padding": "var(--spacing-md)",
+            "background": "var(--section-bg)"
+          },
+          "children": [
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Patience level: 70% (waiting for a better joke)",
+                    {
+                        "type": "ProgressBar",
+                        "props": { "value": 70, "size": "md", "variant": "primary", "speed": "fast" }
+                    }
+                ]
+            },
+            {
+                "type": "Section",
+                "props": { "direction": "column" },
+                "children": [
+                    "Confidence in this pun: 40%",
+                    {
+                        "type": "ProgressBar",
+                        "props": { "value": 40, "size": "md", "variant": "success", "speed": "slow" }
+                    }
+                ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": {
+            "gap": "var(--spacing-md)",
+            "padding": "var(--spacing-md)",
+            "background": "var(--section-bg)",
+            "direction": "row"
+          },
+          "children": [
+            {
+              "type": "Tooltip",
+              "props": { "content": "Worst joke ahead…" },
+              "children": [
+                {
+                  "type": "Badge",
+                  "props": { "variant": "primary" },
+                  "children": [
+                    { "type": "Icon", "props": { "name": "Bell", "size": 20, "color": "red" } },
+                    "Why don’t Java developers wear glasses? Because they can C#!"
+                  ]
+                }
+              ]
+            },
+            { "type": "Badge", "props": { "variant": "success" }, "children": "Dad Level ✅" },
+            { "type": "Badge", "props": { "variant": "warning" }, "children": "Pun Alert ⚠️" },
+            { "type": "Badge", "props": { "variant": "info" }, "children": "Tech Humor 💻" },
+            { "type": "Badge", "props": { "variant": "danger" }, "children": "Cringe Incoming 🚨" }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": {
+            "gap": "var(--spacing-md)",
+            "padding": "var(--spacing-md)",
+            "background": "var(--section-bg)"
+          },
+          "children": [
+            {
+              "type": "Tabs",
+              "props": {},
+              "children": [
+                {
+                  "type": "Tabs.TabList",
+                  "children": [
+                    { "type": "Tabs.Tab", "children": "Dad Jokes" },
+                    { "type": "Tabs.Tab", "children": "Tech Jokes" },
+                    { "type": "Tabs.Tab", "children": "Office Jokes" }
+                  ]
+                },
+                {
+                  "type": "Tabs.TabPanel",
+                  "children": "I only know 25 letters of the alphabet. I don’t know y."
+                },
+                {
+                  "type": "Tabs.TabPanel",
+                  "children": "There are 10 types of people: those who understand binary and those who don’t."
+                },
+                {
+                  "type": "Tabs.TabPanel",
+                  "children": "Why don’t we tell secrets at work? Because the walls have ears… and meetings."
+                }
+              ]
+            },
+            {
+              "type": "Accordion",
+              "props": { "allowMultiple": true, "defaultIndex": [0] },
+              "children": [
+                {
+                  "type": "Accordion.Item",
+                  "children": [
+                    { "type": "Accordion.Header", "children": "Knock Knock" },
+                    { "type": "Accordion.Panel", "children": "Who’s there? Weavo. Weavo who? Weavo got jokes for days!" }
+                  ]
+                },
+                {
+                  "type": "Accordion.Item",
+                  "children": [
+                    { "type": "Accordion.Header", "children": "Why Weavo?" },
+                    { "type": "Accordion.Panel", "children": "Because React schemas were getting too serious." }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Footer",
+          "props": {
+            "children": "© 2025 Weavo — Laughs compiled successfully 🎉",
+            "height": "60px",
+            "background": "var(--footer-bg)"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Modal",
+      "props": { "defaultOpen": true, "size": "md", "speed": "normal" },
+      "children": [
+        { "type": "Modal.Header", "children": "Weavo Modal of Humor" },
+        {
+          "type": "Modal.Body",
+          "children": "This modal is like your boss: it only closes when you hit ESC."
+        },
+        {
+          "type": "Modal.Footer",
+          "children": [
+            {
+              "type": "Button",
+              "props": { "label": "😂 More", "variant": "primary" }
+            },
+            {
+              "type": "Button",
+              "props": { "label": "🙈 Stop", "variant": "secondary" }
+            }
+          ]
         }
       ]
     }

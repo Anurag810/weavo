@@ -3,13 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "bin": {
+    "weavo": "./bin/weavo.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "nodemon src/server.js",
-    "test": "nodemon src/tests/index.js"
+    "test": "nodemon src/tests/index.js",
+    "weavo setup-requirements": "cargo build --release && wasm-pack build --target web"
   },
   "dependencies": {
     "lucide-react": "^0.542.0",

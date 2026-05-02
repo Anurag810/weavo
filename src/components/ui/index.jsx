@@ -9,6 +9,9 @@ Card.Header = withWeavoStyles("div", "weavo-card-header", true);
 Card.Body = withWeavoStyles("div", "weavo-card-body", true);
 Card.Footer = withWeavoStyles("div", "weavo-card-footer", true);
 
+export const List = withWeavoStyles("ul", "weavo-list");
+export const ListItem = withWeavoStyles("li", "weavo-list-item");
+
 // export const Badge = withWeavoStyles("span", "weavo-badge", true);
 
 export const Badge = ({ label, variant = "primary", children, ...props }) => {

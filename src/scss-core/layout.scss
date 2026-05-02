@@ -2,7 +2,7 @@
 
 @mixin flex-base {
   display: flex;
-  width: 100%;
+  width: auto;
   font-family: 'Inter', sans-serif;
   gap: var(--spacing-md);
 }
@@ -108,7 +108,7 @@
 // layouts.scss
 .flex {
   display: flex;
-  width: 100%;
+  width: auto;
   min-height: 0;
   font-family: 'Inter', sans-serif;
 }
@@ -130,5 +130,42 @@
         flex-direction: column; 
         align-items: center;
     }
+}
+
+.weavo-grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+/* Dynamic grid column classes */
+@for $i from 1 through 12 {
+  .weavo-grid-cols-#{$i} {
+    grid-template-columns: repeat($i, 1fr);
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  @for $i from 1 through 6 {
+    .weavo-grid-sm-cols-#{$i} {
+      grid-template-columns: repeat($i, 1fr);
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  @for $i from 1 through 8 {
+    .weavo-grid-md-cols-#{$i} {
+      grid-template-columns: repeat($i, 1fr);
+    }
+  }
+}
+
+@media (min-width: 1025px) {
+  @for $i from 1 through 12 {
+    .weavo-grid-lg-cols-#{$i} {
+      grid-template-columns: repeat($i, 1fr);
+    }
+  }
 }
 
