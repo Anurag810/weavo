@@ -1,0 +1,73 @@
+{
+  "type": "Section",
+  "props": {
+    "direction": "column",
+    "height": "100vh",
+    "background": "var(--main-bg)"
+  },
+  
+  "children": [
+    {
+      "type": "Header",
+      "props": {
+        "children": "Weavo AI",
+        "height": "60px",
+        "background": "var(--header-bg)"
+      }
+    },
+    {
+      "type": "Section",
+      "props": {
+        "flex": 1,
+        "padding": "var(--spacing-md)",
+        "gap": "var(--spacing-sm)",
+        "background": "var(--section-bg)"
+      },
+      "children": [
+        {
+          "type": "Container",
+          "props": {
+            "direction": "row",
+            "justify": "flex-start"
+          },
+          "children": [
+            {
+              "type": "Card",
+              "props": {},
+              "children": "Hey 👋 How can I help you?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Section",
+      "props": {
+        "direction": "row",
+        "gap": "var(--spacing-sm)",
+        "padding": "var(--spacing-md)",
+        "background": "var(--section-bg)"
+      },
+      "children": [
+        {
+          "type": "Input",
+          "props": {
+            "placeholder": "Type your message...",
+            "model": "chat.input"
+          }
+        },
+        {
+          "type": "Button",
+          "props": {
+            "label": "Send",
+            "variant": "primary",
+            "listeners":{
+              "onClick": "onClick"
+            } 
+          }
+        }
+      ]
+    }
+  ]
+  
+}

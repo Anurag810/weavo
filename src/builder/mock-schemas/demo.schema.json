@@ -9,22 +9,6 @@
   
   "children": [
     {
-      "type": "Sidebar",
-      "props": {},
-      "children": [
-        {
-            "type": "List",
-            "props": {},
-            "children": [
-                { "type": "ListItem", "props": {}, "children": "😂 Dad Jokes" },
-                { "type": "ListItem", "children": "💻 Tech Jokes" },
-                { "type": "ListItem", "props": {}, "children": "☕ Office Jokes" },
-                { "type": "ListItem", "children": "🥲 Bad Puns" }
-            ]
-        }
-      ]
-    },
-    {
       "type": "Main",
       "props": {},
       "children": [

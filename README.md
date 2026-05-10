@@ -313,4 +313,7 @@ This library includes **17 reusable components** split between Layouts and UI. S
 All components use **CSS variables** defined in `variables.scss` to maintain consistent colors, spacing, and typography.
 
 ssh -i ~/.ssh/aws-nothingbutcode.pem ubuntu@13.48.147.139
+server { listen 80; server_name _; location / { proxy_pass http://localhost:5173; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } }
+
+http://127.0.0.1:5173
 
