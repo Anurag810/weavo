@@ -1,0 +1,192 @@
+@use './variables.scss' as *;
+
+.weavo-landing-topbar {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.weavo-landing-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+
+  span {
+    color: var(--color-primary);
+  }
+}
+
+.weavo-landing-hero {
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  background: linear-gradient(135deg, var(--color-primary-subtle) 0%, var(--color-bg-elevated) 50%, var(--color-info-subtle) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.weavo-landing-title {
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+}
+
+.weavo-landing-subtitle {
+  max-width: 640px;
+  margin: 0 auto var(--spacing-lg);
+  font-size: var(--font-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.weavo-landing-cta {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.weavo-landing-section {
+  padding: var(--spacing-xl) 0;
+}
+
+.weavo-landing-section-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-2xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.weavo-landing-section-desc {
+  margin: 0 0 var(--spacing-lg);
+  max-width: 560px;
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.weavo-landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.weavo-landing-roadmap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.weavo-landing-roadmap-card {
+  .weavo-card-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .weavo-card-footer {
+    justify-content: flex-start;
+    background: transparent;
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+.weavo-landing-code {
+  width: 100%;
+  margin: 0;
+  padding: var(--spacing-lg);
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: var(--radius-lg);
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  overflow-x: auto;
+  border: 1px solid #1e293b;
+  box-shadow: var(--shadow-md);
+}
+
+.weavo-landing-stats {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.weavo-landing-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 100px;
+
+  strong {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  span {
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+.weavo-landing-showcase {
+  padding: var(--spacing-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.weavo-landing-footer {
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: center;
+  padding: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-light);
+}
+
+.weavo-landing-footer-links {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+
+  a {
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.weavo-landing-open-source {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}

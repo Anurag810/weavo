@@ -2,149 +2,175 @@
 
 @mixin flex-base {
   display: flex;
-  width: auto;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family);
   gap: var(--spacing-md);
 }
 
-// ==================== Page ====================
 .weavo-page {
   @include flex-base;
   min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--main-bg);
+  color: var(--color-text);
   overflow-x: hidden;
-  overflow-y: auto;
-  flex-wrap: wrap;
 }
 
-// ==================== Header ====================
 .weavo-header {
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--header-bg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xs);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-weight: 600;
-  font-size: var(--font-base);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-xl);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
-// ==================== Footer ====================
 .weavo-footer {
   width: 100%;
   background: var(--footer-bg);
+  border-top: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-base);
-  color: var(--text);
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
 }
 
-// ==================== Sidebar ====================
 .weavo-sidebar {
   min-height: 100%;
+  min-width: 240px;
   background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-light);
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   gap: var(--spacing-sm);
-  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
 }
 
-// ==================== Main ====================
 .weavo-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: var(--spacing-md);
-  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-2xl);
+  gap: var(--spacing-lg);
 }
 
-// ==================== Section/container ====================
 .weavo-section,
 .weavo-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  padding: var(--spacing-md);
   width: 100%;
   background: var(--section-bg);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
-// ==================== Navbar ====================
+.weavo-section {
+  & > :not([class*="weavo-"]) {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
 .weavo-navbar {
   display: flex;
-  gap: var(--spacing-md);
+  align-items: center;
+  gap: var(--spacing-xs);
   background: var(--navbar-bg);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  padding: var(--spacing-xs);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  width: fit-content;
 
   a {
     text-decoration: none;
-    color: var(--text);
-    font-weight: 500;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    transition: background 0.2s ease, color 0.2s ease;
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: var(--color-primary-hover);
-      color: #fff;
+      background: var(--color-bg-hover);
+      color: var(--color-text);
     }
+
+  }
+
+  a.weavo-navbar-active {
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
   }
 }
 
-// layouts.scss
 .flex {
   display: flex;
-  width: auto;
+  width: 100%;
   min-height: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family);
 }
 
 .flex-column {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; 
-  }
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
 
 .flex-row {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
 
 @media (max-width: 768px) {
-    .flex-row {
-        flex-direction: column; 
-        align-items: center;
-    }
+  .weavo-main {
+    padding: var(--spacing-md);
+  }
+
+  .weavo-header {
+    padding: var(--spacing-md);
+    font-size: var(--font-lg);
+  }
+
+  .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .weavo-navbar {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 .weavo-grid {
   display: grid;
   gap: var(--spacing-md);
+  width: 100%;
 }
 
-/* Dynamic grid column classes */
 @for $i from 1 through 12 {
   .weavo-grid-cols-#{$i} {
     grid-template-columns: repeat($i, 1fr);
   }
 }
 
-/* Responsive breakpoints */
 @media (max-width: 768px) {
   @for $i from 1 through 6 {
     .weavo-grid-sm-cols-#{$i} {
@@ -168,4 +194,3 @@
     }
   }
 }
-

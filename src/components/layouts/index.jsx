@@ -10,11 +10,17 @@ export const Section = withWeavoStyles("section", "weavo-section", true);
 export const Container = withWeavoStyles("div", "weavo-container", true);
 
 // ==================== Navbar ====================
-export function Navbar({ items = [], style = {}, align = "start", ...props }) {
+export function Navbar({ items = [], style = {}, activeIndex = 0, ...props }) {
   return (
     <nav className="weavo-navbar" style={style} {...props}>
       {items.map((item, i) => (
-        <a key={i} href={item.href || "#"}>{item.label}</a>
+        <a
+          key={i}
+          href={item.href || "#"}
+          className={i === activeIndex ? "weavo-navbar-active" : undefined}
+        >
+          {item.label}
+        </a>
       ))}
     </nav>
   );

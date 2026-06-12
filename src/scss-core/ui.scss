@@ -1,26 +1,55 @@
 @use './variables.scss' as *;
 
+/* ================== Buttons ================== */
 .weavo-btn {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
-  border: none;
-  cursor: pointer;
-  font-size: var(--font-base);
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
+  height: var(--btn-height-md);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
 
-  &:focus {
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
     outline: none;
-    box-shadow: var(--btn-primary-focus-shadow);
+    box-shadow: 0 0 0 3px var(--color-primary-focus);
   }
 
   &:disabled {
     cursor: not-allowed;
     opacity: var(--input-disabled-opacity);
+    transform: none;
+  }
+
+  &.sm {
+    height: var(--btn-height-sm);
+    padding: 0 var(--spacing-sm);
+    font-size: var(--font-xs);
+    border-radius: var(--radius-sm);
+  }
+
+  &.lg {
+    height: var(--btn-height-lg);
+    padding: 0 var(--spacing-lg);
+    font-size: var(--font-base);
+    border-radius: var(--radius-md);
   }
 }
 
@@ -28,9 +57,15 @@
   @extend .weavo-btn;
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-color);
+  box-shadow: var(--shadow-xs);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--btn-primary-hover-bg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--btn-primary-focus-shadow);
   }
 }
 
@@ -38,8 +73,9 @@
   @extend .weavo-btn;
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-color);
+  border-color: var(--border-light);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--btn-secondary-hover-bg);
   }
 }
@@ -48,26 +84,56 @@
   @extend .weavo-btn;
   background-color: var(--btn-default-bg);
   color: var(--btn-default-color);
-  border: 1px solid var(--btn-default-border);
+  border-color: var(--btn-default-border);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--btn-default-hover-bg);
+    border-color: var(--border-medium);
   }
 }
 
+.weavo-btn-success {
+  @extend .weavo-btn;
+  background-color: var(--color-success);
+  color: var(--color-text-inverse);
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-success-hover);
+  }
+}
+
+.weavo-btn-danger {
+  @extend .weavo-btn;
+  background-color: var(--color-danger);
+  color: var(--color-text-inverse);
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-danger-hover);
+  }
+}
+
+/* ================== Inputs ================== */
 .weavo-input {
-  padding: var(--spacing-sm) var(--spacing-md);
+  display: block;
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--spacing-md);
   border-radius: var(--radius-md);
   border: 1px solid var(--input-border);
-  font-size: var(--font-base);
-  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  width: 100%;
-  box-sizing: border-box;
+  background: var(--input-bg);
+  font-family: var(--font-family);
+  font-size: var(--font-sm);
+  color: var(--color-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-medium);
+  }
 
   &:focus {
     outline: none;
     border-color: var(--input-focus-border);
-    box-shadow: var(--input-focus-shadow);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow);
   }
 
   &::placeholder {
@@ -81,35 +147,42 @@
   }
 }
 
+/* ================== Cards ================== */
 .weavo-card {
   display: flex;
   flex-direction: column;
   gap: var(--card-gap);
   background-color: var(--card-bg);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   padding: var(--card-padding);
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
     box-shadow: var(--card-hover-shadow);
+    border-color: var(--border-medium);
   }
 
   &-header {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--card-header-font);
-    padding-bottom: var(--spacing-xs);
+    color: var(--color-text);
+    padding-bottom: var(--spacing-sm);
     border-bottom: 1px solid var(--border-light);
+    letter-spacing: -0.01em;
   }
 
   &-body {
     flex: 1;
-    padding: var(--spacing-sm) 0;
-    color: var(--text);
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    line-height: var(--line-height-relaxed);
   }
 
   &-footer {
-    padding-top: var(--card-footer-gap);
+    padding-top: var(--spacing-sm);
     border-top: 1px solid var(--border-light);
     display: flex;
     justify-content: flex-end;
@@ -117,49 +190,53 @@
   }
 }
 
+/* ================== Badges ================== */
 .weavo-badge {
-  display: inline-flex;   /* 👈 important */
+  display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: 0.25em 0.75em; 
-  border-radius: var(--radius-lg);
+  padding: 0.2em 0.65em;
+  border-radius: var(--radius-full);
   font-size: var(--font-xs);
-  font-weight: 500;
-  line-height: 1;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
   user-select: none;
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
   white-space: nowrap;
-  width: auto;
-  flex: 0 0 auto; 
+  border: 1px solid transparent;
 
-  .weavo-icon {
-    font-size: var(--font-sm);
-  }
-
-  /* Variants */
   &-primary {
-    background: var(--color-primary);
-    color: #fff;
-    &:hover { background: var(--color-primary-hover); }
+    background: var(--badge-primary-bg);
+    color: var(--badge-primary-color);
+    border-color: rgba(79, 70, 229, 0.15);
   }
+
   &-success {
-    background: var(--color-success);
-    color: #fff;
+    background: var(--badge-success-bg);
+    color: var(--badge-success-color);
+    border-color: rgba(5, 150, 105, 0.15);
   }
+
   &-warning {
-    background: var(--color-warning);
-    color: #000;
+    background: var(--badge-warning-bg);
+    color: var(--badge-warning-color);
+    border-color: rgba(217, 119, 6, 0.15);
   }
+
   &-danger {
-    background: var(--color-danger);
-    color: #fff;
+    background: var(--badge-danger-bg);
+    color: var(--badge-danger-color);
+    border-color: rgba(220, 38, 38, 0.15);
   }
+
   &-info {
-    background: var(--color-info);
-    color: #fff;
+    background: var(--badge-info-bg);
+    color: var(--badge-info-color);
+    border-color: rgba(2, 132, 199, 0.15);
   }
 }
 
+/* ================== Tooltip ================== */
 .weavo-tooltip-wrapper {
   position: relative;
   display: inline-flex;
@@ -167,72 +244,117 @@
 
 .weavo-tooltip {
   position: absolute;
-  background: var(--tooltip-bg, #333);
-  color: white;
-  padding: 4px 8px;
-  margin: 4px;
+  z-index: 1000;
+  background: var(--tooltip-bg);
+  color: var(--color-text-inverse);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
-  font-size: var(--font-xs, 12px);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
   white-space: nowrap;
-  opacity: 0;
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 999;
-//   width: 100px;
-//   height: 100px;
+  animation: weavo-tooltip-in 0.15s ease;
+
+  &-top {
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-right {
+    top: 50%;
+    left: calc(100% + 6px);
+    transform: translateY(-50%);
+  }
+
+  &-bottom {
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-left {
+    top: 50%;
+    right: calc(100% + 6px);
+    transform: translateY(-50%);
+  }
 }
 
-.weavo-tooltip-wrapper:hover .weavo-tooltip,
-.weavo-tooltip-wrapper:focus-within .weavo-tooltip {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes weavo-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
-/* Position variants */
-.weavo-tooltip-top    { bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-4px); }
-.weavo-tooltip-right  { top: 50%; left: 100%; transform: translateY(-50%) translateX(4px); }
-.weavo-tooltip-bottom { top: 100%; left: 50%; transform: translateX(-50%) translateY(4px); }
-.weavo-tooltip-left   { top: 50%; right: 100%; transform: translateY(-50%) translateX(-4px); }
+/* ================== Tabs ================== */
+.weavo-tabs {
+  background: var(--tab-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
 
 .weavo-tab-list {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 0;
+  padding: var(--spacing-xs) var(--spacing-xs) 0;
+  background: var(--color-bg-muted);
   border-bottom: 1px solid var(--border-light);
 }
 
 .weavo-tab {
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border: none;
-  background: none;
+  background: transparent;
   cursor: pointer;
-  color: var(--text);
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  transition: background 0.2s ease, color 0.2s ease;
-}
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: color 0.15s ease, background 0.15s ease;
+  position: relative;
+  margin-bottom: -1px;
 
-.weavo-tab:hover {
-  background: var(--background-hover);
+  &:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.6);
+  }
 }
 
 .weavo-tab-active {
   color: var(--color-primary);
-  border-bottom: 2px solid var(--color-primary);
-  font-weight: 600;
+  background: var(--color-bg-elevated);
+  font-weight: var(--font-weight-semibold);
+  border: 1px solid var(--border-light);
+  border-bottom-color: var(--color-bg-elevated);
 }
 
 .weavo-tab-panel {
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  background: var(--color-bg-elevated);
 }
 
+/* ================== Accordion ================== */
 .weavo-accordion {
   display: flex;
   flex-direction: column;
-//   width: 100%;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  background: var(--accordion-bg);
+  box-shadow: var(--shadow-xs);
 }
 
 .weavo-accordion-item {
@@ -244,31 +366,52 @@
 }
 
 .weavo-accordion-header {
-//   width: 100%;
-  padding: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
   text-align: left;
-  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  font-size: var(--font-sm);
   font-weight: var(--font-weight-medium);
-  background: var(--background-muted);
+  color: var(--color-text);
+  background: var(--color-bg-elevated);
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease, font-weight 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-text-muted);
+    border-bottom: 2px solid var(--color-text-muted);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: var(--spacing-md);
+  }
 
   &:hover {
-    background: var(--background-hover);
+    background: var(--color-bg-hover);
   }
 
   &.open {
-    background: var(--background-active);
-    font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
+    background: var(--color-primary-subtle);
+
+    &::after {
+      transform: rotate(-135deg);
+      border-color: var(--color-primary);
+    }
   }
 }
 
 .weavo-accordion-panel {
   overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  background: var(--background);
+  background: var(--color-bg-elevated);
+  transition: max-height 0.3s ease, opacity 0.2s ease;
   opacity: 0;
 
   &.open {
@@ -277,12 +420,13 @@
 }
 
 .weavo-accordion-panel-content {
-  padding: var(--spacing-md);
-  color: var(--text);
-  font-size: var(--font-size-sm);
-  line-height: 1.5;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
 }
 
+/* ================== Spinner ================== */
 .weavo-spinner-wrapper {
   display: inline-flex;
   align-items: center;
@@ -290,67 +434,56 @@
 }
 
 .weavo-spinner {
-  border: var(--spinner-thickness, 3px) solid var(--border-light);
+  border: var(--spinner-thickness) solid var(--color-secondary);
   border-top-color: var(--spinner-color);
   border-radius: 50%;
-  animation: weavo-spin var(--spinner-speed, 1s) linear infinite;
-  background: var(--spinner-bg, transparent);
+  animation: weavo-spin var(--spinner-speed) linear infinite;
+  background: var(--spinner-bg);
 
-  /* ================== Sizes ================== */
   &.sm {
     width: var(--spinner-size-sm);
     height: var(--spinner-size-sm);
   }
+
   &.md {
     width: var(--spinner-size-md);
     height: var(--spinner-size-md);
   }
+
   &.lg {
     width: var(--spinner-size-lg);
     height: var(--spinner-size-lg);
   }
+
   &.xl {
     width: var(--spinner-size-xl);
     height: var(--spinner-size-xl);
   }
 
-  /* ================== Speed Variants ================== */
   &.fast {
-    animation-duration: var(--spinner-speed-fast, 0.6s);
+    animation-duration: var(--spinner-speed-fast);
   }
+
   &.slow {
-    animation-duration: var(--spinner-speed-slow, 2s);
+    animation-duration: var(--spinner-speed-slow);
   }
 
-  /* ================== Color Variants ================== */
-  &.primary {
-    border-top-color: var(--color-primary);
-  }
-  &.success {
-    border-top-color: var(--color-success);
-  }
-  &.warning {
-    border-top-color: var(--color-warning);
-  }
-  &.danger {
-    border-top-color: var(--color-danger);
-  }
-  &.info {
-    border-top-color: var(--color-info);
-  }
-  &.secondary {
-    border-top-color: var(--color-secondary);
-  }
+  &.primary { border-top-color: var(--color-primary); }
+  &.success { border-top-color: var(--color-success); }
+  &.warning { border-top-color: var(--color-warning); }
+  &.danger { border-top-color: var(--color-danger); }
+  &.info { border-top-color: var(--color-info); }
+  &.secondary { border-top-color: var(--color-text-muted); }
 }
-  
+
 @keyframes weavo-spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
+/* ================== Progress Bar ================== */
 .weavo-progress-bar {
   background: var(--progress-bg);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   overflow: hidden;
   width: 100%;
 
@@ -361,28 +494,21 @@
   .weavo-progress-fill {
     height: 100%;
     width: 0%;
-    transition: width var(--progress-speed-slow) ease-in-out;
+    border-radius: var(--radius-full);
+    transition: width var(--progress-speed-slow) cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--progress-primary);
 
     &.fast { transition-duration: var(--progress-speed-fast); }
     &.slow { transition-duration: var(--progress-speed-slow); }
-
-    &.primary { background: var(--progress-primary); }
-    &.success { background: var(--progress-success); }
-    &.warning { background: var(--progress-warning); }
-    &.danger { background: var(--progress-danger); }
-    &.info { background: var(--progress-info); }
+    &.primary { background: linear-gradient(90deg, var(--color-primary), #6366f1); }
+    &.success { background: linear-gradient(90deg, var(--color-success), #10b981); }
+    &.warning { background: linear-gradient(90deg, var(--color-warning), #f59e0b); }
+    &.danger { background: linear-gradient(90deg, var(--color-danger), #ef4444); }
+    &.info { background: linear-gradient(90deg, var(--color-info), #0ea5e9); }
   }
 }
-/* ---------------------------
-   Modal SCSS (weavo modal)
-   --------------------------- */
-.weavo-modal-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
+/* ================== Modal ================== */
 .weavo-modal-overlay {
   position: fixed;
   inset: 0;
@@ -393,87 +519,126 @@
   background: var(--modal-overlay-bg);
   backdrop-filter: blur(var(--modal-backdrop-blur));
   z-index: 10000;
+  animation: weavo-overlay-in var(--modal-animation-normal) ease;
 }
 
 .weavo-modal {
-  background: var(--modal-bg, #ffffff);
+  background: var(--modal-bg);
+  border: 1px solid var(--border-light);
   border-radius: var(--modal-radius);
   box-shadow: var(--modal-shadow);
   overflow: hidden;
   max-width: calc(100% - 48px);
   width: var(--modal-width-md);
-  animation: weavo-modal-in var(--modal-animation-normal) cubic-bezier(.2,.9,.25,1);
+  animation: weavo-modal-in var(--modal-animation-normal) cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
   position: relative;
   outline: none;
 
-  &:focus {
-    box-shadow: var(--modal-focus-shadow);
-  }
-
   &.sm { width: var(--modal-width-sm); }
   &.md { width: var(--modal-width-md); }
   &.lg { width: var(--modal-width-lg); }
-
   &.fast { animation-duration: var(--modal-animation-fast); }
   &.slow { animation-duration: var(--modal-animation-slow); }
 
   &-header {
     padding: var(--modal-padding-md);
+    padding-bottom: var(--spacing-md);
     border-bottom: 1px solid var(--border-light);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--font-lg);
+    color: var(--color-text);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-md);
+    letter-spacing: -0.02em;
   }
 
   &-body {
     padding: var(--modal-padding-md);
-    font-size: var(--font-base);
-    color: var(--color-text);
-    line-height: 1.4;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
   }
 
   &-footer {
-    padding: var(--modal-padding-sm) var(--modal-padding-md);
+    padding: var(--spacing-md) var(--modal-padding-md) var(--modal-padding-md);
     border-top: 1px solid var(--border-light);
     display: flex;
     justify-content: flex-end;
     gap: var(--spacing-sm);
     align-items: center;
+    background: var(--color-bg-muted);
+  }
+
+  &-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: var(--modal-close-size);
+    line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: var(--color-bg-hover);
+      color: var(--color-text);
+    }
   }
 }
 
 @media (max-width: 600px) {
   .weavo-modal {
     width: 100%;
-    border-radius: var(--radius-sm);
-    margin: 0 var(--spacing-sm);
+    border-radius: var(--radius-md);
     max-height: calc(100vh - 48px);
     overflow-y: auto;
   }
 }
 
-@keyframes weavo-modal-in {
-  from { opacity: 0; transform: translateY(-8px) scale(0.995); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes weavo-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
+@keyframes weavo-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================== Lists ================== */
 .weavo-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-xs);
   display: flex;
   flex-direction: column;
-  gap: var(--list-gap, 0.5rem);
+  gap: var(--list-gap);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
 
   &.horizontal {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &.bordered .weavo-list-item {
-    border-bottom: 1px solid var(--list-border, #e5e7eb);
+    border-bottom: 1px solid var(--list-border);
 
     &:last-child {
       border-bottom: none;
@@ -481,31 +646,31 @@
   }
 
   &.striped .weavo-list-item:nth-child(odd) {
-    background: var(--list-striped, #f9fafb);
-  }
-
-  &-item {
-    padding: var(--list-item-padding, 0.5rem 1rem);
-    border-radius: var(--list-item-radius, 0.375rem);
-    cursor: pointer;
-    transition: background 0.2s;
-
-    &.active {
-      background: var(--list-active-bg, #2563eb);
-      color: var(--list-active-color, #fff);
-    }
-
-    &.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    &:hover:not(.disabled) {
-      background: var(--list-hover-bg, #f3f4f6);
-    }
+    background: var(--list-striped);
   }
 }
 
+.weavo-list-item {
+  padding: var(--list-item-padding);
+  border-radius: var(--list-item-radius);
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 
+  &.active {
+    background: var(--list-active-bg);
+    color: var(--list-active-color);
+    font-weight: var(--font-weight-medium);
+  }
 
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
+  &:hover:not(.disabled):not(.active) {
+    background: var(--list-hover-bg);
+    color: var(--color-text);
+  }
+}

@@ -1,257 +1,430 @@
 {
-  "type": "Section",
-  "props": {
-    "columns": "2",
-    "title": "Weavo Joke Demo",
-    "padding": "var(--spacing-lg)",
-    "background": "var(--main-bg)"
-  },
-  
+  "type": "Page",
   "children": [
     {
       "type": "Main",
-      "props": {},
       "children": [
         {
-          "type": "Navbar",
-          "props": {
-            "items": [
-              { "label": "Home", "href": "/" },
-              { "label": "Funny Docs", "href": "/docs" },
-              { "label": "404 Humor", "href": "/oops" }
-            ],
-            "align": "start"
-          }
-        },
-        {
-          "type": "Header",
-          "props": {
-            "children": "Welcome to Weavo Jokes",
-            "height": "80px",
-            "background": "var(--header-bg)"
-          }
-        },
-        {
           "type": "Section",
-          "props": {
-            "gap": "var(--spacing-md)",
-            "padding": "var(--spacing-md)",
-            "background": "var(--section-bg)",
-            "direction": "row"
-          },
+          "props": { "className": "weavo-landing-topbar", "direction": "row" },
           "children": [
             {
-              "type": "Button",
-              "props": { "label": "Why so serious?", "variant": "primary" }
+              "type": "div",
+              "props": { "className": "weavo-landing-brand" },
+              "children": "Weavo"
+            },
+            {
+              "type": "Navbar",
+              "props": {
+                "items": [
+                  { "label": "Features", "href": "#features" },
+                  { "label": "Components", "href": "#components" },
+                  { "label": "Roadmap", "href": "#roadmap" },
+                  { "label": "Docs", "href": "#docs" },
+                  { "label": "GitHub", "href": "https://github.com" }
+                ],
+                "activeIndex": 0
+              }
             },
             {
               "type": "Button",
-              "props": { "label": "Click for pun", "variant": "secondary" }
-            },
-            {
-              "type": "Button",
-              "props": { "label": "Dad Joke Incoming", "variant": "default" }
-            },
-            {
-              "type": "Input",
-              "props": { "placeholder": "Enter your worst joke" }
+              "props": { "label": "Get Started", "variant": "primary", "size": "sm" }
             }
           ]
         },
         {
           "type": "Section",
-          "props": {
-            "gap": "var(--spacing-md)",
-            "padding": "var(--spacing-md)",
-            "background": "var(--section-bg)"
-          },
+          "props": { "className": "weavo-landing-hero", "direction": "column" },
           "children": [
             {
-              "type": "Container",
-              "props": { "direction": "row" },
+              "type": "Badge",
+              "props": { "variant": "primary" },
+              "children": "Open Source · MIT License"
+            },
+            {
+              "type": "h1",
+              "props": { "className": "weavo-landing-title" },
+              "children": "Build once. Ship everywhere."
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-subtitle" },
+              "children": "Weavo is a dynamic UI framework — SCSS theming, React components, and JSON schema rendering — designed for cross-platform interfaces from a single source of truth."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-cta", "direction": "row" },
               "children": [
                 {
-                  "type": "Card",
-                  "props": {},
-                  "children": [
-                    { "type": "Card.Header", "children": "Tech Joke" },
-                    {
-                      "type": "Card.Body",
-                      "children": "Why do programmers prefer dark mode? Because light attracts bugs."
-                    },
-                    {
-                      "type": "Card.Footer",
-                      "children": [
-                        {
-                          "type": "Button",
-                          "props": { "label": "😂 Laugh", "variant": "primary" }
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "Button",
+                  "props": { "label": "Quick Start", "variant": "primary", "size": "lg" }
                 },
-                { "type": "Card", "children": "I would tell you a UDP joke… but you might not get it." },
-                { "type": "Card", "children": "Why don’t skeletons fight each other? They don’t have the guts." },
-                { "type": "Card", "children": "Why was the math book sad? Too many problems." }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Section",
-          "props": { "direction": "row" },
-          "children": [
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Loading punchline…",
-                    {
-                        "type": "Spinner",
-                        "props": { "className": "weavo-spinner sm primary fast" }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Fetching dad joke…",
-                    {
-                        "type": "Spinner",
-                        "props": { "className": "weavo-spinner md success" }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Still buffering the humor…",
-                    {
-                        "type": "Spinner",
-                        "props": { "className": "weavo-spinner lg warning slow" }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Critical joke loading!",
-                    {
-                        "type": "Spinner",
-                        "props": { "className": "weavo-spinner xl danger" }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Downloading sarcasm…",
-                    {
-                        "type": "Spinner",
-                        "props": { "className": "weavo-spinner md info fast" }
-                    }
-                ]
-            }
-          ]
-        },
-        {
-          "type": "Section",
-          "props": {
-            "gap": "var(--spacing-md)",
-            "padding": "var(--spacing-md)",
-            "background": "var(--section-bg)"
-          },
-          "children": [
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Patience level: 70% (waiting for a better joke)",
-                    {
-                        "type": "ProgressBar",
-                        "props": { "value": 70, "size": "md", "variant": "primary", "speed": "fast" }
-                    }
-                ]
-            },
-            {
-                "type": "Section",
-                "props": { "direction": "column" },
-                "children": [
-                    "Confidence in this pun: 40%",
-                    {
-                        "type": "ProgressBar",
-                        "props": { "value": 40, "size": "md", "variant": "success", "speed": "slow" }
-                    }
-                ]
-            }
-          ]
-        },
-        {
-          "type": "Section",
-          "props": {
-            "gap": "var(--spacing-md)",
-            "padding": "var(--spacing-md)",
-            "background": "var(--section-bg)",
-            "direction": "row"
-          },
-          "children": [
-            {
-              "type": "Tooltip",
-              "props": { "content": "Worst joke ahead…" },
-              "children": [
                 {
-                  "type": "Badge",
-                  "props": { "variant": "primary" },
-                  "children": [
-                    { "type": "Icon", "props": { "name": "Bell", "size": 20, "color": "red" } },
-                    "Why don’t Java developers wear glasses? Because they can C#!"
-                  ]
+                  "type": "Button",
+                  "props": { "label": "View on GitHub", "variant": "secondary", "size": "lg" }
+                },
+                {
+                  "type": "Button",
+                  "props": { "label": "Read the Docs", "variant": "default", "size": "lg" }
                 }
               ]
             },
-            { "type": "Badge", "props": { "variant": "success" }, "children": "Dad Level ✅" },
-            { "type": "Badge", "props": { "variant": "warning" }, "children": "Pun Alert ⚠️" },
-            { "type": "Badge", "props": { "variant": "info" }, "children": "Tech Humor 💻" },
-            { "type": "Badge", "props": { "variant": "danger" }, "children": "Cringe Incoming 🚨" }
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-open-source", "direction": "row" },
+              "children": [
+                { "type": "Badge", "props": { "variant": "success" }, "children": "React 19" },
+                { "type": "Badge", "props": { "variant": "info" }, "children": "TypeScript-ready" },
+                { "type": "Badge", "props": { "variant": "warning" }, "children": "v0.2 Active" },
+                {
+                  "type": "Tooltip",
+                  "props": { "content": "JSON → React renderer is live" },
+                  "children": [
+                    { "type": "Badge", "props": { "variant": "primary" }, "children": "Schema Renderer" }
+                  ]
+                }
+              ]
+            }
           ]
         },
         {
           "type": "Section",
-          "props": {
-            "gap": "var(--spacing-md)",
-            "padding": "var(--spacing-md)",
-            "background": "var(--section-bg)"
-          },
+          "props": { "className": "weavo-landing-stats", "direction": "row" },
           "children": [
             {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "19" },
+                { "type": "span", "children": "Components" }
+              ]
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "3" },
+                { "type": "span", "children": "Core Modules" }
+              ]
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "5" },
+                { "type": "span", "children": "Export Targets" }
+              ]
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "MIT" },
+                { "type": "span", "children": "License" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "features" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Why Weavo?"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "A full-stack UI framework that separates structure, style, and platform — so your team ships faster without rewriting interfaces."
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-features" },
+              "children": [
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Dynamic SCSS Theming" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Theme tokens via CSS variables — no hardcoded colors. Inject custom tokens at runtime for full brand control across every component."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "React Component Library" },
+                    {
+                      "type": "Card.Body",
+                      "children": "19 layout and UI components built with React + SCSS. Variants, sizes, and runtime theming — ready for production apps."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "JSON Schema Renderer" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Define UIs as JSON with type, props, styles, and children. The renderer maps schemas to React components recursively."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Cross-Platform Export" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Serialize DOM structure to JSON and export to web, iOS, and Android — one schema, multiple targets."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Core Modules"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Three pillars that power the framework — each independently useful, better together."
+            },
+            {
               "type": "Tabs",
-              "props": {},
               "children": [
                 {
                   "type": "Tabs.TabList",
                   "children": [
-                    { "type": "Tabs.Tab", "children": "Dad Jokes" },
-                    { "type": "Tabs.Tab", "children": "Tech Jokes" },
-                    { "type": "Tabs.Tab", "children": "Office Jokes" }
+                    { "type": "Tabs.Tab", "children": "scss-core/" },
+                    { "type": "Tabs.Tab", "children": "components/" },
+                    { "type": "Tabs.Tab", "children": "schema-renderer/" }
                   ]
                 },
                 {
                   "type": "Tabs.TabPanel",
-                  "children": "I only know 25 letters of the alphabet. I don’t know y."
+                  "children": "Accepts external theme tokens via CSS variables or config. Default and user-defined themes with full override support. Utility classes for spacing, typography, and border-radius."
                 },
                 {
                   "type": "Tabs.TabPanel",
-                  "children": "There are 10 types of people: those who understand binary and those who don’t."
+                  "children": "React + SCSS components with variant and size props. Layout primitives (Page, Header, Sidebar, Navbar) and UI elements (Button, Card, Modal, Tabs, Accordion, and more)."
                 },
                 {
                   "type": "Tabs.TabPanel",
-                  "children": "Why don’t we tell secrets at work? Because the walls have ears… and meetings."
+                  "children": "Recursive JSON → React engine. Maps type strings to ComponentMap entries. Supports nested children, inline styles, and event listeners."
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Schema-Driven by Design"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "This entire landing page is rendered from a JSON schema — the same format your apps will use."
+            },
+            {
+              "type": "pre",
+              "props": { "className": "weavo-landing-code" },
+              "children": "{\n  \"type\": \"Button\",\n  \"props\": {\n    \"label\": \"Submit\",\n    \"variant\": \"primary\"\n  },\n  \"styles\": {\n    \"padding\": \"16px\",\n    \"color\": \"var(--color-primary)\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "components" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Component Showcase"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Every component is theme-aware and schema-compatible."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "column" },
+              "children": [
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    { "type": "Button", "props": { "label": "Primary", "variant": "primary" } },
+                    { "type": "Button", "props": { "label": "Secondary", "variant": "secondary" } },
+                    { "type": "Button", "props": { "label": "Outline", "variant": "default" } },
+                    { "type": "Input", "props": { "placeholder": "Search the docs…" } }
+                  ]
+                },
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    {
+                      "type": "Section",
+                      "props": { "direction": "column" },
+                      "children": [
+                        "Rendering schema",
+                        { "type": "Spinner", "props": { "className": "weavo-spinner md primary" } }
+                      ]
+                    },
+                    {
+                      "type": "Section",
+                      "props": { "direction": "column" },
+                      "children": [
+                        "v0.2 progress — 85%",
+                        { "type": "ProgressBar", "props": { "value": 85, "size": "md", "variant": "primary", "speed": "fast" } }
+                      ]
+                    },
+                    {
+                      "type": "Section",
+                      "props": { "direction": "column" },
+                      "children": [
+                        "Test coverage — 72%",
+                        { "type": "ProgressBar", "props": { "value": 72, "size": "md", "variant": "success", "speed": "slow" } }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "roadmap" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Roadmap"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Transparent, milestone-driven development. Follow along as Weavo grows."
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-roadmap" },
+              "children": [
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v0.1 — Foundation" },
+                    { "type": "Card.Body", "children": "SCSS theming system and base React components. Theme tokens, Button, Input, Card, and layout primitives." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "success" }, "children": "Complete" }] }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v0.2 — Schema Engine" },
+                    { "type": "Card.Body", "children": "JSON schema format, parser, and recursive renderer. Props and style mapping." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "primary" }, "children": "Active" }] }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v0.3 — Backend API" },
+                    { "type": "Card.Body", "children": "REST API for schema and theme storage. FastAPI or Express with MongoDB/PostgreSQL." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "warning" }, "children": "Planned" }] }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v0.4 — CLI Tool" },
+                    { "type": "Card.Body", "children": "Scaffold projects, components, and themes from the terminal." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "warning" }, "children": "Planned" }] }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v0.5 — Docs & Playground" },
+                    { "type": "Card.Body", "children": "Documentation site with live editor and schema preview." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "info" }, "children": "Planned" }] }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "props": { "className": "weavo-landing-roadmap-card" },
+                  "children": [
+                    { "type": "Card.Header", "children": "v1.0 — UI Builder" },
+                    { "type": "Card.Body", "children": "Drag-and-drop builder with live preview and JSON export." },
+                    { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "info" }, "children": "Planned" }] }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "docs" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Quick Start"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Install dependencies, start the dev server, and begin building with schemas."
+            },
+            {
+              "type": "pre",
+              "props": { "className": "weavo-landing-code" },
+              "children": "# Clone & install\nnpm install\n\n# Start development\nnpx weavo dev\n# → http://localhost:5173\n\n# Build for production\nnpx weavo build"
+            },
+            {
+              "type": "Section",
+              "props": { "direction": "row" },
+              "children": [
+                { "type": "Button", "props": { "label": "npm install", "variant": "primary" } },
+                { "type": "Button", "props": { "label": "npx weavo dev", "variant": "secondary" } },
+                { "type": "Button", "props": { "label": "npx weavo build", "variant": "default" } }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Frequently Asked Questions"
             },
             {
               "type": "Accordion",
@@ -260,15 +433,41 @@
                 {
                   "type": "Accordion.Item",
                   "children": [
-                    { "type": "Accordion.Header", "children": "Knock Knock" },
-                    { "type": "Accordion.Panel", "children": "Who’s there? Weavo. Weavo who? Weavo got jokes for days!" }
+                    { "type": "Accordion.Header", "children": "What makes Weavo different from other UI libraries?" },
+                    {
+                      "type": "Accordion.Panel",
+                      "children": "Weavo combines a SCSS token system, React components, and a JSON schema renderer in one framework — enabling cross-platform UI from a single schema definition."
+                    }
                   ]
                 },
                 {
                   "type": "Accordion.Item",
                   "children": [
-                    { "type": "Accordion.Header", "children": "Why Weavo?" },
-                    { "type": "Accordion.Panel", "children": "Because React schemas were getting too serious." }
+                    { "type": "Accordion.Header", "children": "Can I use Weavo without the schema renderer?" },
+                    {
+                      "type": "Accordion.Panel",
+                      "children": "Yes. Import components directly from src/components and use the SCSS theme system standalone. The schema renderer is optional but unlocks cross-platform workflows."
+                    }
+                  ]
+                },
+                {
+                  "type": "Accordion.Item",
+                  "children": [
+                    { "type": "Accordion.Header", "children": "What platforms are supported?" },
+                    {
+                      "type": "Accordion.Panel",
+                      "children": "Web (React) is fully supported today. iOS and Android export targets are planned — the src/targets/ directory holds placeholder logic for future platform adapters."
+                    }
+                  ]
+                },
+                {
+                  "type": "Accordion.Item",
+                  "children": [
+                    { "type": "Accordion.Header", "children": "Is Weavo open source?" },
+                    {
+                      "type": "Accordion.Panel",
+                      "children": "Yes. Weavo is released under the MIT License. Contributions, issues, and pull requests are welcome on GitHub."
+                    }
                   ]
                 }
               ]
@@ -277,38 +476,31 @@
         },
         {
           "type": "Footer",
-          "props": {
-            "children": "© 2025 Weavo — Laughs compiled successfully 🎉",
-            "height": "60px",
-            "background": "var(--footer-bg)"
-          }
-        }
-      ]
-    },
-    {
-      "type": "Modal",
-      "props": { "defaultOpen": true, "size": "md", "speed": "normal" },
-      "children": [
-        { "type": "Modal.Header", "children": "Weavo Modal of Humor" },
-        {
-          "type": "Modal.Body",
-          "children": "This modal is like your boss: it only closes when you hit ESC."
-        },
-        {
-          "type": "Modal.Footer",
+          "props": { "className": "weavo-landing-footer" },
           "children": [
             {
-              "type": "Button",
-              "props": { "label": "😂 More", "variant": "primary" }
+              "type": "Section",
+              "props": { "className": "weavo-landing-footer-links", "direction": "row" },
+              "children": [
+                { "type": "a", "props": { "href": "#features" }, "children": "Features" },
+                { "type": "a", "props": { "href": "#components" }, "children": "Components" },
+                { "type": "a", "props": { "href": "#roadmap" }, "children": "Roadmap" },
+                { "type": "a", "props": { "href": "#docs" }, "children": "Documentation" },
+                { "type": "a", "props": { "href": "https://github.com" }, "children": "GitHub" }
+              ]
             },
             {
-              "type": "Button",
-              "props": { "label": "🙈 Stop", "variant": "secondary" }
+              "type": "p",
+              "children": "© 2025 Weavo — Dynamic SCSS + React + JSON Schema Framework"
+            },
+            {
+              "type": "p",
+              "props": { "style": { "fontSize": "var(--font-xs)", "color": "var(--color-text-muted)" } },
+              "children": "Released under the MIT License · Built with schema-driven design"
             }
           ]
         }
       ]
     }
   ]
-  
 }

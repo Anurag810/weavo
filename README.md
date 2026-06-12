@@ -13,6 +13,55 @@ A full-stack, dynamic UI framework with the following goals:
 
 ---
 
+## ⚡ CLI Commands
+
+Weavo ships with a CLI at `bin/weavo.js`. Run it from the project root after installing dependencies.
+
+### Install & run
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+```bash
+# via npx (no global install)
+npx weavo <command>
+
+# or npm scripts
+npm run dev
+npm run build
+```
+
+### `weavo` commands
+
+| Command | Description |
+|---------|-------------|
+| `weavo setup-requirements` | Install Rust, wasm-pack, and build WebAssembly deps |
+| `weavo dev` | Start the Vite dev server |
+| `weavo build` | Build the app for production |
+
+```bash
+npx weavo setup-requirements   # first-time Rust/Wasm setup
+npx weavo dev                    # http://localhost:5173
+npx weavo build                  # output → dist/
+```
+
+### npm scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run serve` | Start Express backend (`src/server.js`) |
+| `npm run test` | Run tests (`src/tests/`) |
+| `npm run weavo setup-requirements` | Same as `weavo setup-requirements` |
+
+---
+
 ## 🧱 Core Modules Breakdown
 
 ### 🔹 1. SCSS Library (Dynamic Theming)

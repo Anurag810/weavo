@@ -19,9 +19,9 @@ export const Badge = ({ label, variant = "primary", children, ...props }) => {
   return <span className={className} {...props}>{children}</span>;
 };
 
-export const Button = ({ label, variant = "primary", ...props }) => {
-  const className = `weavo-btn weavo-btn-${variant}`;
-  return <button className={className} {...props}>{label}</button>;
+export const Button = ({ label, variant = "primary", size, children, className = "", ...props }) => {
+  const classes = ["weavo-btn", `weavo-btn-${variant}`, size, className].filter(Boolean).join(" ");
+  return <button className={classes} {...props}>{children ?? label}</button>;
 };
 
 export const Input = ({ placeholder, type = "text", ...props }) => {
@@ -188,43 +188,62 @@ export const ProgressBar = ({ value = 10, size = "md", variant = "primary", spee
   );
 };
 
-export const Modal = ({ defaultOpen, onClose, size = "md", speed = "normal", children }) => {
-
+export const Modal = ({ defaultOpen = false, onClose, size = "md", speed = "normal", children }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  const close = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      console.log("I am Here")
-      if (e.key === "Escape"){
-        setIsOpen(false);
-        onClose?.();
-      } 
+      if (e.key === "Escape") close();
     };
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
+  const enhancedChildren = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) return child;
+    if (child.type === Modal.Header) {
+      return React.cloneElement(child, { onClose: close });
+    }
+    return child;
+  });
+
   return (
-    <div className="weavo-modal-overlay">
+    <div className="weavo-modal-overlay" onClick={close}>
       <div
         className={`weavo-modal ${size} ${speed}`}
         role="dialog"
         aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
       >
-        {children}
+        {enhancedChildren}
       </div>
     </div>
   );
 };
 
-// Sub-components for schema flexibility
-Modal.Header = ({ children }) => <div className="weavo-modal-header">{children}</div>;
+Modal.Header = ({ children, onClose }) => (
+  <div className="weavo-modal-header">
+    <span>{children}</span>
+    {onClose && (
+      <button type="button" className="weavo-modal-close" onClick={onClose} aria-label="Close">
+        ×
+      </button>
+    )}
+  </div>
+);
 Modal.Body = ({ children }) => <div className="weavo-modal-body">{children}</div>;
 Modal.Footer = ({ children }) => <div className="weavo-modal-footer">{children}</div>;
 
