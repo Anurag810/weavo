@@ -2,8 +2,8 @@
 
 **Dynamic SCSS + React + JSON Schema UI Framework**
 
-[![GitHub](https://img.shields.io/badge/GitHub-Anurag810%2Fweavo-blue?logo=github)](https://github.com/Anurag810/weavo)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-green.svg)](LICENSE)
+[GitHub](https://github.com/Anurag810/weavo)
+[License: GPL-3.0](LICENSE)
 
 ---
 
@@ -11,41 +11,43 @@
 
 Weavo is an early-stage, schema-driven UI framework. The app renders entirely from JSON via the **Weave** system — three production-style schemas (`landing`, `components`, `search`) grouped in `app.weave.json`.
 
-| Milestone | Progress | Summary |
-|-----------|----------|---------|
-| **v0.1** — SCSS + components | ~95% | CSS-variable theming, light/dark themes, 21 components, polished SCSS |
-| **v0.2** — Schema renderer | ~88% | Recursive renderer, Weaves, hash routing, `loadSchema`, `setTheme`, event listeners |
-| **v0.3** — Backend API | ~15% | Express + Ollama AI endpoints; schema/theme storage not started |
-| **v0.4** — CLI | ~25% | `dev`, `build`, `setup-requirements` only |
-| **v0.5** — Docs + playground | 0% | Not started |
-| **v1.0** — Builder MVP | 0% | Application schemas only; no drag-and-drop UI |
 
-**Working today:** Vite dev/build, multi-schema Weave routing, light/dark theme switching with persistence, `ThemeProvider` + `useTheme()`, three application schemas, component library, SCSS theming, event listeners (`loadSchema`, `setTheme`, `callAI`, etc.), Express `/api/ai` (Ollama).
+| Milestone                    | Progress | Summary                                                                             |
+| ---------------------------- | -------- | ----------------------------------------------------------------------------------- |
+| **v0.1** — SCSS + components | ~98%     | CSS-variable theming, light/dark themes, 21 components, polished SCSS               |
+| **v0.2** — Schema renderer   | ~88%     | Recursive renderer, Weaves, hash routing, `loadSchema`, `setTheme`, event listeners |
+| **v0.3** — Backend API       | ~15%     | Express + Ollama AI endpoints; schema/theme storage not started                     |
+| **v0.4** — CLI               | ~25%     | `dev`, `build`, `setup-requirements` only                                           |
+| **v0.5** — Docs + playground | 0%       | Not started                                                                         |
+| **v1.0** — Builder MVP       | 0%       | Application schemas only; no drag-and-drop UI                                       |
 
-**Not yet built:** Rust/WASM `.wv` parser (config only), JSON custom theme registration, theme API persistence, Frappe-style dev console events, builder UI, docs site, cross-platform export.
 
----
+
 
 ## Recent Progress
 
-| Area | Status | Details |
-|------|--------|---------|
-| **Theme system** | Done | `ThemeProvider`, light/dark switching, `localStorage`, `setTheme` listener |
-| **Weave system** | Done | `WeaveProvider`, `SchemaRenderer`, `app.weave.json`, hash routing, `loadSchema` listener |
-| **Schema registry** | Done | `src/weave/schema-registry.js` maps filenames → imported JSON |
-| **Event listeners** | Done | Root + props `listeners`; handlers: `alert`, `navigate`, `loadSchema`, `callAI`, etc. |
-| **Landing page** | Done | Full marketing site from `landing.schema.json` (features, roadmap, FAQ, showcase) |
-| **Component library page** | Done | `components.schema.json` — buttons, cards, tabs, accordion, modal, spinners |
-| **AI assistant page** | Done | `search.schema.json` — chat UI wired to `/api/ai` |
-| **Dev console events** | Planned | Frappe-style `weavo.on` / debug logging — deferred |
+
+| Area                       | Status  | Details                                                                                              |
+| -------------------------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| **Theme system**           | Done    | `ThemeProvider`, light/dark switching, `localStorage`, `setTheme` listener                           |
+| **Weave system**           | Done    | `WeaveProvider`, `SchemaRenderer`, `app.weave.json`, hash routing, `loadSchema` listener             |
+| **Schema registry**        | Done    | `src/weave/schema-registry.js` maps filenames → imported JSON                                        |
+| **Event listeners**        | Done    | Root + props `listeners`; handlers: `alert`, `navigate`, `loadSchema`, `callAI`, etc.                |
+| **Landing page**           | Done    | Full marketing site from built using Weavo. `landing.schema.json` (features, roadmap, FAQ, showcase) |
+| **Component library page** | Done    | `components.schema.json` — buttons, cards, tabs, accordion, modal, spinners                          |
+| **AI assistant page**      | Done    | `search.schema.json` — chat UI Preview page                                                          |
+| **Dev console events**     | Planned | `weavo.on` / debug logging — deferred                                                                |
+
 
 ### Active routes
 
-| Hash | Schema | Description |
-|------|--------|-------------|
-| `#/landing` | `landing.schema.json` | Product landing page (default) |
-| `#/components` | `components.schema.json` | Component library showcase |
-| `#/search` | `search.schema.json` | AI assistant interface |
+
+| Hash           | Schema                   | Description                      |
+| -------------- | ------------------------ | -------------------------------- |
+| `#/landing`    | `landing.schema.json`    | Product landing page (default)   |
+| `#/components` | `components.schema.json` | Component library showcase       |
+| `#/search`     | `search.schema.json`     | AI assistant interface (preview) |
+
 
 ---
 
@@ -94,23 +96,27 @@ Weavo ships with a CLI at `bin/weavo.js`.
 npx weavo <command>
 ```
 
-| Command | Description |
-|---------|-------------|
+
+| Command                    | Description                                         |
+| -------------------------- | --------------------------------------------------- |
 | `weavo setup-requirements` | Install Rust, wasm-pack, and build WebAssembly deps |
-| `weavo dev` | Start the Vite dev server (uses pnpm) |
-| `weavo build` | Build the app for production |
+| `weavo dev`                | Start the Vite dev server (uses pnpm)               |
+| `weavo build`              | Build the app for production                        |
+
 
 ### npm scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start Vite dev server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-| `npm run serve` | Start Express backend (`src/server.js`) |
-| `npm run test` | Run AI smoke test (`src/tests/`) |
-| `npm run weavo setup-requirements` | Same as `weavo setup-requirements` |
+
+| Script                             | Description                             |
+| ---------------------------------- | --------------------------------------- |
+| `npm run dev`                      | Start Vite dev server                   |
+| `npm run build`                    | Production build                        |
+| `npm run preview`                  | Preview production build                |
+| `npm run lint`                     | Run ESLint                              |
+| `npm run serve`                    | Start Express backend (`src/server.js`) |
+| `npm run test`                     | Run AI smoke test (`src/tests/`)        |
+| `npm run weavo setup-requirements` | Same as `weavo setup-requirements`      |
+
 
 ---
 
@@ -183,11 +189,13 @@ The app loads a **Weave** (group of schemas) and a **Theme** (light/dark). Theme
 
 A **Weave** is a named collection of related schemas. Terminology:
 
-| Term | Meaning |
-|------|---------|
-| **Schema** | One JSON UI tree (a single screen) |
-| **Weave** | A group of schemas (e.g. landing + components + search) |
-| **Loom** *(planned)* | Top-level project/workspace containing weaves |
+
+| Term                 | Meaning                                                 |
+| -------------------- | ------------------------------------------------------- |
+| **Schema**           | One JSON UI tree (a single screen)                      |
+| **Weave**            | A group of schemas (e.g. landing + components + search) |
+| **Loom** *(planned)* | Top-level project/workspace containing weaves           |
+
 
 ### Weave manifest (`app.weave.json`)
 
@@ -245,25 +253,29 @@ Register new schema files in `src/weave/schema-registry.js`, then reference them
 }
 ```
 
-| Field | Description |
-|-------|-------------|
-| `type` | Component name from `ComponentMap`, or an HTML tag (`"div"`, `"h1"`, etc.) |
-| `props` | Passed to the component; `listeners` inside props bind event handlers |
-| `listeners` | Optional at node root or inside `props` — binds event handlers |
-| `styles` | Applied as inline `style` on the rendered element |
-| `children` | String, nested object, or array of nodes (recursive) |
+
+| Field       | Description                                                                |
+| ----------- | -------------------------------------------------------------------------- |
+| `type`      | Component name from `ComponentMap`, or an HTML tag (`"div"`, `"h1"`, etc.) |
+| `props`     | Passed to the component; `listeners` inside props bind event handlers      |
+| `listeners` | Optional at node root or inside `props` — binds event handlers             |
+| `styles`    | Applied as inline `style` on the rendered element                          |
+| `children`  | String, nested object, or array of nodes (recursive)                       |
+
 
 ### Application schemas
 
 Located in `src/builder/mock-schemas/`:
 
-| File | Purpose |
-|------|---------|
-| `app.weave.json` | **Active** — weave manifest grouping application schemas |
-| `landing.schema.json` | Product landing page (default route) |
-| `components.schema.json` | Component library showcase |
-| `search.schema.json` | AI assistant interface |
-| `schema.wv` | Custom DSL sample for future Rust/WASM parser |
+
+| File                     | Purpose                                                  |
+| ------------------------ | -------------------------------------------------------- |
+| `app.weave.json`         | **Active** — weave manifest grouping application schemas |
+| `landing.schema.json`    | Product landing page (default route)                     |
+| `components.schema.json` | Component library showcase                               |
+| `search.schema.json`     | AI assistant interface                                   |
+| `schema.wv`              | Custom DSL sample for future Rust/WASM parser            |
+
 
 ### Event listeners
 
@@ -277,20 +289,24 @@ Weavo uses a **hybrid theming architecture**: built-in light/dark themes ship as
 
 ### Token tiers
 
-| Tier | Purpose | Example |
-|------|---------|---------|
-| **Primitive** | Raw palette | `--color-primary`, `--color-bg` |
-| **Semantic** | UI meaning | `--background`, `--text` |
+
+| Tier          | Purpose         | Example                             |
+| ------------- | --------------- | ----------------------------------- |
+| **Primitive** | Raw palette     | `--color-primary`, `--color-bg`     |
+| **Semantic**  | UI meaning      | `--background`, `--text`            |
 | **Component** | Widget-specific | `--btn-primary-bg`, `--card-shadow` |
 
-Color tokens live in [`src/scss-core/themes/_light.scss`](src/scss-core/themes/_light.scss) and [`_dark.scss`](src/scss-core/themes/_dark.scss). Component tokens in [`_variables.scss`](src/scss-core/_variables.scss) reference semantic vars — switching theme only overrides the color layer.
+
+Color tokens live in `[src/scss-core/themes/_light.scss](src/scss-core/themes/_light.scss)` and `[_dark.scss](src/scss-core/themes/_dark.scss)`. Component tokens in `[_variables.scss](src/scss-core/_variables.scss)` reference semantic vars — switching theme only overrides the color layer.
 
 ### Built-in themes (Phase 1 — implemented)
 
-| ID | Label | Mechanism |
-|----|-------|-----------|
+
+| ID      | Label | Mechanism                                 |
+| ------- | ----- | ----------------------------------------- |
 | `light` | Light | Default; `:root` / `[data-theme="light"]` |
-| `dark` | Dark | `[data-theme="dark"]` overrides |
+| `dark`  | Dark  | `[data-theme="dark"]` overrides           |
+
 
 Persistence: `localStorage` key `weavo.theme`.
 
@@ -303,7 +319,7 @@ const { themeId, setTheme, themes, isDark } = useTheme();
 setTheme("dark");
 ```
 
-`ThemeProvider` wraps the app in [`App.jsx`](src/App.jsx). `setTheme` is also passed into the schema renderer context for listeners.
+`ThemeProvider` wraps the app in `[App.jsx](src/App.jsx)`. `setTheme` is also passed into the schema renderer context for listeners.
 
 ### Schema-driven theme switch
 
@@ -338,8 +354,8 @@ Future user themes and v0.3 `POST /theme` will use:
 ```
 
 - `extends` — optional base (`light` | `dark` | theme id)
-- `tokens` — flat map validated against [`THEME_TOKEN_KEYS`](src/theme-system/token-keys.js)
-- `registerTheme()` in [`theme-registry.js`](src/theme-system/theme-registry.js) — stub ready for Phase 2
+- `tokens` — flat map validated against `[THEME_TOKEN_KEYS](src/theme-system/token-keys.js)`
+- `registerTheme()` in `[theme-registry.js](src/theme-system/theme-registry.js)` — stub ready for Phase 2
 
 ### Future: user theme creation (Phase 3)
 
@@ -353,33 +369,37 @@ Theme editor in builder, import/export `.theme.json`, API persistence, weave-lev
 
 ### Layout Components (8/8)
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Page | Done | Grid layout wrapper |
-| Header | Done | Flex, sticky |
-| Footer | Done | Flex |
-| Sidebar | Done | Fixed min-width |
-| Main | Done | Flex column, max-width 1200px |
-| Section | Done | Flex column |
-| Navbar | Done | Custom; takes `items[]`, `activeIndex` |
-| Container | Done | In ComponentMap; flex wrapper |
+
+| Component | Status | Notes                                  |
+| --------- | ------ | -------------------------------------- |
+| Page      | Done   | Grid layout wrapper                    |
+| Header    | Done   | Flex, sticky                           |
+| Footer    | Done   | Flex                                   |
+| Sidebar   | Done   | Fixed min-width                        |
+| Main      | Done   | Flex column, max-width 1200px          |
+| Section   | Done   | Flex column                            |
+| Navbar    | Done   | Custom; takes `items[]`, `activeIndex` |
+| Container | Done   | In ComponentMap; flex wrapper          |
+
 
 ### UI Components (13/13)
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Button | Done | `variant`, `size`, `label`/`children` |
-| Input | Done | Text input |
-| Card | Done | Compound: `.Header`, `.Body`, `.Footer` |
-| Badge | Done | `variant`; uses `children` |
-| Modal | Done | Compound + Escape/overlay; `defaultOpen` only |
-| Accordion | Done | Compound + toggle; `allowMultiple`, `defaultIndex` |
-| Tooltip | Done | Hover/focus |
-| Tabs | Done | Compound: `.TabList`, `.Tab`, `.TabPanel` |
-| Spinner | Done | Size/variant via className |
-| ProgressBar | Done | `value`, `size`, `variant`, `speed` |
-| List / ListItem | Done | Styled `<ul>` / `<li>` |
-| Icon | Done | Lucide wrapper by `name`; **not yet in ComponentMap** |
+
+| Component       | Status | Notes                                                 |
+| --------------- | ------ | ----------------------------------------------------- |
+| Button          | Done   | `variant`, `size`, `label`/`children`                 |
+| Input           | Done   | Text input                                            |
+| Card            | Done   | Compound: `.Header`, `.Body`, `.Footer`               |
+| Badge           | Done   | `variant`; uses `children`                            |
+| Modal           | Done   | Compound + Escape/overlay; `defaultOpen` only         |
+| Accordion       | Done   | Compound + toggle; `allowMultiple`, `defaultIndex`    |
+| Tooltip         | Done   | Hover/focus                                           |
+| Tabs            | Done   | Compound: `.TabList`, `.Tab`, `.TabPanel`             |
+| Spinner         | Done   | Size/variant via className                            |
+| ProgressBar     | Done   | `value`, `size`, `variant`, `speed`                   |
+| List / ListItem | Done   | Styled `<ul>` / `<li>`                                |
+| Icon            | Done   | Lucide wrapper by `name`; **not yet in ComponentMap** |
+
 
 ### Planned components
 
@@ -391,14 +411,16 @@ Dropdown, Avatar, Toast, Stepper, Table (commented out in `components/index.jsx`
 
 Express server at `src/server.js` (port 3000).
 
-| Route | Status | Description |
-|-------|--------|-------------|
-| `GET /api/ping` | Done | Health check → `"pong"` |
-| `GET /api/ai?message=...` | Done | Ollama chat via `WeavoAI` |
-| `POST /schema` | Planned | Save schema |
-| `GET /schema/:id` | Planned | Load schema |
-| `POST /theme` | Planned | Save theme |
-| `GET /theme/:id` | Planned | Load theme |
+
+| Route                     | Status  | Description               |
+| ------------------------- | ------- | ------------------------- |
+| `GET /api/ping`           | Done    | Health check → `"pong"`   |
+| `GET /api/ai?message=...` | Done    | Ollama chat via `WeavoAI` |
+| `POST /schema`            | Planned | Save schema               |
+| `GET /schema/:id`         | Planned | Load schema               |
+| `POST /theme`             | Planned | Save theme                |
+| `GET /theme/:id`          | Planned | Load theme                |
+
 
 ---
 
@@ -419,7 +441,7 @@ Express server at `src/server.js` (port 3000).
 **React Component Library (`components/`)**
 
 - [x] Vite + React 19 + SCSS (JavaScript, not TypeScript)
-- [x] 21 components with `variant`, `size`, compound subcomponents
+- [x] 21 components with `variant`, `size`, compound subcomponents + Lucide Icons Wrapper
 - [x] Linked to shared SCSS from `scss-core/`
 - [x] Theme-aware via CSS variables (no per-component theme props required)
 
@@ -492,7 +514,7 @@ Express server at `src/server.js` (port 3000).
 
 ## Known Issues & Next Steps
 
-1. **`Icon` not in ComponentMap** — schema references to `"type": "Icon"` won't resolve
+1. `**Icon` not in ComponentMap** — schema references to `"type": "Icon"` won't resolve
 2. **Modal** — no schema-driven trigger to open from a Button click
 3. **Debug statements** — `debugger` / raw `console.log` remain in `event-handlers.js`
 4. **JSON custom themes** — format defined; `registerTheme()` stub only (no editor or API yet)
@@ -511,7 +533,7 @@ Express server at `src/server.js` (port 3000).
 
 ## Theming (quick reference)
 
-All components consume **CSS custom properties** from [`src/scss-core/_variables.scss`](src/scss-core/_variables.scss) and theme partials. See [Theming System](#theming-system) above for architecture, API, and future JSON themes.
+All components consume **CSS custom properties** from `[src/scss-core/_variables.scss](src/scss-core/_variables.scss)` and theme partials. See [Theming System](#theming-system) above for architecture, API, and future JSON themes.
 
 ---
 
