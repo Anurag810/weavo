@@ -65,7 +65,10 @@
                 },
                 {
                   "type": "Button",
-                  "props": { "label": "Read the Docs", "variant": "default", "size": "lg" }
+                  "props": { "label": "Read the Docs", "variant": "default", "size": "lg" },
+                  "listeners": {
+                    "onClick": { "handler": "alert", "message": "Button clicked!" }
+                  }
                 }
               ]
             },

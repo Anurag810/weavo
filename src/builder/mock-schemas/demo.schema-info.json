@@ -64,7 +64,7 @@
                             "variant": "Default"
                         },
                         "listeners": {
-                            "onClick": "alert('Button clicked!')"
+                            "onClick": { "handler": "alert", "message": "Button clicked!" }
                         }
                     },
                     {
