@@ -1,0 +1,19 @@
+{
+  "id": "app",
+  "name": "Weavo",
+  "default": "landing",
+  "schemas": {
+    "landing": {
+      "title": "Landing Page",
+      "file": "landing.schema.json"
+    },
+    "components": {
+      "title": "Component Library",
+      "file": "components.schema.json"
+    },
+    "search": {
+      "title": "AI Assistant",
+      "file": "search.schema.json"
+    }
+  }
+}

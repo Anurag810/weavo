@@ -1,0 +1,501 @@
+{
+  "type": "Page",
+  "children": [
+    {
+      "type": "Main",
+      "children": [
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-topbar", "direction": "row" },
+          "children": [
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-brand" },
+              "children": "Weavo"
+            },
+            {
+              "type": "Navbar",
+              "props": {
+                "items": [
+                  { "label": "Landing", "href": "#/landing" },
+                  { "label": "Components", "href": "#/components" },
+                  { "label": "AI Assistant", "href": "#/search" }
+                ],
+                "activeIndex": 1
+              }
+            },
+            {
+              "type": "RadioGroup",
+              "props": {
+                "name": "theme",
+                "direction": "row",
+                "options": [
+                  { "label": "Light", "value": "light" },
+                  { "label": "Dark", "value": "dark" }
+                ],
+                "listeners": {
+                  "onChange": { "handler": "setTheme" }
+                }
+              }
+            },
+            {
+              "type": "Button",
+              "props": {
+                "label": "Back to Home",
+                "variant": "primary",
+                "size": "sm",
+                "listeners": {
+                  "onClick": { "handler": "loadSchema", "schema": "landing" }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-hero", "direction": "column" },
+          "children": [
+            {
+              "type": "Badge",
+              "props": { "variant": "primary" },
+              "children": "22 Components · Schema-Ready"
+            },
+            {
+              "type": "h1",
+              "props": { "className": "weavo-landing-title" },
+              "children": "Production-ready UI building blocks"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-subtitle" },
+              "children": "Every component is token-driven, theme-aware, and renderable from JSON — ship consistent interfaces without rewriting markup."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-open-source", "direction": "row" },
+              "children": [
+                { "type": "Badge", "props": { "variant": "success" }, "children": "Light / Dark" },
+                { "type": "Badge", "props": { "variant": "info" }, "children": "Compound Components" },
+                { "type": "Badge", "props": { "variant": "warning" }, "children": "Event Listeners" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-stats", "direction": "row" },
+          "children": [
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "22" },
+                { "type": "span", "children": "UI Components" }
+              ]
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "8" },
+                { "type": "span", "children": "Layouts" }
+              ]
+            },
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-stat" },
+              "children": [
+                { "type": "strong", "children": "100%" },
+                { "type": "span", "children": "Theme-Aware" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "buttons" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Buttons"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Primary actions, secondary flows, and neutral defaults — available in three sizes with variant props."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "column" },
+              "children": [
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    { "type": "Button", "props": { "label": "Primary", "variant": "primary" } },
+                    { "type": "Button", "props": { "label": "Secondary", "variant": "secondary" } },
+                    { "type": "Button", "props": { "label": "Default", "variant": "default" } }
+                  ]
+                },
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    { "type": "Button", "props": { "label": "Small", "variant": "primary", "size": "sm" } },
+                    { "type": "Button", "props": { "label": "Medium", "variant": "primary", "size": "md" } },
+                    { "type": "Button", "props": { "label": "Large", "variant": "primary", "size": "lg" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "inputs" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Inputs"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Accessible text fields styled with shared focus rings and placeholder tokens."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "row" },
+              "children": [
+                { "type": "Input", "props": { "placeholder": "Search components…", "type": "search" } },
+                { "type": "Input", "props": { "placeholder": "you@company.com", "type": "email" } },
+                { "type": "Input", "props": { "placeholder": "Enter a value" } }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "cards" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Cards"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Compound surfaces with Header, Body, and Footer subcomponents for structured content."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "row" },
+              "children": [
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Analytics Overview" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Surface key metrics and actions in a consistent elevated container with hover shadow."
+                    },
+                    {
+                      "type": "Card.Footer",
+                      "children": [
+                        { "type": "Button", "props": { "label": "View Report", "variant": "primary", "size": "sm" } },
+                        { "type": "Button", "props": { "label": "Export", "variant": "default", "size": "sm" } }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Team Workspace" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Collaborate on schema-driven pages with shared tokens and layout primitives."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Integrations" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Connect Express APIs, Ollama AI, and future theme endpoints from one UI layer."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "feedback" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Feedback & Status"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Badges, tooltips, spinners, and progress bars for states, loading, and completion."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "column" },
+              "children": [
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    { "type": "Badge", "props": { "variant": "primary" }, "children": "Primary" },
+                    { "type": "Badge", "props": { "variant": "success" }, "children": "Success" },
+                    { "type": "Badge", "props": { "variant": "warning" }, "children": "Warning" },
+                    { "type": "Badge", "props": { "variant": "info" }, "children": "Info" },
+                    { "type": "Badge", "props": { "variant": "danger" }, "children": "Danger" },
+                    {
+                      "type": "Tooltip",
+                      "props": { "content": "Schema-compatible tooltip" },
+                      "children": [
+                        {
+                          "type": "Badge",
+                          "props": { "variant": "primary" },
+                          "children": [
+                            { "type": "Icon", "props": { "name": "Bell", "size": 14, "iconColor": "var(--color-primary)" } },
+                            " Alerts"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Section",
+                  "props": { "direction": "row" },
+                  "children": [
+                    { "type": "Spinner", "props": { "className": "weavo-spinner sm primary fast" } },
+                    { "type": "Spinner", "props": { "className": "weavo-spinner md success" } },
+                    { "type": "Spinner", "props": { "className": "weavo-spinner lg warning slow" } },
+                    { "type": "Spinner", "props": { "className": "weavo-spinner md info" } }
+                  ]
+                },
+                {
+                  "type": "Section",
+                  "props": { "direction": "column" },
+                  "children": [
+                    {
+                      "type": "p",
+                      "props": { "style": { "fontSize": "var(--font-sm)", "color": "var(--color-text-secondary)" } },
+                      "children": "Upload progress — 72%"
+                    },
+                    { "type": "ProgressBar", "props": { "value": 72, "size": "md", "variant": "primary", "speed": "fast" } },
+                    {
+                      "type": "p",
+                      "props": { "style": { "fontSize": "var(--font-sm)", "color": "var(--color-text-secondary)" } },
+                      "children": "Sync complete — 100%"
+                    },
+                    { "type": "ProgressBar", "props": { "value": 100, "size": "md", "variant": "success", "speed": "slow" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "navigation" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Navigation & Structure"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Tabs, accordions, and lists for organizing dense UI content."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "column" },
+              "children": [
+                {
+                  "type": "Tabs",
+                  "children": [
+                    {
+                      "type": "Tabs.TabList",
+                      "children": [
+                        { "type": "Tabs.Tab", "children": "Buttons" },
+                        { "type": "Tabs.Tab", "children": "Forms" },
+                        { "type": "Tabs.Tab", "children": "Layout" }
+                      ]
+                    },
+                    {
+                      "type": "Tabs.TabPanel",
+                      "children": "Button supports primary, secondary, and default variants with sm, md, and lg sizes. Bind actions via schema listeners."
+                    },
+                    {
+                      "type": "Tabs.TabPanel",
+                      "children": "Input and RadioGroup components cover text entry and single-choice selection. Wire onChange to setTheme or custom handlers."
+                    },
+                    {
+                      "type": "Tabs.TabPanel",
+                      "children": "Page, Main, Section, Container, Header, Footer, Sidebar, and Navbar compose full application shells from JSON."
+                    }
+                  ]
+                },
+                {
+                  "type": "Accordion",
+                  "props": { "allowMultiple": true, "defaultIndex": [0] },
+                  "children": [
+                    {
+                      "type": "Accordion.Item",
+                      "children": [
+                        { "type": "Accordion.Header", "children": "How do compound components work?" },
+                        {
+                          "type": "Accordion.Panel",
+                          "children": "Use dotted types in schema — Card.Header, Tabs.TabPanel, Modal.Footer — mapped in ComponentMap."
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Accordion.Item",
+                      "children": [
+                        { "type": "Accordion.Header", "children": "Can I style components from JSON?" },
+                        {
+                          "type": "Accordion.Panel",
+                          "children": "Pass className in props for layout utilities, or styles for inline CSS. Prefer design tokens via CSS variables."
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Accordion.Item",
+                      "children": [
+                        { "type": "Accordion.Header", "children": "Are components accessible?" },
+                        {
+                          "type": "Accordion.Panel",
+                          "children": "Modal supports Escape and overlay dismiss. Accordion uses aria-expanded. Radio groups use native inputs."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "List",
+                  "children": [
+                    { "type": "ListItem", "children": "Schema-driven rendering with recursive children" },
+                    { "type": "ListItem", "children": "Runtime light and dark theme switching" },
+                    { "type": "ListItem", "children": "Weave routing across multiple page schemas" },
+                    { "type": "ListItem", "children": "Express + Ollama AI integration ready" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "forms" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Forms"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Radio groups for single-choice inputs — ideal for settings, filters, and theme selection."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "column" },
+              "children": [
+                {
+                  "type": "p",
+                  "props": { "style": { "fontSize": "var(--font-sm)", "color": "var(--color-text-secondary)" } },
+                  "children": "Preferred notification channel"
+                },
+                {
+                  "type": "RadioGroup",
+                  "props": {
+                    "name": "notify",
+                    "direction": "row",
+                    "defaultValue": "email",
+                    "options": [
+                      { "label": "Email", "value": "email" },
+                      { "label": "SMS", "value": "sms" },
+                      { "label": "Push", "value": "push" }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "overlays" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Overlays"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "Modal dialogs for confirmations and focused tasks. The demo modal opens on page load — press Escape or click outside to close."
+            },
+            {
+              "type": "Card",
+              "props": { "className": "weavo-landing-roadmap-card" },
+              "children": [
+                { "type": "Card.Header", "children": "Modal Component" },
+                {
+                  "type": "Card.Body",
+                  "children": "Compound Modal with Header, Body, and Footer. Supports sm, md, and lg sizes with backdrop blur and focus-friendly close controls."
+                },
+                {
+                  "type": "Card.Footer",
+                  "children": [
+                    { "type": "Badge", "props": { "variant": "success" }, "children": "Keyboard accessible" },
+                    { "type": "Badge", "props": { "variant": "info" }, "children": "Overlay dismiss" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Footer",
+          "props": { "className": "weavo-landing-footer" },
+          "children": [
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-footer-links", "direction": "row" },
+              "children": [
+                { "type": "a", "props": { "href": "#/landing" }, "children": "Landing" },
+                { "type": "a", "props": { "href": "#/search" }, "children": "AI Assistant" },
+                { "type": "a", "props": { "href": "https://github.com/Anurag810/weavo" }, "children": "GitHub" }
+              ]
+            },
+            {
+              "type": "p",
+              "children": "© 2026 Weavo Component Library — Built with schema-driven design"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -28,6 +28,49 @@ export const Input = ({ placeholder, type = "text", ...props }) => {
   return <input className="weavo-input" type={type} placeholder={placeholder} {...props} />;
 };
 
+export const Radio = ({ label, children, className = "", ...props }) => {
+  return (
+    <label className={`weavo-radio ${className}`.trim()}>
+      <input type="radio" className="weavo-radio-input" {...props} />
+      <span className="weavo-radio-label">{label ?? children}</span>
+    </label>
+  );
+};
+
+export const RadioGroup = ({
+  name,
+  options = [],
+  defaultValue,
+  direction = "row",
+  onChange,
+  className = "",
+  ...props
+}) => {
+  const [selected, setSelected] = useState(
+    () => defaultValue ?? document.documentElement.getAttribute("data-theme") ?? options[0]?.value ?? ""
+  );
+
+  const handleChange = (value) => {
+    setSelected(value);
+    onChange?.({ type: "change", target: { value } });
+  };
+
+  return (
+    <div className={`weavo-radio-group weavo-radio-group-${direction} ${className}`.trim()} {...props}>
+      {options.map((option) => (
+        <Radio
+          key={option.value}
+          name={name}
+          label={option.label}
+          value={option.value}
+          checked={selected === option.value}
+          onChange={() => handleChange(option.value)}
+        />
+      ))}
+    </div>
+  );
+};
+
 const BaseSpinner = ({ size = "md", ...props }) => {
   return <div className={`weavo-spinner ${size}`} {...props} />;
 };

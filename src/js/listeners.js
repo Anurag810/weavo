@@ -17,7 +17,7 @@ const listeners = {
       });
   },
 
-  // Backward-compatible alias used in demo.schema-search.json
+  // Backward-compatible alias used in search.schema.json
   onClick(event, payload, context) {
     // listeners.callAI(event, payload, context);
     console.log("onClick", event, payload, context);
@@ -40,6 +40,23 @@ const listeners = {
     }
   },
 
+  /** Switch to another schema within the active Weave. */
+  loadSchema(_event, payload = {}, context = {}) {
+    const schemaId = payload.schema ?? payload.schemaId ?? payload.to;
+
+    if (!schemaId) {
+      console.warn("[Weavo] loadSchema requires schema, schemaId, or to");
+      return;
+    }
+
+    if (typeof context.setActiveSchema === "function") {
+      context.setActiveSchema(schemaId, { updateHash: payload.updateHash !== false });
+      return;
+    }
+
+    window.location.hash = `#/${schemaId}`;
+  },
+
   external(_event, payload = {}) {
     if (!payload.url) return;
     window.open(payload.url, payload.target || "_blank", "noopener,noreferrer");
@@ -56,6 +73,24 @@ const listeners = {
 
   setState(_event, payload = {}) {
     console.log("setState", payload.key, payload.value);
+  },
+
+  /** Switch global theme (light / dark / custom). */
+  setTheme(_event, payload = {}, context = {}) {
+    const themeId =
+      payload.theme ?? payload.themeId ?? payload.to ?? payload.value ?? _event?.target?.value;
+
+    if (!themeId) {
+      console.warn("[Weavo] setTheme requires theme, themeId, or value");
+      return;
+    }
+
+    if (typeof context.setTheme === "function") {
+      context.setTheme(themeId);
+      return;
+    }
+
+    console.warn("[Weavo] setTheme called outside ThemeProvider");
   },
 };
 

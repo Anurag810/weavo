@@ -22,7 +22,9 @@ export {
     Spinner,
     ProgressBar,
     List,
-    ListItem
+    ListItem,
+    Radio,
+    RadioGroup
 } from './ui';
        
 // ComponentMap

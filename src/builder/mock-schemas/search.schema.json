@@ -1,0 +1,278 @@
+{
+  "type": "Page",
+  "children": [
+    {
+      "type": "Main",
+      "children": [
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-topbar", "direction": "row" },
+          "children": [
+            {
+              "type": "div",
+              "props": { "className": "weavo-landing-brand" },
+              "children": "Weavo"
+            },
+            {
+              "type": "Navbar",
+              "props": {
+                "items": [
+                  { "label": "Landing", "href": "#/landing" },
+                  { "label": "Components", "href": "#/components" },
+                  { "label": "AI Assistant", "href": "#/search" }
+                ],
+                "activeIndex": 2
+              }
+            },
+            {
+              "type": "RadioGroup",
+              "props": {
+                "name": "theme",
+                "direction": "row",
+                "options": [
+                  { "label": "Light", "value": "light" },
+                  { "label": "Dark", "value": "dark" }
+                ],
+                "listeners": {
+                  "onChange": { "handler": "setTheme" }
+                }
+              }
+            },
+            {
+              "type": "Button",
+              "props": {
+                "label": "Back to Home",
+                "variant": "primary",
+                "size": "sm",
+                "listeners": {
+                  "onClick": { "handler": "loadSchema", "schema": "landing" }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-hero", "direction": "column" },
+          "children": [
+            {
+              "type": "Badge",
+              "props": { "variant": "info" },
+              "children": "Coming Soon · Ollama Integration"
+            },
+            {
+              "type": "h1",
+              "props": { "className": "weavo-landing-title" },
+              "children": "Your schema-aware AI assistant"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-subtitle" },
+              "children": "Ask questions about components, generate schema snippets, and get guided help building Weavo interfaces — powered by local Ollama models."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-open-source", "direction": "row" },
+              "children": [
+                { "type": "Badge", "props": { "variant": "primary" }, "children": "Schema Context" },
+                { "type": "Badge", "props": { "variant": "success" }, "children": "Local LLM" },
+                { "type": "Badge", "props": { "variant": "warning" }, "children": "In Development" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "chat" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "Chat Preview"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "The assistant interface is wired and ready — backend integration is landing in a future release."
+            },
+            {
+              "type": "Section",
+              "props": {
+                "className": "weavo-landing-showcase",
+                "direction": "column",
+                "style": { "maxWidth": "720px", "margin": "0 auto", "width": "100%" }
+              },
+              "children": [
+                {
+                  "type": "Card",
+                  "children": [
+                    {
+                      "type": "Card.Header",
+                      "children": "Weavo AI Assistant"
+                    },
+                    {
+                      "type": "Card.Body",
+                      "children": [
+                        {
+                          "type": "p",
+                          "props": {
+                            "style": {
+                              "margin": "0 0 var(--spacing-sm)",
+                              "color": "var(--color-text-secondary)",
+                              "fontSize": "var(--font-sm)"
+                            }
+                          },
+                          "children": "Welcome. When AI assistance launches, you will be able to ask questions or describe what you would like to build with Weavo."
+                        },
+                        {
+                          "type": "List",
+                          "children": [
+                            { "type": "ListItem", "children": "Explain how schema listeners work" },
+                            { "type": "ListItem", "children": "Generate a Card layout from a description" },
+                            { "type": "ListItem", "children": "Suggest component variants for your use case" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Section",
+                  "props": { "direction": "row", "gap": "var(--spacing-sm)" },
+                  "children": [
+                    {
+                      "type": "Input",
+                      "props": {
+                        "placeholder": "Ask Weavo AI… (available soon)",
+                        "disabled": true
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "props": {
+                        "label": "Send",
+                        "variant": "primary",
+                        "disabled": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Section",
+          "props": { "className": "weavo-landing-section", "id": "roadmap" },
+          "children": [
+            {
+              "type": "h2",
+              "props": { "className": "weavo-landing-section-title" },
+              "children": "What's Next"
+            },
+            {
+              "type": "p",
+              "props": { "className": "weavo-landing-section-desc" },
+              "children": "The v0.3 milestone connects this interface to Express and Ollama for real-time, context-aware responses."
+            },
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-showcase", "direction": "row" },
+              "children": [
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Express API" },
+                    {
+                      "type": "Card.Body",
+                      "children": "REST endpoints for chat, schema suggestions, and session history."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Ollama Models" },
+                    {
+                      "type": "Card.Body",
+                      "children": "Run local LLMs with full privacy — no external API keys required."
+                    }
+                  ]
+                },
+                {
+                  "type": "Card",
+                  "children": [
+                    { "type": "Card.Header", "children": "Schema Context" },
+                    {
+                      "type": "Card.Body",
+                      "children": "The assistant understands Weavo components, Weaves, and listener patterns."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Footer",
+          "props": { "className": "weavo-landing-footer" },
+          "children": [
+            {
+              "type": "Section",
+              "props": { "className": "weavo-landing-footer-links", "direction": "row" },
+              "children": [
+                { "type": "a", "props": { "href": "#/landing" }, "children": "Landing" },
+                { "type": "a", "props": { "href": "#/components" }, "children": "Components" },
+                { "type": "a", "props": { "href": "https://github.com/Anurag810/weavo" }, "children": "GitHub" }
+              ]
+            },
+            {
+              "type": "p",
+              "children": "© 2026 Weavo AI Assistant — Built with schema-driven design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Modal",
+      "props": {
+        "defaultOpen": true,
+        "size": "md",
+        "speed": "normal"
+      },
+      "children": [
+        { "type": "Modal.Header", "children": "AI Assistance Coming Soon" },
+        {
+          "type": "Modal.Body",
+          "children": "Weavo AI assistance will be available soon. The chat interface below is a preview — full Ollama integration is planned for the v0.3 release."
+        },
+        {
+          "type": "Modal.Footer",
+          "children": [
+            {
+              "type": "Button",
+              "props": {
+                "label": "Browse Components",
+                "variant": "primary",
+                "listeners": {
+                  "onClick": { "handler": "loadSchema", "schema": "components" }
+                }
+              }
+            },
+            {
+              "type": "Button",
+              "props": {
+                "label": "Back to Home",
+                "variant": "secondary",
+                "listeners": {
+                  "onClick": { "handler": "loadSchema", "schema": "landing" }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

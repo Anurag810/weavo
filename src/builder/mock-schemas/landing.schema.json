@@ -18,17 +18,38 @@
               "props": {
                 "items": [
                   { "label": "Features", "href": "#features" },
-                  { "label": "Components", "href": "#components" },
+                  { "label": "Components", "href": "#/components" },
+                  { "label": "AI Assistant", "href": "#/search" },
                   { "label": "Roadmap", "href": "#roadmap" },
-                  { "label": "Docs", "href": "#docs" },
-                  { "label": "GitHub", "href": "https://github.com" }
+                  { "label": "GitHub", "href": "https://github.com/Anurag810/weavo" }
                 ],
                 "activeIndex": 0
               }
             },
             {
+              "type": "RadioGroup",
+              "props": {
+                "name": "theme",
+                "direction": "row",
+                "options": [
+                  { "label": "Light", "value": "light" },
+                  { "label": "Dark", "value": "dark" }
+                ],
+                "listeners": {
+                  "onChange": { "handler": "setTheme" }
+                }
+              }
+            },
+            {
               "type": "Button",
-              "props": { "label": "Get Started", "variant": "primary", "size": "sm" }
+              "props": {
+                "label": "Get Started",
+                "variant": "primary",
+                "size": "sm",
+                "listeners": {
+                  "onClick": { "handler": "loadSchema", "schema": "components" }
+                }
+              }
             }
           ]
         },
@@ -39,7 +60,7 @@
             {
               "type": "Badge",
               "props": { "variant": "primary" },
-              "children": "Open Source · MIT License"
+              "children": "Open Source · GPL-3.0 License"
             },
             {
               "type": "h1",
@@ -57,17 +78,35 @@
               "children": [
                 {
                   "type": "Button",
-                  "props": { "label": "Quick Start", "variant": "primary", "size": "lg" }
+                  "props": {
+                    "label": "Quick Start",
+                    "variant": "primary",
+                    "size": "lg",
+                    "listeners": {
+                      "onClick": { "handler": "loadSchema", "schema": "components" }
+                    }
+                  }
                 },
                 {
                   "type": "Button",
-                  "props": { "label": "View on GitHub", "variant": "secondary", "size": "lg" }
+                  "props": {
+                    "label": "Open AI Assistant",
+                    "variant": "secondary",
+                    "size": "lg",
+                    "listeners": {
+                      "onClick": { "handler": "loadSchema", "schema": "search" }
+                    }
+                  }
                 },
                 {
                   "type": "Button",
-                  "props": { "label": "Read the Docs", "variant": "default", "size": "lg" },
-                  "listeners": {
-                    "onClick": { "handler": "alert", "message": "Button clicked!" }
+                  "props": {
+                    "label": "Read the Docs",
+                    "variant": "default",
+                    "size": "lg",
+                    "listeners": {
+                      "onClick": { "handler": "alert", "message": "Docs site coming in v0.5!" }
+                    }
                   }
                 }
               ]
@@ -77,8 +116,8 @@
               "props": { "className": "weavo-landing-open-source", "direction": "row" },
               "children": [
                 { "type": "Badge", "props": { "variant": "success" }, "children": "React 19" },
-                { "type": "Badge", "props": { "variant": "info" }, "children": "TypeScript-ready" },
-                { "type": "Badge", "props": { "variant": "warning" }, "children": "v0.2 Active" },
+                { "type": "Badge", "props": { "variant": "info" }, "children": "Theme Switching" },
+                { "type": "Badge", "props": { "variant": "warning" }, "children": "v0.2 In Progress" },
                 {
                   "type": "Tooltip",
                   "props": { "content": "JSON → React renderer is live" },
@@ -98,7 +137,7 @@
               "type": "div",
               "props": { "className": "weavo-landing-stat" },
               "children": [
-                { "type": "strong", "children": "19" },
+                { "type": "strong", "children": "21" },
                 { "type": "span", "children": "Components" }
               ]
             },
@@ -114,15 +153,15 @@
               "type": "div",
               "props": { "className": "weavo-landing-stat" },
               "children": [
-                { "type": "strong", "children": "5" },
-                { "type": "span", "children": "Export Targets" }
+                { "type": "strong", "children": "3" },
+                { "type": "span", "children": "Active Schemas" }
               ]
             },
             {
               "type": "div",
               "props": { "className": "weavo-landing-stat" },
               "children": [
-                { "type": "strong", "children": "MIT" },
+                { "type": "strong", "children": "GPL-3.0" },
                 { "type": "span", "children": "License" }
               ]
             }
@@ -162,7 +201,7 @@
                     { "type": "Card.Header", "children": "React Component Library" },
                     {
                       "type": "Card.Body",
-                      "children": "19 layout and UI components built with React + SCSS. Variants, sizes, and runtime theming — ready for production apps."
+                      "children": "21 layout and UI components built with React and SCSS. Variants, sizes, and token-based theming for production applications."
                     }
                   ]
                 },
@@ -296,16 +335,16 @@
                       "type": "Section",
                       "props": { "direction": "column" },
                       "children": [
-                        "v0.2 progress — 85%",
-                        { "type": "ProgressBar", "props": { "value": 85, "size": "md", "variant": "primary", "speed": "fast" } }
+                        "v0.2 progress — 80%",
+                        { "type": "ProgressBar", "props": { "value": 80, "size": "md", "variant": "primary", "speed": "fast" } }
                       ]
                     },
                     {
                       "type": "Section",
                       "props": { "direction": "column" },
                       "children": [
-                        "Test coverage — 72%",
-                        { "type": "ProgressBar", "props": { "value": 72, "size": "md", "variant": "success", "speed": "slow" } }
+                        "Schema engine — multi-weave routing",
+                        { "type": "ProgressBar", "props": { "value": 80, "size": "md", "variant": "success", "speed": "slow" } }
                       ]
                     }
                   ]
@@ -346,7 +385,7 @@
                   "props": { "className": "weavo-landing-roadmap-card" },
                   "children": [
                     { "type": "Card.Header", "children": "v0.2 — Schema Engine" },
-                    { "type": "Card.Body", "children": "JSON schema format, parser, and recursive renderer. Props and style mapping." },
+                    { "type": "Card.Body", "children": "JSON schema format, recursive renderer, Weave routing, light/dark theme switching, and event listeners." },
                     { "type": "Card.Footer", "children": [{ "type": "Badge", "props": { "variant": "primary" }, "children": "Active" }] }
                   ]
                 },
@@ -469,7 +508,7 @@
                     { "type": "Accordion.Header", "children": "Is Weavo open source?" },
                     {
                       "type": "Accordion.Panel",
-                      "children": "Yes. Weavo is released under the MIT License. Contributions, issues, and pull requests are welcome on GitHub."
+                      "children": "Yes. Weavo is released under the GPL-3.0 License. Contributions, issues, and pull requests are welcome on GitHub."
                     }
                   ]
                 }
@@ -489,17 +528,17 @@
                 { "type": "a", "props": { "href": "#components" }, "children": "Components" },
                 { "type": "a", "props": { "href": "#roadmap" }, "children": "Roadmap" },
                 { "type": "a", "props": { "href": "#docs" }, "children": "Documentation" },
-                { "type": "a", "props": { "href": "https://github.com" }, "children": "GitHub" }
+                { "type": "a", "props": { "href": "https://github.com/Anurag810/weavo" }, "children": "GitHub" }
               ]
             },
             {
               "type": "p",
-              "children": "© 2025 Weavo — Dynamic SCSS + React + JSON Schema Framework"
+              "children": "© 2026 Weavo — Dynamic SCSS + React + JSON Schema Framework"
             },
             {
               "type": "p",
               "props": { "style": { "fontSize": "var(--font-xs)", "color": "var(--color-text-muted)" } },
-              "children": "Released under the MIT License · Built with schema-driven design"
+              "children": "Released under the GPL-3.0 License · Built with schema-driven design"
             }
           ]
         }

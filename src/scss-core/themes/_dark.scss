@@ -1,0 +1,65 @@
+/* Dark theme — overrides primitive & semantic color tokens */
+[data-theme="dark"] {
+  --color-primary: #818cf8;
+  --color-primary-hover: #a5b4fc;
+  --color-primary-active: #6366f1;
+  --color-primary-subtle: #1e1b4b;
+  --color-primary-focus: rgba(129, 140, 248, 0.35);
+
+  --color-success: #34d399;
+  --color-success-hover: #6ee7b7;
+  --color-success-subtle: #064e3b;
+  --color-success-focus: rgba(52, 211, 153, 0.3);
+
+  --color-warning: #fbbf24;
+  --color-warning-hover: #fcd34d;
+  --color-warning-subtle: #78350f;
+  --color-warning-focus: rgba(251, 191, 36, 0.3);
+
+  --color-danger: #f87171;
+  --color-danger-hover: #fca5a5;
+  --color-danger-subtle: #7f1d1d;
+  --color-danger-focus: rgba(248, 113, 113, 0.3);
+
+  --color-info: #38bdf8;
+  --color-info-hover: #7dd3fc;
+  --color-info-subtle: #0c4a6e;
+  --color-info-focus: rgba(56, 189, 248, 0.3);
+
+  --color-secondary: #334155;
+  --color-secondary-hover: #475569;
+  --color-secondary-text: #e2e8f0;
+
+  --color-bg: #0f172a;
+  --color-bg-elevated: #1e293b;
+  --color-bg-hover: #334155;
+  --color-bg-muted: #1e293b;
+  --color-bg-active: #312e81;
+
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #0f172a;
+
+  --color-accent: #a78bfa;
+
+  --border-light: #334155;
+  --border-medium: #475569;
+  --border-focus: var(--color-primary);
+
+  --bg: var(--color-bg);
+  --text: var(--color-text);
+  --background: var(--color-bg-elevated);
+  --background-muted: var(--color-bg-muted);
+  --background-hover: var(--color-bg-hover);
+  --background-active: var(--color-bg-active);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+
+  --modal-overlay-bg: rgba(0, 0, 0, 0.65);
+  --tooltip-bg: #334155;
+}

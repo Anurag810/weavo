@@ -9,8 +9,9 @@ export function renderNode(node, key = "weavo", context = {}) {
     return <React.Fragment key={key}>{node}</React.Fragment>;
   }
 
-  const { type, props = {}, styles = {}, children } = node;
-  const { listeners = {}, ...componentProps } = props;
+  const { type, props = {}, styles = {}, children, listeners: rootListeners = {} } = node;
+  const { listeners: propListeners = {}, ...componentProps } = props;
+  const listeners = { ...rootListeners, ...propListeners };
 
   const Component = ComponentMap[type] || type;
 

@@ -1,9 +1,20 @@
-import { renderNode } from "./schema-renderer/renderer";
-import demoSchema from "./builder/mock-schemas/demo.schema.json";
+import { WeaveProvider, SchemaRenderer, resolveWeave } from "./weave";
+import { ThemeProvider } from "./theme-system";
+import appWeave from "./builder/mock-schemas/app.weave.json";
 import "./scss-core/app.scss";
 
+const weave = resolveWeave(appWeave);
+
 const App = () => {
-  return <div className="App weavo-app">{renderNode(demoSchema)}</div>;
+  return (
+    <ThemeProvider defaultTheme="light">
+      <WeaveProvider weave={weave}>
+        <div className="App weavo-app">
+          <SchemaRenderer />
+        </div>
+      </WeaveProvider>
+    </ThemeProvider>
+  );
 };
 
 export default App;

@@ -1,0 +1,34 @@
+---
+description: Weavo project context and GitHub reference
+alwaysApply: true
+---
+
+# Weavo
+
+When the user mentions **Weavo** or **weavo**, treat it as this project unless they clearly mean something else.
+
+- **GitHub**: https://github.com/Anurag810/weavo
+- **Local workspace**: `/Users/anuragmishra/MindLoop/weavo`
+- **Author**: Anurag810 (Anurag Mishra)
+
+## What it is
+
+Full-stack dynamic UI framework: SCSS theming (CSS variables/tokens), React component library, JSON schema renderer, Rust/WASM `.wv` parser (`weavo-compiler`), Express backend, Ollama AI integration, and a planned drag-and-drop builder.
+
+## Stack
+
+- React 19 + Vite + SCSS
+- CLI: `bin/weavo.js` (`dev`, `build`, `setup-requirements`)
+- Rust/WASM: `Cargo.toml` → `weavo-compiler`
+- Backend: `src/server.js` (Express)
+
+## Key paths
+
+- `src/scss-core/` — theme tokens and styles
+- `src/components/` — React UI + layout components (19 total)
+- `src/schema-renderer/` — JSON → React renderer
+- `src/builder/mock-schemas/` — sample `.wv` / JSON schemas
+
+## Roadmap (from README)
+
+v0.1 components done (need styling polish) → v0.2 schema renderer → v0.3 backend API → v0.4 CLI scaffolding → v0.5 docs/playground → v1.0 builder MVP.

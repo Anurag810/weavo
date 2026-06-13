@@ -1,4 +1,4 @@
-Page title="Weavo Joke Demo" columns="2" padding="var(--spacing-lg)" background="var(--main-bg)"
+Page title="Weavo Sample App" columns="2" padding="var(--spacing-lg)" background="var(--main-bg)"
     Sidebar
         List
             ListItem "😂 Dad Jokes"
