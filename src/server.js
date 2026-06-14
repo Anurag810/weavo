@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/api/ping", (req, res) => {
-	res.send("pong");
+	res.send({"message": "pong"});
 });
 
 app.get("/api/ai", async (req, res) => {

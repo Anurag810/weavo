@@ -8,6 +8,8 @@ export function WeaveProvider({ weave, children }) {
     return getSchemaIdFromHash(weave) ?? weave.default;
   });
 
+  const [modal, setModal] = useState(null);
+
   const setActiveSchema = useCallback(
     (schemaId, { updateHash = true } = {}) => {
       if (!weave.schemas[schemaId]) {
@@ -25,6 +27,14 @@ export function WeaveProvider({ weave, children }) {
     },
     [weave]
   );
+
+  const showModal = useCallback((header, body, footer) => {
+    setModal({ header, body, footer });
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModal(null);
+  }, []);
 
   useEffect(() => {
     const syncFromHash = () => {
@@ -44,6 +54,10 @@ export function WeaveProvider({ weave, children }) {
     }
   }, [activeSchemaId, weave]);
 
+  useEffect(() => {
+    setModal(null);
+  }, [activeSchemaId]);
+
   const value = useMemo(() => {
     const activeSchema = weave.schemas[activeSchemaId];
 
@@ -53,8 +67,11 @@ export function WeaveProvider({ weave, children }) {
       activeSchema,
       schemaIds: Object.keys(weave.schemas),
       setActiveSchema,
+      showModal,
+      closeModal,
+      modal,
     };
-  }, [weave, activeSchemaId, setActiveSchema]);
+  }, [weave, activeSchemaId, setActiveSchema, showModal, closeModal, modal]);
 
   return <WeaveContext.Provider value={value}>{children}</WeaveContext.Provider>;
 }

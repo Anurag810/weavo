@@ -12,7 +12,6 @@ Card.Footer = withWeavoStyles("div", "weavo-card-footer", true);
 export const List = withWeavoStyles("ul", "weavo-list");
 export const ListItem = withWeavoStyles("li", "weavo-list-item");
 
-// export const Badge = withWeavoStyles("span", "weavo-badge", true);
 
 export const Badge = ({ label, variant = "primary", children, ...props }) => {
   const className = `weavo-badge weavo-badge-${variant}`;

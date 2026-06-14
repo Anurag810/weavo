@@ -15,13 +15,11 @@ Weavo is an early-stage, schema-driven UI framework. The app renders entirely fr
 | Milestone                    | Progress | Summary                                                                             |
 | ---------------------------- | -------- | ----------------------------------------------------------------------------------- |
 | **v0.1** — SCSS + components | ~98%     | CSS-variable theming, light/dark themes, 21 components, polished SCSS               |
-| **v0.2** — Schema renderer   | ~88%     | Recursive renderer, Weaves, hash routing, `loadSchema`, `setTheme`, event listeners |
+| **v0.2** — Schema renderer   | ~92%     | Recursive renderer, Weaves, hash routing, validation, `openModal`, event listeners |
 | **v0.3** — Backend API       | ~15%     | Express + Ollama AI endpoints; schema/theme storage not started                     |
 | **v0.4** — CLI               | ~25%     | `dev`, `build`, `setup-requirements` only                                           |
 | **v0.5** — Docs + playground | 0%       | Not started                                                                         |
 | **v1.0** — Builder MVP       | 0%       | Application schemas only; no drag-and-drop UI                                       |
-
-
 
 
 ## Recent Progress
@@ -32,7 +30,8 @@ Weavo is an early-stage, schema-driven UI framework. The app renders entirely fr
 | **Theme system**           | Done    | `ThemeProvider`, light/dark switching, `localStorage`, `setTheme` listener                           |
 | **Weave system**           | Done    | `WeaveProvider`, `SchemaRenderer`, `app.weave.json`, hash routing, `loadSchema` listener             |
 | **Schema registry**        | Done    | `src/weave/schema-registry.js` maps filenames → imported JSON                                        |
-| **Event listeners**        | Done    | Root + props `listeners`; handlers: `alert`, `navigate`, `loadSchema`, `callAI`, etc.                |
+| **Event listeners**        | Done    | Root + props `listeners`; handlers: `loadSchema`, `setTheme`, `openModal`, `closeModal`, etc. |
+| **Schema validation**      | Done    | `validate-schema.js` — structure, types, listeners; runs before render in `SchemaRenderer`   |
 | **Landing page**           | Done    | Full marketing site from built using Weavo. `landing.schema.json` (features, roadmap, FAQ, showcase) |
 | **Component library page** | Done    | `components.schema.json` — buttons, cards, tabs, accordion, modal, spinners                          |
 | **AI assistant page**      | Done    | `search.schema.json` — chat UI Preview page                                                          |
@@ -154,6 +153,7 @@ weavo/
 │   │   └── token-keys.js
 │   ├── schema-renderer/
 │   │   ├── renderer.jsx      # JSON → React recursive renderer
+│   │   ├── validate-schema.js # validateSchema / validateNode (structure, types, listeners)
 │   │   └── ai-models/        # Ollama integration (WeavoAI)
 │   ├── js/
 │   │   ├── event-handlers.js # Listener binding for schema events
@@ -230,6 +230,26 @@ Register new schema files in `src/weave/schema-registry.js`, then reference them
 }
 ```
 
+**Dynamic modal** — bind `openModal` (rendered via `WeaveProvider.showModal`, not by mutating JSON):
+
+```json
+{
+  "type": "Button",
+  "props": { "label": "Open dialog", "variant": "secondary" },
+  "listeners": {
+    "onClick": {
+      "handler": "openModal",
+      "header": "Title",
+      "body": "Message body",
+      "footer": [
+        { "type": "Button", "props": { "label": "Close", "variant": "secondary" },
+          "listeners": { "onClick": { "handler": "closeModal" } } }
+      ]
+    }
+  }
+}
+```
+
 ---
 
 ## JSON Schema Format
@@ -263,6 +283,26 @@ Register new schema files in `src/weave/schema-registry.js`, then reference them
 | `children`  | String, nested object, or array of nodes (recursive)                       |
 
 
+### Schema validation
+
+[`validate-schema.js`](src/schema-renderer/validate-schema.js) checks schemas before render. Used by `SchemaRenderer` on load; intended for playground **Validate** and API **PUT** (not yet wired).
+
+```javascript
+import { validateSchema } from "./schema-renderer/validate-schema.js";
+
+const { valid, errors, warnings } = validateSchema(schema);
+// errors: [{ path: "$.children[2].type", code: "UNKNOWN_TYPE", message: "..." }]
+```
+
+| Layer | What is checked |
+| ----- | --------------- |
+| Structure | Root/node shape; `props`, `styles`, `listeners` are plain objects |
+| Types | `ComponentMap` keys or supported HTML tags (`div`, `h1`, `p`, …) |
+| Listeners | Known events (`onClick`, `onChange`, …); handler registered in `listeners.js` |
+| Children | String, single object, array, or omitted (matches renderer) |
+| Warnings | Soft hints (e.g. root not `Page`) — do not block render |
+
+
 ### Application schemas
 
 Located in `src/builder/mock-schemas/`:
@@ -279,7 +319,7 @@ Located in `src/builder/mock-schemas/`:
 
 ### Event listeners
 
-Handlers registered in `src/js/listeners.js`: `alert`, `log`, `navigate`, `loadSchema`, `setTheme`, `external`, `scrollTo`, `callAI`, `setState`, `onClick`.
+Handlers registered in `src/js/listeners.js`: `alert`, `log`, `navigate`, `loadSchema`, `setTheme`, `openModal`, `closeModal`, `external`, `scrollTo`, `callAPI`, `setState`, `onClick`.
 
 ---
 
@@ -391,14 +431,14 @@ Theme editor in builder, import/export `.theme.json`, API persistence, weave-lev
 | Input           | Done   | Text input                                            |
 | Card            | Done   | Compound: `.Header`, `.Body`, `.Footer`               |
 | Badge           | Done   | `variant`; uses `children`                            |
-| Modal           | Done   | Compound + Escape/overlay; `defaultOpen` only         |
+| Modal           | Done   | Compound + Escape/overlay; `defaultOpen`; dynamic via `openModal` listener |
 | Accordion       | Done   | Compound + toggle; `allowMultiple`, `defaultIndex`    |
 | Tooltip         | Done   | Hover/focus                                           |
 | Tabs            | Done   | Compound: `.TabList`, `.Tab`, `.TabPanel`             |
 | Spinner         | Done   | Size/variant via className                            |
 | ProgressBar     | Done   | `value`, `size`, `variant`, `speed`                   |
 | List / ListItem | Done   | Styled `<ul>` / `<li>`                                |
-| Icon            | Done   | Lucide wrapper by `name`; **not yet in ComponentMap** |
+| Icon            | Done   | Lucide wrapper by `name`; available via `ComponentMap` (`...UI` spread) |
 
 
 ### Planned components
@@ -459,8 +499,8 @@ Express server at `src/server.js` (port 3000).
 - [x] `loadSchema` listener for programmatic navigation
 - [x] Listeners at node root or inside `props`
 - [x] `setTheme` listener for schema-driven theme switching
-- [ ] Icon in ComponentMap
-- [ ] Schema validation
+- [x] Schema validation (`validateSchema`, `validateNode` in `validate-schema.js`)
+- [x] Dynamic modal via `openModal` / `closeModal` + `WeaveProvider.showModal`
 - [ ] Shared state / data binding (`model: "chat.input"`)
 
 ### v0.3 — Backend API for Theme & Schema Storage
@@ -470,7 +510,7 @@ Express server at `src/server.js` (port 3000).
 - [ ] Schema CRUD routes
 - [ ] Theme CRUD routes
 - [ ] Database integration (MongoDB or PostgreSQL)
-- [ ] Schema validation on upload
+- [ ] Schema validation on upload (reuse `validateSchema` on PUT)
 - [ ] Auth (optional)
 
 ### v0.4 — CLI Tool
@@ -514,20 +554,19 @@ Express server at `src/server.js` (port 3000).
 
 ## Known Issues & Next Steps
 
-1. `**Icon` not in ComponentMap** — schema references to `"type": "Icon"` won't resolve
-2. **Modal** — no schema-driven trigger to open from a Button click
-3. **Debug statements** — `debugger` / raw `console.log` remain in `event-handlers.js`
-4. **JSON custom themes** — format defined; `registerTheme()` stub only (no editor or API yet)
-5. **Rust compiler** — `Cargo.toml` exists but no `.rs` source files yet
-6. **Tests** — only a manual AI smoke test; method name mismatch in test file
-7. **Data binding** — `model: "chat.input"` in schemas is not wired up
+1. **Server-side schema storage** — schemas still bundled as static imports; file API + fetch not started (v0.3 lite)
+2. **Playground** — no `#/playground` JSON editor with Validate/Save UI yet (v0.5)
+3. **JSON custom themes** — format defined; `registerTheme()` stub only (no editor or API yet)
+4. **Rust compiler** — `Cargo.toml` exists but no `.rs` source files yet
+5. **Tests** — only a manual AI smoke test; method name mismatch in test file
+6. **Data binding** — `model: "chat.input"` in schemas is not wired up
 
-**Suggested next work:**
+**Suggested next work (builder vs backend path):**
 
-- Wire `Icon` into ComponentMap and clean up event-handler debug code
-- Implement JSON custom theme loading (Phase 2) + theme API (v0.3)
-- Implement Frappe-style dev console events (deferred plan)
-- Start Rust `.wv` parser or builder UI (v1.0)
+1. File-backed weave/schema API in `server.js` (`data/weaves/` on disk)
+2. `fetchWeave()` in dev with mock fallback
+3. JSON playground (`#/playground`) — editor + live preview + Validate/Save
+4. Drag-and-drop builder (v1.0) after save/load works
 
 ---
 

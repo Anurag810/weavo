@@ -2,6 +2,8 @@ import React from "react";
 import { ComponentMap } from "../components";
 import { bindListeners } from "../js/event-handlers";
 
+export { validateSchema, validateNode } from "./validate-schema.js";
+
 export function renderNode(node, key = "weavo", context = {}) {
   if (!node) return null;
 

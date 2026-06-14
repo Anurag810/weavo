@@ -5,9 +5,9 @@
  *   "listeners": { "onClick": { "handler": "alert", "message": "Hi" } }
  */
 const listeners = {
-  callAI(event, payload = {}) {
-    const message = payload.message || "Hello, WeavoAI!";
-    fetch(`http://localhost:3000/api/ai?message=${encodeURIComponent(message)}`)
+  callAPI(event, payload = {}) {
+    const api = payload.api || "ping";
+    fetch(`http://localhost:3000/api/${api}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("AI Response:", data);
@@ -19,7 +19,6 @@ const listeners = {
 
   // Backward-compatible alias used in search.schema.json
   onClick(event, payload, context) {
-    // listeners.callAI(event, payload, context);
     console.log("onClick", event, payload, context);
   },
 
@@ -73,6 +72,21 @@ const listeners = {
 
   setState(_event, payload = {}) {
     console.log("setState", payload.key, payload.value);
+  },
+
+  openModal(_event, payload = {}, context = {}) {
+    if (typeof context.showModal !== "function") {
+      console.warn("[Weavo] openModal requires showModal in schema context");
+      return;
+    }
+
+    context.showModal(payload.header, payload.body, payload.footer);
+  },
+
+  closeModal(_event, _payload = {}, context = {}) {
+    if (typeof context.closeModal === "function") {
+      context.closeModal();
+    }
   },
 
   /** Switch global theme (light / dark / custom). */

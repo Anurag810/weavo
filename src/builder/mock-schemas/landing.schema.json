@@ -313,8 +313,30 @@
                   "type": "Section",
                   "props": { "direction": "row" },
                   "children": [
-                    { "type": "Button", "props": { "label": "Primary", "variant": "primary" } },
-                    { "type": "Button", "props": { "label": "Secondary", "variant": "secondary" } },
+                    { "type": "Button",
+                      "props": { "label": "Primary", "variant": "primary" },
+                      "listeners": {
+                        "onClick": { "handler": "callAPI" }
+                      }
+                    },
+                    { "type": "Button",
+                     "props": { "label": "Secondary", "variant": "secondary" },
+                     "listeners": {
+                      "onClick": {"handler": "openModal",
+                        "header": "How is weavo Framework doing?",
+                        "body": "Weavo Framework is a great framework for building web applications. It is a modern framework that is easy to use and has a lot of features. It is a great framework for building web applications. It is a modern framework that is easy to use and has a lot of features. It is a great framework for building web applications. It is a modern framework that is easy to use and has a lot of features.",
+                        "footer": [
+                          { "type": "Button",
+                            "props": { "label": "Close", "variant": "secondary" },
+                            "listeners": {
+                              "onClick": { "handler": "closeModal" }
+                            }
+                          },
+                          { "type": "Button", "props": { "label": "Submit", "variant": "primary" } }
+                        ]
+                      }
+                    }
+                    },
                     { "type": "Button", "props": { "label": "Outline", "variant": "default" } },
                     { "type": "Input", "props": { "placeholder": "Search the docs…" } }
                   ]
