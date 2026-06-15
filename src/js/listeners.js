@@ -6,8 +6,8 @@
  */
 const listeners = {
   callAPI(event, payload = {}) {
-    const api = payload.api || "ping";
-    fetch(`http://localhost:3000/api/${api}`)
+    const api = payload.api || "get-weaves";
+    fetch(`http://localhost:3000/api/weavo.${api}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("AI Response:", data);

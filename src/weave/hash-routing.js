@@ -2,6 +2,10 @@
  * Parse schema id from URL hash: #/landing → "landing"
  */
 export function getSchemaIdFromHash(weave) {
+  if (!weave?.schemas) {
+    return null;
+  }
+
   const match = window.location.hash.match(/^#\/([^/?#]+)/);
   const id = match?.[1];
 

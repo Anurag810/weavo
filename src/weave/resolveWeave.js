@@ -1,11 +1,12 @@
-import { schemaRegistry } from "./schema-registry.js";
-
 /**
- * Resolve a Weave manifest by linking schema entries to imported JSON.
+ * Build a ResolvedWeave from a manifest and schema trees keyed by schema id.
+ * Used when assembling a weave from API responses (manifest + per-schema fetches).
+ *
  * @param {import('./types.js').WeaveManifest} manifest
+ * @param {Record<string, object>} schemasById — schema id → JSON tree
  * @returns {import('./types.js').ResolvedWeave}
  */
-export function resolveWeave(manifest) {
+export function resolveWeave(manifest, schemasById = {}) {
   if (!manifest?.schemas || typeof manifest.schemas !== "object") {
     throw new Error("[Weavo] Weave manifest must include a schemas object");
   }
@@ -13,10 +14,10 @@ export function resolveWeave(manifest) {
   const schemas = {};
 
   for (const [id, entry] of Object.entries(manifest.schemas)) {
-    const schema = schemaRegistry[entry.file];
+    const schema = schemasById[id];
 
     if (!schema) {
-      throw new Error(`[Weavo] Schema file not registered: "${entry.file}" (weave: ${manifest.id})`);
+      throw new Error(`[Weavo] Schema "${id}" not provided for weave "${manifest.id}"`);
     }
 
     schemas[id] = {

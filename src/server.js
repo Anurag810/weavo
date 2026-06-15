@@ -1,43 +1,88 @@
 import express from "express";
 import cors from "cors";
-import WeavoAI from "./schema-renderer/ai-models/ai-wrapper.js";
+import {
+  getAllWeaves,
+  getWeaveById,
+  getResolvedWeave,
+  getSchemaByFilename,
+} from "./server/weave-store.js";
 
 const app = express();
 const port = 3000;
+
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/ping", (req, res) => {
-	res.send({"message": "pong"});
+app.get("/api/weavo.ping", (_req, res) => {
+  res.status(200).send({ message: "pong" });
 });
 
-app.get("/api/ai", async (req, res) => {
-  console.log("Received request to /api/ai", req.query);
-  let client_message = req.query.message || "Hello, WeavoAI!";
-  let weavo_ai = new WeavoAI();
+app.get("/api/weavo.get-all-weaves", async (_req, res) => {
+  try {
+    const weaves = await getAllWeaves();
+    res.status(200).send({ message: "Weaves fetched successfully", data: weaves });
+  } catch (error) {
+    res.status(500).send({ message: "Error fetching weaves", error: error.message });
+  }
+});
 
-	try {
-  		const isRunning = await weavo_ai.checkModelStatus();
-		if (!isRunning) {
-			await weavo_ai.startAIServer();
+/** Weave manifest only (no schema trees). */
+app.get("/api/weavo.weave/:weaveId", async (req, res) => {
+  try {
+    const weave = await getWeaveById(req.params.weaveId);
 
-			await new Promise(r => setTimeout(r, 2000));
-		}
+    if (!weave) {
+      return res.status(404).send({ message: "Weave not found" });
+    }
 
-		await weavo_ai.checkOrPullModel();
+    res.status(200).send({ message: "Weave fetched successfully", data: weave });
+  } catch (error) {
+    res.status(500).send({ message: "Error fetching weave", error: error.message });
+  }
+});
 
-		const response = await weavo_ai.chat(client_message);
+/** Full weave with all schema trees — primary endpoint for the frontend. */
+app.get("/api/weavo.weave/:weaveId/resolved", async (req, res) => {
+  try {
+    const weave = await getResolvedWeave(req.params.weaveId);
 
-		res.send({
-			message: client_message,
-			ai_response: response.message.content
-		});
-	} catch (err) {
-		console.error("Model status check failed:", err);
-		return res.status(500).send({ error: "Model status check failed", details: err.toString() });
-	}
+    if (!weave) {
+      return res.status(404).send({ message: "Weave not found" });
+    }
+
+    res.status(200).send({ message: "Weave resolved successfully", data: weave });
+  } catch (error) {
+    res.status(500).send({ message: "Error resolving weave", error: error.message });
+  }
+});
+
+/** Single schema tree by weave + schema id. */
+app.get("/api/weavo.weave/:weaveId/schema/:schemaId", async (req, res) => {
+  try {
+    const { weaveId, schemaId } = req.params;
+    const manifest = await getWeaveById(weaveId);
+
+    if (!manifest) {
+      return res.status(404).send({ message: "Weave not found" });
+    }
+
+    const schemaEntry = manifest.schemas[schemaId];
+
+    if (!schemaEntry) {
+      return res.status(404).send({ message: "Schema not found" });
+    }
+
+    const schema = await getSchemaByFilename(schemaEntry.file);
+
+    res.status(200).send({
+      message: "Schema fetched successfully",
+      data: schema,
+    });
+  } catch (error) {
+    res.status(500).send({ message: "Error fetching schema", error: error.message });
+  }
 });
 
 app.listen(port, () => {
-	console.log(`Server is running on port https//localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
