@@ -5,6 +5,32 @@
  *   "listeners": { "onClick": { "handler": "alert", "message": "Hi" } }
  */
 const listeners = {
+  login(_event, payload = {}, context = {}) {
+    const credentials = { ...payload };
+
+    // Read values from modal inputs when not hardcoded in schema
+    if (!credentials.username || !credentials.password) {
+      const modal = _event.target?.closest(".weavo-modal");
+      if (modal) {
+        credentials.username =
+          credentials.username ?? modal.querySelector('[name="username"]')?.value;
+        credentials.password =
+          credentials.password ?? modal.querySelector('[name="password"]')?.value;
+      }
+    }
+
+    if (typeof context.login === "function") {
+      context.login(credentials);
+    } else {
+      console.warn("[Weavo] login requires login in schema context");
+    }
+  },
+  logout(_event, payload = {}, context = {}) {
+    console.log("logout", payload);
+    if (typeof context.logout === "function") {
+      context.logout(payload);
+    }
+  },
   callAPI(event, payload = {}) {
     const api = payload.api || "get-weaves";
     fetch(`http://localhost:3000/api/weavo.${api}`)

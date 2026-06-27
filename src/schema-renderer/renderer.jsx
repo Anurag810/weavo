@@ -5,10 +5,14 @@ import { bindListeners } from "../js/event-handlers";
 export { validateSchema, validateNode } from "./validate-schema.js";
 
 export function renderNode(node, key = "weavo", context = {}) {
-  if (!node) return null;
+  if (node == null) return null;
 
   if (typeof node === "string") {
     return <React.Fragment key={key}>{node}</React.Fragment>;
+  }
+
+  if (Array.isArray(node)) {
+    return node.map((child, index) => renderNode(child, `${key}-${index}`, context));
   }
 
   const { type, props = {}, styles = {}, children, listeners: rootListeners = {} } = node;

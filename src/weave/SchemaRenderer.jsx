@@ -1,30 +1,26 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import { renderNode, validateSchema } from "../schema-renderer/renderer.jsx";
 import { Modal } from "../components/ui";
 import { useWeave } from "./WeaveProvider.jsx";
 import { useTheme } from "../theme-system/ThemeProvider.jsx";
 
-function renderModalFooter(footer, context) {
-  if (footer == null) return null;
-
-  if (Array.isArray(footer)) {
-    return footer.map((node, index) => (
-      <Fragment key={`modal-footer-${index}`}>{renderNode(node, `modal-footer-${index}`, context)}</Fragment>
-    ));
-  }
-
-  if (typeof footer === "string") {
-    return footer;
-  }
-
-  return renderNode(footer, "modal-footer", context);
-}
-
 /**
  * Renders the active schema from the current Weave context.
  */
 export function SchemaRenderer() {
-  const { activeSchema, activeSchemaId, setActiveSchema, showModal, closeModal, modal, weave } = useWeave();
+  const {
+    activeSchema,
+    activeSchemaId,
+    setActiveSchema,
+    showModal,
+    closeModal,
+    modal,
+    weave,
+    login,
+    logout,
+    isLoggedIn,
+    userDetails,
+  } = useWeave();
   const { themeId, setTheme } = useTheme();
 
   const context = useMemo(
@@ -34,11 +30,28 @@ export function SchemaRenderer() {
       setActiveSchema,
       showModal,
       closeModal,
+      login,
+      logout,
+      isLoggedIn,
+      userDetails,
       schemas: weave.schemas,
       themeId,
       setTheme,
     }),
-    [weave.id, activeSchemaId, setActiveSchema, showModal, closeModal, weave.schemas, themeId, setTheme]
+    [
+      weave.id,
+      activeSchemaId,
+      setActiveSchema,
+      showModal,
+      closeModal,
+      login,
+      logout,
+      isLoggedIn,
+      userDetails,
+      weave.schemas,
+      themeId,
+      setTheme,
+    ]
   );
 
   if (!activeSchema?.schema) {
@@ -56,9 +69,9 @@ export function SchemaRenderer() {
       {renderNode(activeSchema.schema, activeSchemaId, context)}
       {modal && (
         <Modal defaultOpen onClose={closeModal} size="md" speed="normal">
-          <Modal.Header>{modal.header}</Modal.Header>
-          <Modal.Body>{modal.body}</Modal.Body>
-          <Modal.Footer>{renderModalFooter(modal.footer, context)}</Modal.Footer>
+          <Modal.Header onClose={closeModal}>{modal.header}</Modal.Header>
+          <Modal.Body>{renderNode(modal.body, "modal-body", context)}</Modal.Body>
+          <Modal.Footer>{renderNode(modal.footer, "modal-footer", context)}</Modal.Footer>
         </Modal>
       )}
     </>
