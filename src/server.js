@@ -5,6 +5,7 @@ import {
   getWeaveById,
   getResolvedWeave,
   getSchemaByFilename,
+  saveSchema,
 } from "./server/weave-store.js";
 
 const app = express();
@@ -53,6 +54,23 @@ app.get("/api/weavo.weave/:weaveId/resolved", async (req, res) => {
     res.status(200).send({ message: "Weave resolved successfully", data: weave });
   } catch (error) {
     res.status(500).send({ message: "Error resolving weave", error: error.message });
+  }
+});
+
+/** Create or overwrite a schema in a weave (Playground save). */
+app.post("/api/weavo.weave/:weaveId/schema", async (req, res) => {
+  try {
+    const { schemaId, title, schema } = req.body ?? {};
+
+    const manifest = await getWeaveById(req.params.weaveId);
+    if (!manifest) {
+      return res.status(404).send({ message: "Weave not found" });
+    }
+
+    const data = await saveSchema(req.params.weaveId, { schemaId, title, schema });
+    res.status(200).send({ message: "Schema saved successfully", data });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
   }
 });
 

@@ -1,13 +1,23 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { renderNode, validateSchema } from "../schema-renderer/renderer.jsx";
 import { Modal } from "../components/ui";
 import { useWeave } from "./WeaveProvider.jsx";
 import { useTheme } from "../theme-system/ThemeProvider.jsx";
+import { isPlaygroundRoute } from "./hash-routing.js";
+import { PlaygroundPage } from "../playground/index.js";
 
 /**
  * Renders the active schema from the current Weave context.
  */
 export function SchemaRenderer() {
+  const [playground, setPlayground] = useState(() => isPlaygroundRoute());
+
+  useEffect(() => {
+    const sync = () => setPlayground(isPlaygroundRoute());
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+
   const {
     activeSchema,
     activeSchemaId,
@@ -53,6 +63,10 @@ export function SchemaRenderer() {
       setTheme,
     ]
   );
+
+  if (playground) {
+    return <PlaygroundPage />;
+  }
 
   if (!activeSchema?.schema) {
     return null;

@@ -34,9 +34,10 @@ export function renderNode(node, key = "weavo", context = {}) {
   }
 
   const boundProps = bindListeners(componentProps, listeners, context);
+  const mergedStyle = { ...componentProps.style, ...styles };
 
   return (
-    <Component {...boundProps} style={styles} key={key}>
+    <Component {...boundProps} style={mergedStyle} key={key}>
       {renderedChildren}
     </Component>
   );

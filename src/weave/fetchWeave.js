@@ -49,3 +49,23 @@ export async function fetchSchema(weaveId, schemaId) {
   const body = await response.json();
   return body.data;
 }
+
+/**
+ * Save (create or overwrite) a schema in a weave. The server writes
+ * `{schemaId}.schema.json` and registers it in the weave manifest.
+ */
+export async function saveSchema(weaveId, { schemaId, title, schema }) {
+  const response = await fetch(apiUrl(`/api/weavo.weave/${encodeURIComponent(weaveId)}/schema`), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ schemaId, title, schema }),
+  });
+
+  const body = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(body.message || `Failed to save schema "${schemaId}" (${response.status})`);
+  }
+
+  return body.data;
+}

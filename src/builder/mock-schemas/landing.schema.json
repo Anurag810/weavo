@@ -69,7 +69,7 @@
                       {
                         "type": "Button", "props": { "label": "login", "variant": "primary" },
                         "listeners": {
-                          "onClick": { "handler": "login" }
+                          "onClick": { "handler": "navigate", "to": "#/playground" }
                         }
                       }
                     ]
