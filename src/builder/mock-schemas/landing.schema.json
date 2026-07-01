@@ -47,7 +47,33 @@
                 "variant": "primary",
                 "size": "sm",
                 "listeners": {
-                  "onClick": { "handler": "loadSchema", "schema": "components" }
+                  "onClick": {"handler": "openModal",
+                    "header": "How is weavo Framework doing?",
+                    "body": [
+                      {
+                        "type": "Section",
+                        "props": { "className": "weavo-landing-topbar", "direction": "row" },
+                        "children": [
+                            { "type": "Input", "props": { "placeholder": "Username", "name": "username", "autoComplete": "username" } },
+                            { "type": "Input", "props": { "placeholder": "Password", "type": "password", "name": "password", "autoComplete": "current-password" } }
+                        ]
+                      }
+                    ],
+                    "footer": [
+                      { "type": "Button",
+                        "props": { "label": "Close", "variant": "secondary" },
+                        "listeners": {
+                          "onClick": { "handler": "closeModal" }
+                        }
+                      },
+                      {
+                        "type": "Button", "props": { "label": "login", "variant": "primary" },
+                        "listeners": {
+                          "onClick": { "handler": "navigate", "to": "#/playground" }
+                        }
+                      }
+                    ]
+                  }
                 }
               }
             }

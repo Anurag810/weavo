@@ -18,8 +18,8 @@ Weavo is an early-stage, schema-driven UI framework. The app renders entirely fr
 | **v0.2** — Schema renderer   | ~92%     | Recursive renderer, Weaves, hash routing, validation, `openModal`, event listeners |
 | **v0.3** — Backend API       | ~15%     | Express + Ollama AI endpoints; schema/theme storage not started                     |
 | **v0.4** — CLI               | ~25%     | `dev`, `build`, `setup-requirements` only                                           |
-| **v0.5** — Docs + playground | 0%       | Not started                                                                         |
-| **v1.0** — Builder MVP       | 0%       | Application schemas only; no drag-and-drop UI                                       |
+| **v0.5** — Docs + playground | ~40%     | Drag-and-drop playground at `#/playground` with live preview, validation, JSON view |
+| **v1.0** — Builder MVP       | ~35%     | Palette, nested canvas, props panel, and save-to-disk schemas                       |
 
 
 ## Recent Progress
@@ -323,6 +323,32 @@ Handlers registered in `src/js/listeners.js`: `alert`, `log`, `navigate`, `loadS
 
 ---
 
+## Playground (Drag-and-Drop Builder)
+
+Open the visual builder at [`#/playground`](http://localhost:5173/#/playground) (also linked from the landing navbar). The Playground lives in `src/playground/` and reuses the same renderer and validator as the app.
+
+| Area | What it does |
+| ---- | ------------ |
+| **Palette** (left) | Drag Layout, UI, and Text components onto the canvas |
+| **Canvas** (center) | Drop, select, reorder, and nest components into containers; delete per node |
+| **Validation** (center, bottom) | Live results from `validateSchema` |
+| **Right panel** | Tabs for **Preview** (live `renderNode`), **JSON** (view/apply raw schema), and **Properties** (edit selected node) |
+| **Toolbar** | Load an existing schema, set a `schema-id` + title, **Clear**, and **Save** |
+
+**Save** posts to `POST /api/weavo.weave/:weaveId/schema`, which writes `src/builder/mock-schemas/{schema-id}.schema.json` and registers it in `app.weave.json`. The Express server (`npm run serve`) must be running. After saving, reload and open `#/{schema-id}` to view the new page.
+
+```mermaid
+flowchart LR
+  Palette -->|drag| Canvas
+  Canvas -->|treeToSchema| Preview
+  Canvas -->|treeToSchema| JSON
+  Canvas -->|Save| API[POST schema API]
+  API --> Disk["mock-schemas/*.schema.json"]
+  API --> Manifest[app.weave.json]
+```
+
+---
+
 ## Theming System
 
 Weavo uses a **hybrid theming architecture**: built-in light/dark themes ship as SCSS (`data-theme`), and a JSON theme format is reserved for future user-created themes.
@@ -528,16 +554,17 @@ Express server at `src/server.js` (port 3000).
 - [ ] SCSS token reference
 - [ ] Component props documentation
 - [ ] JSON schema spec
-- [ ] Live editor + preview
+- [x] Live editor + preview (`#/playground` — JSON view, live preview, validation)
 
 ### v1.0 — UI Builder MVP
 
-- [ ] Drag-and-drop builder UI
-- [ ] Component palette sidebar
-- [ ] Canvas drop zone
-- [ ] Auto-generate JSON schema
-- [ ] Live preview panel
-- [ ] Save to API / import / export
+- [x] Drag-and-drop builder UI (`src/playground/`)
+- [x] Component palette sidebar
+- [x] Canvas drop zone (nested containers)
+- [x] Auto-generate JSON schema
+- [x] Live preview panel
+- [x] Save to API (writes `*.schema.json` + updates `app.weave.json`)
+- [ ] Import / export files, undo/redo
 
 ### Miscellaneous
 
@@ -554,19 +581,18 @@ Express server at `src/server.js` (port 3000).
 
 ## Known Issues & Next Steps
 
-1. **Server-side schema storage** — schemas still bundled as static imports; file API + fetch not started (v0.3 lite)
-2. **Playground** — no `#/playground` JSON editor with Validate/Save UI yet (v0.5)
-3. **JSON custom themes** — format defined; `registerTheme()` stub only (no editor or API yet)
-4. **Rust compiler** — `Cargo.toml` exists but no `.rs` source files yet
-5. **Tests** — only a manual AI smoke test; method name mismatch in test file
-6. **Data binding** — `model: "chat.input"` in schemas is not wired up
+1. **JSON custom themes** — format defined; `registerTheme()` stub only (no editor or API yet)
+2. **Rust compiler** — `Cargo.toml` exists but no `.rs` source files yet
+3. **Tests** — only a manual AI smoke test; method name mismatch in test file
+4. **Data binding** — `model: "chat.input"` in schemas is not wired up
+5. **Playground polish** — no undo/redo, file import/export, or live weave refresh after save (reload to see new schema)
 
-**Suggested next work (builder vs backend path):**
+**Suggested next work:**
 
-1. File-backed weave/schema API in `server.js` (`data/weaves/` on disk)
-2. `fetchWeave()` in dev with mock fallback
-3. JSON playground (`#/playground`) — editor + live preview + Validate/Save
-4. Drag-and-drop builder (v1.0) after save/load works
+1. Live weave refresh after Playground save (re-fetch instead of manual reload)
+2. Undo/redo and node duplication in the builder
+3. Theme editor + import/export `.theme.json`
+4. Frappe-style dev console after builder save/load matures
 
 ---
 

@@ -10,6 +10,9 @@ export function WeaveProvider({ weave, children }) {
 
   const [modal, setModal] = useState(null);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
+
   const setActiveSchema = useCallback(
     (schemaId, { updateHash = true } = {}) => {
       if (!weave.schemas[schemaId]) {
@@ -27,6 +30,33 @@ export function WeaveProvider({ weave, children }) {
     },
     [weave]
   );
+
+  const login = useCallback((payload = {}) => {
+    const username = payload.username?.trim();
+    const password = payload.password;
+
+    if (!username || !password) {
+      window.alert("Please enter username and password.");
+      return false;
+    }
+
+    // Demo credentials — replace with API auth in v0.3
+    if (username !== "admin" || password !== "admin") {
+      window.alert("Invalid username or password.");
+      return false;
+    }
+
+    setIsLoggedIn(true);
+    setUserDetails({ userID: username });
+    setModal(null);
+    return true;
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+    setUserDetails({});
+  }, []);
+
 
   const showModal = useCallback((header, body, footer) => {
     setModal({ header, body, footer });
@@ -70,8 +100,12 @@ export function WeaveProvider({ weave, children }) {
       showModal,
       closeModal,
       modal,
+      isLoggedIn,
+      userDetails,
+      login,
+      logout,
     };
-  }, [weave, activeSchemaId, setActiveSchema, showModal, closeModal, modal]);
+  }, [weave, activeSchemaId, setActiveSchema, showModal, closeModal, modal, isLoggedIn, userDetails, login, logout]);
 
   return <WeaveContext.Provider value={value}>{children}</WeaveContext.Provider>;
 }
