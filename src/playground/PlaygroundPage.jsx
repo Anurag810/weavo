@@ -15,6 +15,7 @@ import { PropsPanel } from "./PropsPanel.jsx";
 import { PreviewPanel } from "./PreviewPanel.jsx";
 import { JsonPanel } from "./JsonPanel.jsx";
 import { DataSourcePanel } from "./DataSourcePanel.jsx";
+import { DataSourceProvider } from "./DataSourceProvider.jsx";
 import { PlaygroundToolbar } from "./PlaygroundToolbar.jsx";
 import { ROOT_ID, getCatalogEntry, treeToSchema } from "./schema-tree.js";
 
@@ -175,7 +176,9 @@ function PlaygroundInner() {
 export function PlaygroundPage() {
   return (
     <BuilderProvider>
-      <PlaygroundInner />
+      <DataSourceProvider>
+        <PlaygroundInner />
+      </DataSourceProvider>
     </BuilderProvider>
   );
 }

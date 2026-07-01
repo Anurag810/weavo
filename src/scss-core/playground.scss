@@ -483,6 +483,20 @@
   font-size: var(--font-sm);
 }
 
+.weavo-pg-data-hint {
+  margin: 0;
+  font-size: var(--font-xs);
+  color: var(--color-text-secondary);
+
+  code {
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-muted);
+    color: var(--color-primary);
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  }
+}
+
 .weavo-pg-data-error {
   padding: var(--spacing-sm);
   color: var(--color-danger);

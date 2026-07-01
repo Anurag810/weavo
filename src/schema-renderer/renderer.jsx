@@ -1,14 +1,17 @@
 import React from "react";
 import { ComponentMap } from "../components";
 import { bindListeners } from "../js/event-handlers";
+import { getScope, resolveDeep, resolveTemplate } from "./template.js";
 
 export { validateSchema, validateNode } from "./validate-schema.js";
 
 export function renderNode(node, key = "weavo", context = {}) {
   if (node == null) return null;
 
+  const scope = getScope(context);
+
   if (typeof node === "string") {
-    return <React.Fragment key={key}>{node}</React.Fragment>;
+    return <React.Fragment key={key}>{scope ? resolveTemplate(node, scope) : node}</React.Fragment>;
   }
 
   if (Array.isArray(node)) {
@@ -28,13 +31,17 @@ export function renderNode(node, key = "weavo", context = {}) {
       renderNode(child, `${key}-${i}`, context)
     );
   } else if (typeof children === "string") {
-    renderedChildren = children;
+    renderedChildren = scope ? resolveTemplate(children, scope) : children;
   } else if (children && typeof children === "object") {
     renderedChildren = renderNode(children, `${key}-0`, context);
   }
 
-  const boundProps = bindListeners(componentProps, listeners, context);
-  const mergedStyle = { ...componentProps.style, ...styles };
+  // Bind data-source templates ({{ data.x }}) against the active scope.
+  const resolvedProps = scope ? resolveDeep(componentProps, scope) : componentProps;
+  const resolvedStyles = scope ? resolveDeep(styles, scope) : styles;
+
+  const boundProps = bindListeners(resolvedProps, listeners, context);
+  const mergedStyle = { ...resolvedProps.style, ...resolvedStyles };
 
   return (
     <Component {...boundProps} style={mergedStyle} key={key}>

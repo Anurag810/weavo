@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { renderNode } from "../schema-renderer/renderer.jsx";
+import { useDataSource } from "./DataSourceProvider.jsx";
 
 /**
  * Guards the live preview against render errors from in-progress schemas.
@@ -33,8 +34,9 @@ class PreviewBoundary extends Component {
 }
 
 export function PreviewPanel({ schema }) {
+  const { data } = useDataSource();
   const isEmpty = !schema?.children?.[0]?.children?.length;
-  const schemaKey = JSON.stringify(schema);
+  const schemaKey = `${JSON.stringify(schema)}::${data ? JSON.stringify(data) : ""}`;
 
   return (
     <section className="weavo-pg-preview">
@@ -44,7 +46,7 @@ export function PreviewPanel({ schema }) {
           <p className="weavo-pg-preview-empty">Your preview will appear here as you add components.</p>
         ) : (
           <PreviewBoundary schemaKey={schemaKey}>
-            {renderNode(schema, "pg-preview", {})}
+            {renderNode(schema, "pg-preview", { data })}
           </PreviewBoundary>
         )}
       </div>
